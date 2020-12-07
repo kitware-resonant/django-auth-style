@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <h3>Auth top-level templates</h3>
+    <ul>
+      {% for template_file, view_path in template_files.items %}
+        <li>
+          <a href="{{ view_path }}">
+            {{ template_file }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
+
