@@ -35,7 +35,6 @@ setup(
     python_requires='>=3.8',
     packages=find_packages(),
     install_requires=[
-        'celery',
         'django',
         'django-admin-display',
         'django-allauth',
@@ -45,6 +44,7 @@ setup(
         'django-extensions',
         'django-filter',
         'django-material',
+        'django-tailwind',
         'djangorestframework',
         'drf-extensions',
         'drf-yasg2',

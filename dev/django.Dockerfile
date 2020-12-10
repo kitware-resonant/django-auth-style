@@ -1,9 +1,12 @@
 FROM python:3.8-slim
 # Install system librarires for Python packages:
 # * psycopg2
+# Install npm
 RUN apt-get update && \
     apt-get install --no-install-recommends --yes \
-        libpq-dev gcc libc6-dev && \
+        libpq-dev gcc libc6-dev curl && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install --yes nodejs build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONDONTWRITEBYTECODE 1

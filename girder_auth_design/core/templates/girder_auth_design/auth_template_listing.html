@@ -1,20 +1,31 @@
 <!doctype html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-  </head>
+<head>
+  <meta charset="utf-8">
+</head>
 
-  <body>
-    <h3>Auth top-level templates</h3>
-    <ul>
-      {% for template_file, view_path in template_files.items %}
-        <li>
-          <a href="{{ view_path }}">
-            {{ template_file }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </body>
+<body>
+<h3>User Status</h3>
+{% if user.is_authenticated %}
+<div>User: {{ user.username }}</div>
+{% else %}
+<div>Logged out</div>
+{% endif %}
+
+<h3>Auth templates</h3>
+<ul>
+  {% for template_file, view_url in template_files.items %}
+  <li>
+    {% if view_url %}
+    <a href="{{ view_url }}">
+      {{ template_file }}
+    </a>
+    {% else %}
+    {{ template_file }}
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+</body>
 </html>
 

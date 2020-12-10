@@ -14,26 +14,16 @@ services:
       - 8000:8000
     depends_on:
       - postgres
-      - rabbitmq
       - minio
 
-  celery:
+  tailwind:
     build:
       context: .
       dockerfile: ./dev/django.Dockerfile
-    command: [
-      "celery",
-      "--app", "girder_auth_design.celery",
-      "worker",
-      "--loglevel", "INFO",
-      "--without-heartbeat"
-    ]
-    # Docker Compose does not set the TTY width, which causes Celery errors
-    tty: false
+    command: ["./manage.py", "tailwind", "start"]
     env_file: ./dev/.env.docker-compose
     volumes:
       - .:/opt/django-project
     depends_on:
       - postgres
-      - rabbitmq
       - minio

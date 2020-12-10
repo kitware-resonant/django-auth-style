@@ -24,7 +24,11 @@ class GirderAuthDesignConfig(ConfigMixin):
     def before_binding(configuration: ComposedConfiguration) -> None:
         configuration.INSTALLED_APPS += [
             'girder_auth_design.core.apps.CoreConfig',
+            'tailwind',
+            'girder_auth_design.theme',
         ]
+
+    TAILWIND_APP_NAME = 'girder_auth_design.theme'
 
 
 class DevelopmentConfiguration(GirderAuthDesignConfig, DevelopmentBaseConfiguration):
