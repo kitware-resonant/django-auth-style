@@ -22,8 +22,13 @@ class GirderAuthDesignConfig(ConfigMixin):
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
+        # Insert before other apps with allauth templates
+        auth_app_index = configuration.INSTALLED_APPS.index(
+            'composed_configuration.authentication.apps.AuthenticationConfig'
+        )
+        configuration.INSTALLED_APPS.insert(auth_app_index, 'girder_auth_design.core.apps.CoreConfig')
+
         configuration.INSTALLED_APPS += [
-            'girder_auth_design.core.apps.CoreConfig',
             'tailwind',
             'girder_auth_design.theme',
         ]
