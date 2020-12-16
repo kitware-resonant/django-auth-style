@@ -7,7 +7,7 @@
 
 
 {% block content %}
-<h5>{% trans "Confirm E-mail Address" %}</h5>
+<h3 class="mb-2">{% trans "Confirm E-mail Address" %}</h3>
 
 {% if confirmation %}
 
@@ -23,9 +23,15 @@
 {% else %}
 
 {% url 'account_email' as email_url %}
-
-<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
+<div class="flex bg-red-100 items-center mb-4 px-5 py-2 rounded-md text-red-700">
+  <i class="ri-error-warning-line mr-4 text-4xl"></i>
+  <p>{% blocktrans %}Link expired or invalid.</p>
+</div>
+This confirmation link is expired or invalid. Please issue a new e-mail confirmation request.
+<div class="flex justify-end mt-4">
+  <a href="{{ email_url }}" class="button primary">New Request</a>
+</div>
+{% endblocktrans %}
 {% endif %}
 
 {% endblock %}
