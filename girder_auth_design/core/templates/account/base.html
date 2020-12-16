@@ -1,39 +1,81 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block head_title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="author" content="">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;0,700;1,200;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     {% block extra_head %}
     {% endblock %}
   </head>
-  <body>
+  <body class="bg-gray-100">
     {% block body %}
 
+    <div class="bg-white border-b border-gray-200 flex items-center justify-between">
+      <div class="flex px-3">
+        <h1 class="text-lg">AppName</h1>
+      </div>
+      <ul class="flex">
+        {% if user.is_authenticated %}
+        <li class="flex flex-col">
+          <a href="{% url 'account_email' %}" class="border-b-2 border-transparent flex group items-center p-3 hover:border-blue-700 transition-all">
+            Change E-mail
+          </a>
+        </li>
+        <li class="flex flex-col">
+          <a href="{% url 'account_logout' %}" class="border-b-2 border-transparent flex group items-center p-3 hover:border-blue-700 transition-all">
+            Sign Out
+          </a>
+        </li>
+        {% else %}
+        <li class="flex flex-col">
+          <a href="{% url 'account_login' %}" class="border-b-2 border-transparent flex group items-center p-3 hover:border-blue-700 transition-all">
+            <i class="ri-user-shared-line mr-1 text-gray-400 text-lg transition-all group-hover:text-gray-600"></i>
+            Sign In
+          </a>
+        </li>
+        <li class="flex flex-col">
+          <a href="{% url 'account_signup' %}" class="border-b-2 border-transparent flex group items-center p-3 hover:border-blue-700 transition-all">
+            <i class="ri-user-add-line mr-1 text-gray-400 text-lg transition-all group-hover:text-gray-600"></i>
+            Sign Up
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
     {% if messages %}
     <div>
-      <strong>Messages:</strong>
       <ul>
         {% for message in messages %}
-        <li>{{message}}</li>
+        <li class="bg-green-400 flex items-center m-3 px-4 py-2 rounded-lg text-white">
+          <i class="ri-checkbox-circle-line mr-3 text-2xl"></i>
+          <span class="flex-grow">
+            {{message}}
+          </span>
+          <a href="#" class="text-green-200 hover:text-green-100"><i class="ri-close-line text-2xl"></i></a>
+        </li>
         {% endfor %}
       </ul>
     </div>
     {% endif %}
-
-    <div>
-      <strong>Menu:</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
+    <div class="bg-white border border-gray-200 container mx-auto my-12 overflow-hidden rounded-lg shadow-lg w-120">
+      <div class="border-keppel-500 border-t-4 p-12">
+        {% block content %}
+        {% endblock %}
+      </div>
     </div>
-    {% block content %}
     {% endblock %}
-    {% endblock %}
+
     {% block extra_body %}
     {% endblock %}
   </body>
