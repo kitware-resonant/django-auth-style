@@ -3,41 +3,46 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply font-sans;
+  html,
+  body {
+    @apply font-sans h-full text-gray-700;
   }
 
   // Base Link Styles
   a {
-    @apply text-blue-500 transition-colors;
+    @apply text-primary-500 transition-colors;
     &:hover {
-      @apply text-blue-700;
+      @apply text-primary-700;
     }
   }
 
   // Heading Styles
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-thin text-gray-500;
+  }
+
   h1 {
-    @apply text-3xl;
+    @apply text-4xl;
   }
 
   h2 {
-    @apply text-2xl;
+    @apply text-3xl;
   }
 
   h3 {
-    @apply text-xl;
+    @apply text-2xl;
   }
 
   h4 {
-    @apply text-lg;
+    @apply text-xl;
   }
 
   h5 {
-    @apply font-bold text-base;
+    @apply font-semibold text-lg;
   }
 
   h6 {
-    @apply text-base text-gray-500;
+    @apply font-semibold text-base text-gray-400 uppercase;
   }
 
   // Button styles
@@ -47,48 +52,53 @@
     &:hover {
       @apply bg-gray-100 text-gray-800;
     }
-    &.btn-small {
-      @apply px-3 py-2 text-sm;
+    @responsive {
+      &.btn-sm {
+        @apply px-3 py-2 text-sm;
+      }
+      &.btn-xs {
+        @apply px-2 py-1 rounded text-2xs;
+      }
     }
     // Primary Button Styles
     &.primary {
-      @apply bg-blue-500 text-white;
+      @apply bg-primary-500 text-white;
       &:hover {
-        @apply bg-blue-700 text-white;
+        @apply bg-primary-700 text-white;
       }
       // Outlined buttons
       &.outline {
-        @apply bg-transparent border border-blue-500 text-blue-500;
+        @apply bg-transparent border border-primary-500 text-primary-500;
         &:hover {
-          @apply bg-blue-500 text-white;
+          @apply bg-primary-500 text-white;
         }
       }
     }
     // Secondary Button Styles
     &.secondary {
-      @apply bg-keppel-500 text-white;
+      @apply bg-secondary-400 text-white;
       &:hover {
-        @apply bg-keppel-700 text-white;
+        @apply bg-secondary-600 text-white;
       }
       // Outlined buttons
       &.outline {
-        @apply bg-transparent border border-keppel-500 text-keppel-500;
+        @apply bg-transparent border border-secondary-400 text-secondary-400;
         &:hover {
-          @apply bg-keppel-500 text-white;
+          @apply bg-secondary-400 text-white;
         }
       }
     }
     // Accent Button Styles
     &.accent {
-      @apply bg-supernova-500 text-white;
+      @apply bg-accent-500 text-white;
       &:hover {
-        @apply bg-supernova-700 text-white;
+        @apply bg-accent-700 text-white;
       }
       // Outlined buttons
       &.outline {
-        @apply bg-transparent border border-supernova-500 text-supernova-500;
+        @apply bg-transparent border border-accent-500 text-accent-500;
         &:hover {
-          @apply bg-supernova-500 text-white;
+          @apply bg-accent-500 text-white;
         }
       }
     }
@@ -117,7 +127,7 @@
     textarea {
       @apply px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none w-full;
       &:focus {
-        @apply shadow-outline;
+        @apply ring-2 ring-primary-300;
       }
     }
   }
