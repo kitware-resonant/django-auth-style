@@ -74,21 +74,21 @@
                 </li>
               {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
                 <li class="bg-yellow-100 flex items-center px-4 py-2 rounded-lg text-yellow-800">
-                  <i class="ri-checkbox-circle-line mr-3 text-2xl"></i>
+                  <i class="ri-alert-line mr-3 text-2xl"></i>
                   <span class="flex-grow">
                     {{message}}
                   </span>
                 </li>
               {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                 <li class="bg-red-100 flex items-center px-4 py-2 rounded-lg text-red-800">
-                  <i class="ri-checkbox-circle-line mr-3 text-2xl"></i>
+                  <i class="ri-spam-3-line mr-3 text-2xl"></i>
                   <span class="flex-grow">
                     {{message}}
                   </span>
                 </li>
               {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
                 <li class="bg-secondary-100 flex items-center px-4 py-2 rounded-lg text-secondary-800">
-                  <i class="ri-checkbox-circle-line mr-3 text-2xl"></i>
+                  <i class="ri-information-line mr-3 text-2xl"></i>
                   <span class="flex-grow">
                     {{message}}
                   </span>
