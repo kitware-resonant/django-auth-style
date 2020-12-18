@@ -10,29 +10,7 @@ module.exports = {
     fontFamily: {
       'sans': 'Nunito, sans-serif'
     },
-    fontSize: {
-      'tiny': '.65rem',
-      'xs': '.75rem',
-      'sm': '.875rem',
-      'base': '1rem',
-      'lg': '1.125rem',
-      'xl': '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
-      '6xl': '4rem',
-    },
-    maxWidth: {
-      '1/4': '25%',
-      '1/2': '50%',
-      '3/4': '75%',
-    },
     extend: {
-      boxShadow: {
-        outline: '0 0 0 3px #BFDBFE',
-        'inner-large': 'inset 0 -6px 20px 0 rgba(0, 0, 0, 0.06)',
-      },
       colors: {
         'keppel': {
           '50': '#f6fcfb',
@@ -58,6 +36,14 @@ module.exports = {
           '800': '#997c16',
           '900': '#7d6512'
         }
+      },
+      fontSize: {
+        '2xs': '.7rem',
+        '3xs': '.63rem',
+      },
+      maxWidth: {
+        '2xs': '16rem',
+        '3xs': '12rem',
       },
       width: {
         '120': '30rem',
