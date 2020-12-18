@@ -12,36 +12,39 @@
 
     <form action="{% url 'account_email' %}" class="email_list" method="post">
       {% csrf_token %}
-      <fieldset class="blockLabels">
-      <ul class="border-t border-gray-300 mt-4">
+      <fieldset class="blockLabels min-w-0">
+      <ul class="border-t border-gray-300 mt-6">
         {% for emailaddress in user.emailaddress_set.all %}
-          <li class="border-b border-gray-300 ctrlHolder py-3">
-            <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{%endif%} flex items-center justify-between">
-              <div class="flex items-center w-64">
-                <input class="mr-3" id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
+          <li class="border-b border-gray-300 ctrlHolder flex items-center justify-between py-3 min-w-0">
+            <label for="email_radio_{{forloop.counter}}" class="flex items-center min-w-0">
 
-                <span class="block overflow-ellipsis overflow-hidden whitespace-no-wrap max-w-full">{{ emailaddress.email }}</span>
-                {% if emailaddress.primary %}<i class="{% trans 'ri-star-s-fill' %} ml-1 text-blue-500"></i>{% endif %}
-              </div>
-              <div class="flex items-center">
+              <input id="email_radio_{{forloop.counter}}" class="mr-2" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
 
-                {% if emailaddress.verified %}
-                  <span class="verified border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-tiny">{% trans "verified" %}</span>
-                {% else %}
-                  <span class="unverified border bg-gray-100 flex items-center mx-1 pl-1 pr-2 rounded-full text-gray-500 text-tiny"><i class="ri-error-warning-line mr-1 text-sm text-red-600"></i>{% trans "unverified" %}</span>
-                {% endif %}
-              </div>
+              {% if emailaddress.primary %}
+                <i class="{% trans 'ri-star-s-fill' %} mr-1 text-primary-500 whitespace-nowrap"></i>
+              {% endif %}
+              <span class="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                {{ emailaddress.email }}
+              </span>
+
             </label>
+            <div>
+              {% if emailaddress.verified %}
+                <span class="verified border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-3xs">{% trans "verified" %}</span>
+              {% else %}
+                <span class="unverified border bg-gray-100 flex items-center mx-1 pl-1 pr-2 rounded-full text-gray-500 text-3xs"><i class="ri-error-warning-line mr-1 text-sm text-red-600"></i>{% trans "unverified" %}</span>
+              {% endif %}
+            </div>
           </li>
         {% endfor %}
       </ul>
 
-      <div class="buttonHolder flex items-center justify-between py-5">
-        <button class="primaryAction btn-small text-red-500 hover:bg-red-100 hover:text-red-700" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
-        <div>
-          <button class="secondaryAction mr-1 btn-small text-blue-500 hover:bg-blue-100 hover:text-blue-700" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
-          <button class="secondaryAction primary btn-small" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
-        </div>
+      <div class="buttonHolder flex items-center py-5">
+        <button class="primaryAction btn-xs text-red-500 hover:bg-red-100 hover:text-red-700 md:btn-sm" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+        <div class="spacer flex-grow"></div>
+        <button class="secondaryAction mr-1 btn-xs text-primary-500 hover:bg-primary-100 hover:text-primary-700 md:btn-sm" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+        <button class="secondaryAction primary btn-xs md:btn-sm" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+
       </div>
 
     </fieldset>
@@ -53,13 +56,13 @@
       <div><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</div>
     </div>
   {% endif %}
-  <div class="bg-gray-100 border border-gray-300 mt-3 -mx-5 p-5 rounded-lg">
-    <h5 class="text-gray-500">{% trans "Add E-mail Address" %}</h5>
+  <div class="bg-gray-100 border border-gray-300 mt-3 -mx-3 p-5 rounded-lg">
+    <h5>{% trans "Add E-mail Address" %}</h5>
     <form method="post" action="{% url 'account_email' %}" class="add_email">
-      <div class="flex items-end">
+      <div class="block md:flex md:items-end">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="primary border border-transparent btn-small mb-3 ml-2" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+        <button class="primary border border-transparent btn-sm w-full mb-3 md:ml-2 md:w-auto" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
       </div>
     </form>
   </div>
