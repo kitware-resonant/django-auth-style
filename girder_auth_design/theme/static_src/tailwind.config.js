@@ -57,9 +57,10 @@ module.exports = {
         '2xs': '16rem',
         '3xs': '12rem',
       },
-      width: {
-        '120': '30rem',
-      }
+      minWidth: {
+        '2xs': '16rem',
+        '3xs': '12rem',
+      },
     },
   },
   variants: {

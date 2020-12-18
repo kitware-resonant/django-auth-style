@@ -53,21 +53,21 @@
       @apply bg-gray-100 text-gray-800;
     }
     @responsive {
-      &.btn-sm {
+      &.is-sm {
         @apply px-3 py-2 text-sm;
       }
-      &.btn-xs {
+      &.is-xs {
         @apply px-2 py-1 rounded text-2xs;
       }
     }
     // Primary Button Styles
-    &.primary {
+    &.is-primary {
       @apply bg-primary-500 text-white;
       &:hover {
         @apply bg-primary-700 text-white;
       }
       // Outlined buttons
-      &.outline {
+      &.is-outline {
         @apply bg-transparent border border-primary-500 text-primary-500;
         &:hover {
           @apply bg-primary-500 text-white;
@@ -75,13 +75,13 @@
       }
     }
     // Secondary Button Styles
-    &.secondary {
+    &.is-secondary {
       @apply bg-secondary-400 text-white;
       &:hover {
         @apply bg-secondary-600 text-white;
       }
       // Outlined buttons
-      &.outline {
+      &.is-outline {
         @apply bg-transparent border border-secondary-400 text-secondary-400;
         &:hover {
           @apply bg-secondary-400 text-white;
@@ -89,13 +89,13 @@
       }
     }
     // Accent Button Styles
-    &.accent {
+    &.is-accent {
       @apply bg-accent-500 text-white;
       &:hover {
         @apply bg-accent-700 text-white;
       }
       // Outlined buttons
-      &.outline {
+      &.is-outline {
         @apply bg-transparent border border-accent-500 text-accent-500;
         &:hover {
           @apply bg-accent-500 text-white;
