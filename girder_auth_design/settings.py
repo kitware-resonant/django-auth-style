@@ -6,8 +6,6 @@ from composed_configuration import (
     ComposedConfiguration,
     ConfigMixin,
     DevelopmentBaseConfiguration,
-    HerokuProductionBaseConfiguration,
-    ProductionBaseConfiguration,
     TestingBaseConfiguration,
 )
 
@@ -41,12 +39,4 @@ class DevelopmentConfiguration(GirderAuthDesignConfig, DevelopmentBaseConfigurat
 
 
 class TestingConfiguration(GirderAuthDesignConfig, TestingBaseConfiguration):
-    pass
-
-
-class ProductionConfiguration(GirderAuthDesignConfig, ProductionBaseConfiguration):
-    pass
-
-
-class HerokuProductionConfiguration(GirderAuthDesignConfig, HerokuProductionBaseConfiguration):
     pass
