@@ -11,7 +11,6 @@
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
-
 <p>
   {% blocktrans trimmed with email=confirmation.email_address.email %}
   Please confirm that <a href="mailto:{{ email }}">{{ email }}</a>
@@ -34,15 +33,19 @@
   <p>
     {% blocktrans trimmed %}
     Link expired or invalid.
+    {% endblocktrans %}
   </p>
 </div>
 
+{% blocktrans trimmed %}
 This confirmation link is expired or invalid.
 Please issue a new e-mail confirmation request.
+{% endblocktrans %}
 
 <div class="flex justify-end mt-4">
-  <a href="{{ email_url }}" class="button is-primary">New Request</a>
+  <a href="{{ email_url }}" class="button is-primary">
+    {% trans 'New Request' %}
+  </a>
 </div>
-{% endblocktrans %}
 {% endif %}
 {% endblock %}
