@@ -1,19 +1,27 @@
-{% extends "account/base.html" %}
+{% extends 'account/base.html' %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+{% block head_title %}{% trans 'Account Inactive' %}{% endblock %}
 
 {% block content %}
 <div class="flex bg-red-100 items-center p-5 rounded-md text-red-700">
   <i class="ri-error-warning-line mr-4 text-4xl"></i>
   <div>
-    <h5 class="text-red-700">{% trans "Error: Account Inactive" %}</h5>
-    <p>{% trans "Your account is currently inactive." %}</p>
+    <h5 class="text-red-700">{% trans 'Error: Account Inactive' %}</h5>
+    <p>
+      {% blocktrans trimmed %}
+      Your account is currently inactive.
+      {% endblocktrans %}
+    </p>
   </div>
 </div>
+
 <div class="pb-2 pt-5">
-  <p class="mb-5">For more information you may <a href="#">contact an admin</a>. If you think you've received this message in error try to log in again.</p>
+  <p class="mb-5">
+    For more information you may <a href="#">contact an admin</a>.
+    If you think you've received this message in error try to log in again.
+  </p>
   <p class="text-right">
     <a href="{% url 'account_email' %}" class="button inline-flex items-center is-primary">
       Log In

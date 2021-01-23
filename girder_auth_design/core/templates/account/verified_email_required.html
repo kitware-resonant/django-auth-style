@@ -1,26 +1,36 @@
-{% extends "account/base.html" %}
+{% extends 'account/base.html' %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block head_title %}{% trans 'Verify Your E-mail Address' %}{% endblock %}
 
 {% block content %}
-<h3 class="mb-2">{% trans "Verify Your E-mail Address" %}</h3>
+<h3 class="mb-2">{% trans 'Verify Your E-mail Address' %}</h3>
 
 {% url 'account_email' as email_url %}
 
-<p>{% blocktrans %}This part of the site requires us to verify that
-you are who you claim to be. For this purpose, we require that you
-verify ownership of your e-mail address. {% endblocktrans %}</p>
+<p>
+  {% blocktrans trimmed %}
+  This part of the site requires us to verify that you are who you claim to be.
+  For this purpose, we require that you verify ownership of your e-mail address.
+  {% endblocktrans %}
+</p>
 
-<p>{% blocktrans %}We have sent an e-mail to you for
-verification. Please click on the link inside this e-mail. Please
-contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+<p>
+  {% blocktrans trimmed %}
+  We have sent an e-mail to you for verification.
+  Please click on the link inside this e-mail.
+  Please contact us if you do not receive it within a few minutes.
+  {% endblocktrans %}
+</p>
 
 <div class="flex bg-yellow-100 items-center mt-4 p-5 rounded-md text-yellow-700">
   <i class="ri-information-line mr-4 text-4xl"></i>
-  <p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktrans %}</p>
+  <p>
+    <strong>{% trans 'Note' %}:</strong>
+    {% blocktrans trimmed %}
+    you can still <a href="{{ email_url }}">change your e-mail address</a>.
+    {% endblocktrans %}
+  </p>
 </div>
-
-
 {% endblock %}

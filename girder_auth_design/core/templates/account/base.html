@@ -1,112 +1,76 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block head_title %}{% endblock %}</title>
-    <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="author" content="">
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    {% block extra_head %}
-    {% endblock %}
-  </head>
-  <body class="bg-gray-100 flex flex-col h-full relative">
-    <div class="absolute bg-black bottom-0 left-0 overflow-hidden right-0 top-0 z-0">
-      <img src="https://images.pexels.com/photos/53176/architecture-iron-steel-building-53176.jpeg?cs=srgb&dl=pexels-pixabay-53176.jpg&fm=jpg" class="object-cover opacity-25 w-full" alt="">
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-gray-100 flex flex-col h-full relative">
+
+<div class="absolute bg-black bottom-0 left-0 overflow-hidden right-0 top-0 z-0">
+  <img
+      src="https://images.pexels.com/photos/53176/architecture-iron-steel-building-53176.jpeg?cs=srgb&dl=pexels-pixabay-53176.jpg&fm=jpg"
+      class="object-cover opacity-25 w-full"
+      alt="">
+</div>
+
+{% block body %}
+<div class="flex flex-initial h-24 items-center justify-between relative w-full z-20">
+  <div class="bg-white flex h-full items-center max-w-max px-6 py-4 w-full lg:w-1/2 md:max-w-xl md:px-12 md:w-2/3">
+    <div class="max-w-3xs">
+      <img src="https://blog.kitware.com/wp-content/uploads/2016/03/Girder_v2.png" class="w-full h-auto" alt="Girder">
     </div>
-    {% block body %}
-    <div class="flex flex-initial h-24 items-center justify-between relative w-full z-20">
-      <div class="bg-white flex h-full items-center max-w-max px-6 py-4 w-full lg:w-1/2 md:max-w-xl md:px-12 md:w-2/3">
-        <div class="max-w-3xs">
-          <img src="https://blog.kitware.com/wp-content/uploads/2016/03/Girder_v2.png" class="w-full h-auto" alt="Girder">
-        </div>
-      </div>
-      <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
-        {% if user.is_authenticated %}
-        <li class="flex flex-grow">
-          <a href="{% url 'account_email' %}" class="flex flex-col group justify-center p-4 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 md:flex-row md:items-center lg:text-sm">
-            <i class="ri-mail-settings-line block opacity-75 text-white text-xl transition-all group-hover:opacity-100 md:mr-2"></i>
-            Change E-mail
-          </a>
-        </li>
-        <li class="flex flex-grow">
-          <a href="{% url 'account_logout' %}" class="flex flex-col group justify-center p-4 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 md:flex-row md:items-center lg:text-sm">
-            <i class="ri-logout-circle-line block opacity-75 text-white text-xl transition-all group-hover:opacity-100 md:mr-2"></i>
-            Sign Out
-          </a>
-        </li>
-        {% else %}
-        <li class="flex flex-grow">
-          <a href="{% url 'account_login' %}" class="flex flex-col group justify-center p-4 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 md:flex-row md:items-center lg:text-sm">
-            <i class="ri-user-shared-line block opacity-75 text-white text-xl transition-all group-hover:opacity-100 md:mr-2"></i>
-            Sign In
-          </a>
-        </li>
-        <li class="flex flex-grow">
-          <a href="{% url 'account_signup' %}" class="flex flex-col group justify-center p-4 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 md:flex-row md:items-center lg:text-sm">
-            <i class="ri-user-add-line block opacity-75 text-white text-xl transition-all group-hover:opacity-100 md:mr-2"></i>
-            Sign Up
-          </a>
-        </li>
-        {% endif %}
+  </div>
+  <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
+    {% if user.is_authenticated %}
+      {% include 'account/snippets/menu_item.html' with url_name='account_email' text='Change E-mail' icon_class='ri-mail-settings-line' only %}
+      {% include 'account/snippets/menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
+    {% else %}
+      {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
+      {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
+    {% endif %}
+  </ul>
+</div>
+
+<div class="flex flex-auto h-full relative z-10">
+  <div class="bg-white h-full overflow-auto shadow-2xl w-full lg:w-1/2 md:max-w-xl md:w-2/3">
+    {% if messages %}
+    <div id="messages" class="px-12 pt-4">
+      <ul>
+        {% for message in messages %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            {% include 'account/snippets/message_item.html' with color='green' icon_class='ri-checkbox-circle-line' message=message only %}
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            {% include 'account/snippets/message_item.html' with color='yellow' icon_class='ri-alert-line' message=message only %}
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            {% include 'account/snippets/message_item.html' with color='red' icon_class='ri-spam-3-line' message=message only %}
+          {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
+            {% include 'account/snippets/message_item.html' with color='secondary' icon_class='ri-information-line' message=message only %}
+          {% endif %}
+        {% endfor %}
       </ul>
     </div>
-    <div class="flex flex-auto h-full relative z-10">
-      <div class="bg-white h-full overflow-auto shadow-2xl w-full lg:w-1/2 md:max-w-xl md:w-2/3">
-        {% if messages %}
-        <div id="messages" class="px-12 pt-4">
-          <ul>
-            {% for message in messages %}
-              {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                <li class="bg-green-100 flex items-center px-4 py-2 rounded-lg text-green-800">
-                  <i class="ri-checkbox-circle-line mr-3 text-2xl"></i>
-                  <span class="flex-grow">
-                    {{message}}
-                  </span>
-                </li>
-              {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-                <li class="bg-yellow-100 flex items-center px-4 py-2 rounded-lg text-yellow-800">
-                  <i class="ri-alert-line mr-3 text-2xl"></i>
-                  <span class="flex-grow">
-                    {{message}}
-                  </span>
-                </li>
-              {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                <li class="bg-red-100 flex items-center px-4 py-2 rounded-lg text-red-800">
-                  <i class="ri-spam-3-line mr-3 text-2xl"></i>
-                  <span class="flex-grow">
-                    {{message}}
-                  </span>
-                </li>
-              {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
-                <li class="bg-secondary-100 flex items-center px-4 py-2 rounded-lg text-secondary-800">
-                  <i class="ri-information-line mr-3 text-2xl"></i>
-                  <span class="flex-grow">
-                    {{message}}
-                  </span>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-        <div class="px-12 py-20">
-          {% block content %}
-          {% endblock %}
-        </div>
-      </div>
+    {% endif %}
+    <div class="px-12 py-20">
+      {% block content %}{% endblock %}
     </div>
-    {% endblock %}
+  </div>
+</div>
+{% endblock %}
 
-    {% block extra_body %}
-    {% endblock %}
-  </body>
+{% block extra_body %}{% endblock %}
+</body>
 </html>
