@@ -8,7 +8,11 @@
 <h3 class="mb-2">{% trans 'E-mail Addresses' %}</h3>
 
 {% if user.emailaddress_set.all %}
-<p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+<p>
+  {% blocktrans trimmed %}
+  The following e-mail addresses are associated with your account:
+  {% endblocktrans %}
+</p>
 
 <form action="{% url 'account_email' %}" class="email_list" method="post">
   {% csrf_token %}
@@ -17,17 +21,15 @@
       {% for emailaddress in user.emailaddress_set.all %}
       <li class="border-b border-gray-300 ctrlHolder flex items-center justify-between py-3 min-w-0">
         <label for="email_radio_{{forloop.counter}}" class="flex items-center min-w-0">
-
-          <input id="email_radio_{{forloop.counter}}" class="mr-2" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count== 1 %}checked="checked" {%endif %} value="{{emailaddress.email}}"/>
-
+          <input id="email_radio_{{forloop.counter}}" class="mr-2" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {%endif %} value="{{emailaddress.email}}"/>
           {% if emailaddress.primary %}
-          <i class="{% trans 'ri-star-s-fill' %} mr-1 text-primary-500 whitespace-nowrap"></i>
+          <i class="ri-star-s-fill mr-1 text-primary-500 whitespace-nowrap"></i>
           {% endif %}
           <span class="overflow-ellipsis overflow-hidden whitespace-nowrap">
             {{ emailaddress.email }}
           </span>
-
         </label>
+
         <div>
           {% if emailaddress.verified %}
           <span class="verified border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-3xs">
@@ -58,16 +60,19 @@
     </div>
   </fieldset>
 </form>
-
 {% else %}
 <div class="bg-red-500 flex items-center justify-between m-4 px-5 py-4 rounded-lg text-white">
   <i class="ri-error-warning-line mr-4 text-4xl"></i>
   <div>
-    <strong>{% trans 'Warning:'%}</strong>
-    {% trans 'You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc.' %}
+    <strong>{% trans 'Warning'%}:</strong>
+    {% blocktrans trimmed %}
+    You currently do not have any e-mail address set up.
+    You should really add an e-mail address so you can receive notifications, reset your password, etc.
+    {% endblocktrans %}
   </div>
 </div>
 {% endif %}
+
 <div class="bg-gray-100 border border-gray-300 mt-3 -mx-3 p-5 rounded-lg">
   <h5>{% trans 'Add E-mail Address' %}</h5>
   <form method="post" action="{% url 'account_email' %}" class="add_email">
@@ -85,10 +90,10 @@
 {% block extra_body %}
 <script type="text/javascript">
   (function () {
-    var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
-    var actions = document.getElementsByName('action_remove');
+    const message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+    const actions = document.getElementsByName('action_remove');
     if (actions.length) {
-      actions[0].addEventListener("click", function (e) {
+      actions[0].addEventListener('click', function (e) {
         if (!confirm(message)) {
           e.preventDefault();
         }
