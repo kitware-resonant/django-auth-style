@@ -37,6 +37,7 @@
   <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
     {% if user.is_authenticated %}
       {% include 'account/snippets/menu_item.html' with url_name='account_email' text='Change E-mail' icon_class='ri-mail-settings-line' only %}
+      {% include 'account/snippets/menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
       {% include 'account/snippets/menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
     {% else %}
       {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
