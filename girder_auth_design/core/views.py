@@ -7,6 +7,7 @@ template_files = {
     'account_inactive.html': reverse_lazy('account_inactive'),
     'base.html': None,
     'email.html': reverse_lazy('account_email'),
+    # TODO: valid key
     'email_confirm.html': reverse_lazy(
         'account_confirm_email', kwargs={'key': 'secret-key'}
     ),  # invalid?
@@ -15,15 +16,21 @@ template_files = {
     'password_change.html': reverse_lazy('account_change_password'),  # redirects
     'password_reset.html': reverse_lazy('account_reset_password'),
     'password_reset_done.html': reverse_lazy('account_reset_password_done'),
+    # TODO: valid key
     'password_reset_from_key.html': reverse_lazy(
         'account_reset_password_from_key', kwargs={'uidb36': '0', 'key': 'secret-key'}
     ),  # invalid?
     'password_reset_from_key_done.html': reverse_lazy('account_reset_password_from_key_done'),
-    'password_set.html': reverse_lazy('account_set_password'),
+    # 'account_set_password' redirects to 'account_change_password' if the user has a password
+    # TODO: this doesn't render the form on the page
+    'password_set.html': reverse_lazy(
+        'auth-template-file', kwargs={'template_file': 'password_set.html'}),
     'signup.html': reverse_lazy('account_signup'),
-    'signup_closed.html': None,
+    'signup_closed.html': reverse_lazy(
+        'auth-template-file', kwargs={'template_file': 'signup_closed.html'}),
     'verification_sent.html': reverse_lazy('account_email_verification_sent'),
-    'verified_email_required.html': None,
+    'verified_email_required.html': reverse_lazy(
+        'auth-template-file', kwargs={'template_file': 'verified_email_required.html'}),
 }
 
 

@@ -29,9 +29,14 @@ class GirderAuthDesignConfig(ConfigMixin):
         configuration.INSTALLED_APPS += [
             'tailwind',
             'girder_auth_design.theme',
+            'allauth.socialaccount.providers.github',
+            'allauth.socialaccount.providers.google',
         ]
 
     TAILWIND_APP_NAME = 'girder_auth_design.theme'
+
+    # Force the logout confirm page to be rendered
+    ACCOUNT_LOGOUT_ON_GET = False
 
 
 class DevelopmentConfiguration(GirderAuthDesignConfig, DevelopmentBaseConfiguration):
