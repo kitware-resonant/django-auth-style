@@ -64,7 +64,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderWidth: ['last'],
+      display: ['hover', 'focus', 'group-hover', 'group-focus'],
+    },
   },
   plugins: [],
 }
