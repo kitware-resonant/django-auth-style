@@ -1,0 +1,32 @@
+{% load socialaccount %}
+{% load static %}
+
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+{% if provider.id == "openid" %}
+{% for brand in provider.get_brands %}
+<li>
+  <a title="{{brand.name}}"
+     class="socialaccount_provider {{provider.id}} {{brand.id}}"
+     href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+     >{{brand.name}}</a>
+</li>
+{% endfor %}
+{% endif %}
+<li>
+  <a
+    title="{{provider.name}}"
+    class="socialaccount_provider {{provider.id}} bg-white block button is-shadowed h-12 flex font-bold items-center text-gray-500 text-sm transition-all hover:bg-white"
+    href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
+  >
+    {% if provider.id == "google" %}
+      <img src="{% static 'img/google_signin_logo.svg' %}" class="mr-3 w-6">
+    {% elif provider.id == "github" %}
+      <i class="ri-github-fill mr-3 text-2xl"></i>
+    {% endif %}
+
+    Sign in with {{provider.name}}
+  </a>
+</li>
+{% endfor %}
