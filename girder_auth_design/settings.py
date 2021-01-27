@@ -31,12 +31,29 @@ class GirderAuthDesignConfig(ConfigMixin):
             'girder_auth_design.theme',
             'allauth.socialaccount.providers.github',
             'allauth.socialaccount.providers.google',
+            'allauth.socialaccount.providers.openid',
         ]
 
     TAILWIND_APP_NAME = 'girder_auth_design.theme'
 
     # Force the logout confirm page to be rendered
     ACCOUNT_LOGOUT_ON_GET = False
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'openid': {
+            'SERVERS': [
+                dict(id='yahoo',
+                     name='Yahoo',
+                     openid_url='http://me.yahoo.com'),
+                dict(id='hyves',
+                     name='Hyves',
+                     openid_url='http://hyves.nl'),
+                dict(id='google',
+                     name='Google',
+                     openid_url='https://www.google.com/accounts/o8/id'),
+            ]
+        }
+    }
 
 
 class DevelopmentConfiguration(GirderAuthDesignConfig, DevelopmentBaseConfiguration):
