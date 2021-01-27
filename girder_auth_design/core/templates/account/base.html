@@ -37,23 +37,21 @@
   </div>
   <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
     {% if user.is_authenticated %}
-      <li class="flex flex-grow group relative">
-        <span
-          class="cursor-pointer flex flex-row group items-center justify-between p-6 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 med:justify-center"
-        >
-          <i class="ri-account-circle-fill opacity-75 mr-2 text-white text-xl transition-all group-hover:opacity-100"></i>
-          {{ user }}
-          <i class="ri-arrow-down-s-line opacity-50 ml-2 text-white text-xl transition-all"></i>
-        </span>
-        <ul class="absolute bg-white hidden left-2 overflow-hidden right-2 rounded shadow-md top-3/4 group-hover:block">
-          {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change E-mail' icon_class='ri-mail-settings-line' only %}
-          {% include 'account/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
-          {% include 'account/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
-        </ul>
-      </li>
+    <li class="flex flex-grow group relative">
+      <span class="cursor-pointer flex flex-row group items-center justify-between p-6 text-center text-secondary-400 text-xs transition-all w-full hover:text-secondary-300 med:justify-center">
+        <i class="ri-account-circle-fill opacity-75 mr-2 text-white text-xl transition-all group-hover:opacity-100"></i>
+        {{ user }}
+        <i class="ri-arrow-down-s-line opacity-50 ml-2 text-white text-xl transition-all"></i>
+      </span>
+      <ul class="absolute bg-white hidden left-2 overflow-hidden right-2 rounded shadow-md top-3/4 group-hover:block">
+        {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change E-mail' icon_class='ri-mail-settings-line' only %}
+        {% include 'account/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
+        {% include 'account/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
+      </ul>
+    </li>
     {% else %}
-      {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
-      {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
+    {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
+    {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
     {% endif %}
   </ul>
 </div>
