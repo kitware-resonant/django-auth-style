@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load socialaccount %}
 {% load static %}
 
@@ -20,7 +21,7 @@
       {% elif provider.id == "github" %}
       <i class="ri-github-fill mr-3 text-2xl"></i>
       {% endif %}
-      Sign in with {{provider.name}}
+      {% trans 'Sign in with' %} {{provider.name}}
     </a>
   </li>
 {% endfor %}
