@@ -1,0 +1,13 @@
+# Reset the auto-include from setuptools_scm
+exclude *
+prune *
+
+# Re-include files which setuptools auto-includes
+include MANIFEST.in pyproject.toml README.md setup.py
+graft *.egg-info
+
+# Include everything from girder_style, even gitignored files
+graft girder_style
+
+# Exclude .gitignore itself
+global-exclude .gitignore

@@ -14,7 +14,7 @@ def update_default_site(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor
     # object already.
     Site.objects.update_or_create(
         pk=settings.SITE_ID,
-        defaults={'domain': 'girder-auth-design.test', 'name': 'Girder Auth Design'},
+        defaults={'domain': 'girder-style-design.test', 'name': 'Girder Style Design'},
     )
 
 
