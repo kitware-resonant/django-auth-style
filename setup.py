@@ -9,7 +9,7 @@ with readme_file.open() as f:
 setup(
     name='django-girder-style',
     version='0.0.0',
-    description='',
+    description='Styled Django templates for data management applications.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',

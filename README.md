@@ -1,10 +1,9 @@
 # django-girder-style
 [![PyPI](https://img.shields.io/pypi/v/django-girder-style)](https://pypi.org/project/django-girder-style/)
 
-## Develop with Docker
+Styled Django templates for data management applications.
 
-Due to the dependency on npm and Python2, Docker development is the only supported
-configuration.
+## Develop with Docker
 
 ### Initial Setup
 1. Run `docker-compose run --rm django ./manage.py migrate`
