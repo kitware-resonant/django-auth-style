@@ -1,13 +1,4 @@
 FROM python:3.8-slim
-# Install system librarires for Python packages:
-# * psycopg2
-# Install npm
-RUN apt-get update && \
-    apt-get install --no-install-recommends --yes \
-        libpq-dev gcc libc6-dev curl && \
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get install --yes nodejs build-essential && \
-    rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -17,7 +8,12 @@ ENV PYTHONUNBUFFERED 1
 # over top of this directory, the .egg-link in site-packages resolves to the mounted directory
 # and all package modules are importable.
 COPY ./setup.py /opt/django-project/setup.py
-RUN pip install --editable /opt/django-project[dev]
+COPY ./README.md /opt/django-project/README.md
+RUN pip install --editable /opt/django-project
 
-# Use a directory name which will never be an import name, as isort considers this as first-party.
-WORKDIR /opt/django-project
+# Also install the requirements for the dev project
+COPY ./dev/requirements.txt /opt/django-project/dev/requirements.txt
+RUN pip install --requirement /opt/django-project/dev/requirements.txt
+
+# Allow ./manage.py to auto-discover the girder_style_design app from the CWD
+WORKDIR /opt/django-project/dev

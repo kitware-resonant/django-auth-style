@@ -1,20 +1,25 @@
 version: '3'
 services:
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: django
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - ${DOCKER_POSTGRES_PORT-5432}:5432
-
-  minio:
-    image: minio/minio:latest
-    # When run with a TTY, minio prints credentials on startup
+  django:
+    build:
+      context: .
+      dockerfile: ./dev/django.Dockerfile
+    command: ["./manage.py", "runserver", "0.0.0.0:8000"]
+    # Log printing via Rich is enhanced by a TTY
     tty: true
-    command: ["server", "/data"]
-    environment:
-      MINIO_ACCESS_KEY: minioAccessKey
-      MINIO_SECRET_KEY: minioSecretKey
+    volumes:
+      - .:/opt/django-project
+      # Keeping the DB in the container isn't necessary, but makes resetting the state easier
+      - .:/opt/django-project/dev/db.sqlite3
     ports:
-      - ${DOCKER_MINIO_PORT-9000}:9000
+      - 8000:8000
+
+  tailwind:
+    build:
+      context: .
+      dockerfile: ./dev/tailwind.Dockerfile
+    command: ["yarn", "run", "watch"]
+    volumes:
+      - .:/opt/django-project
+      # Exclude internally-installed node_modules from being overwritten by the host mounting
+      - /opt/django-project/tailwind/node_modules

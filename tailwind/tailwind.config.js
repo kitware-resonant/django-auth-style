@@ -4,7 +4,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [],
+  purge: false,
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -64,7 +64,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderWidth: ['last'],
+      display: ['hover', 'focus', 'group-hover', 'group-focus'],
+    },
   },
   plugins: [],
 }

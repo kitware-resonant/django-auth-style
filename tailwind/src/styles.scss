@@ -11,13 +11,19 @@
   // Base Link Styles
   a {
     @apply text-primary-500 transition-colors;
+
     &:hover {
       @apply text-primary-700;
     }
   }
 
   // Heading Styles
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-thin text-gray-500;
   }
 
@@ -49,6 +55,7 @@
   .button,
   button {
     @apply bg-transparent outline-none px-4 py-3 rounded-md text-gray-600;
+
     &:hover {
       @apply bg-gray-100 text-gray-800;
     }
@@ -56,6 +63,7 @@
       &.is-sm {
         @apply px-3 py-2 text-sm;
       }
+
       &.is-xs {
         @apply px-2 py-1 rounded text-2xs;
       }
@@ -63,12 +71,14 @@
     // Primary Button Styles
     &.is-primary {
       @apply bg-primary-500 text-white;
+
       &:hover {
         @apply bg-primary-700 text-white;
       }
       // Outlined buttons
       &.is-outline {
         @apply bg-transparent border border-primary-500 text-primary-500;
+
         &:hover {
           @apply bg-primary-500 text-white;
         }
@@ -77,12 +87,14 @@
     // Secondary Button Styles
     &.is-secondary {
       @apply bg-secondary-400 text-white;
+
       &:hover {
         @apply bg-secondary-600 text-white;
       }
       // Outlined buttons
       &.is-outline {
         @apply bg-transparent border border-secondary-400 text-secondary-400;
+
         &:hover {
           @apply bg-secondary-400 text-white;
         }
@@ -91,12 +103,14 @@
     // Accent Button Styles
     &.is-accent {
       @apply bg-accent-500 text-white;
+
       &:hover {
         @apply bg-accent-700 text-white;
       }
       // Outlined buttons
       &.is-outline {
         @apply bg-transparent border border-accent-500 text-accent-500;
+
         &:hover {
           @apply bg-accent-500 text-white;
         }
@@ -116,6 +130,7 @@
     p {
       @apply flex-grow py-3;
     }
+
     .errorlist {
       li {
         @apply flex bg-red-100 border border-red-300 my-4 px-4 py-3 rounded-md text-red-900 text-sm;
@@ -133,6 +148,7 @@
     &[type='number'],
     textarea {
       @apply px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none w-full;
+
       &:focus {
         @apply ring-2 ring-primary-300;
       }
