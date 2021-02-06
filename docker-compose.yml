@@ -9,8 +9,6 @@ services:
     tty: true
     volumes:
       - .:/opt/django-project
-      # Keeping the DB in the container isn't necessary, but makes resetting the state easier
-      - .:/opt/django-project/dev/db.sqlite3
     ports:
       - 8000:8000
 
