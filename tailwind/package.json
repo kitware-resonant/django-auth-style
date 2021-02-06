@@ -4,6 +4,7 @@
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
+    "lint": "stylelint **/*.scss",
     "watch": "parcel watch ./src/styles.scss  --out-dir ../girder_style/static/girder_style/",
     "build:clean": "rimraf ../girder_style/static/girder_style/styles.*",
     "build:compile": "parcel build ./src/styles.scss --out-dir ../girder_style/static/girder_style/",
@@ -17,6 +18,34 @@
     "postcss": "^7",
     "rimraf": "^3.0.2",
     "sass": "^1.32.6",
+    "stylelint": "^13.9.0",
+    "stylelint-config-sass-guidelines": "^7.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-sass-guidelines",
+    "rules": {
+      "max-nesting-depth": null,
+      "selector-no-qualifying-type": null,
+      "scss/at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "apply",
+            "layer",
+            "responsive",
+            "screen",
+            "tailwind",
+            "variants"
+          ]
+        }
+      ]
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
   }
 }
