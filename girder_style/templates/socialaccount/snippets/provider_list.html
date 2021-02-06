@@ -17,7 +17,7 @@
   <li>
     <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}} bg-white block button is-shadowed h-12 flex font-bold items-center text-gray-500 text-sm transition-all hover:bg-white" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
       {% if provider.id == "google" %}
-      <img src="{% static 'img/google_signin_logo.svg' %}" class="mr-3 w-6">
+      <img src="{% static 'girder_style/google_signin_logo.svg' %}" class="mr-3 w-6">
       {% elif provider.id == "github" %}
       <i class="ri-github-fill mr-3 text-2xl"></i>
       {% endif %}
