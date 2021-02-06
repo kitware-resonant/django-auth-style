@@ -70,15 +70,11 @@ class GirderStyleMixin(ConfigMixin):
     SOCIALACCOUNT_PROVIDERS = {
         'openid': {
             'SERVERS': [
-                dict(id='yahoo',
-                     name='Yahoo',
-                     openid_url='http://me.yahoo.com'),
-                dict(id='hyves',
-                     name='Hyves',
-                     openid_url='http://hyves.nl'),
-                dict(id='google',
-                     name='Google',
-                     openid_url='https://www.google.com/accounts/o8/id'),
+                dict(id='yahoo', name='Yahoo', openid_url='http://me.yahoo.com'),
+                dict(id='hyves', name='Hyves', openid_url='http://hyves.nl'),
+                dict(
+                    id='google', name='Google', openid_url='https://www.google.com/accounts/o8/id'
+                ),
             ]
         }
     }
