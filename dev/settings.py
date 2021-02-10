@@ -57,8 +57,9 @@ class GirderStyleMixin(ConfigMixin):
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
+        configuration.INSTALLED_APPS.insert(0, 'girder_style_design')
+
         configuration.INSTALLED_APPS += [
-            'girder_style_design',
             'allauth.socialaccount.providers.github',
             'allauth.socialaccount.providers.google',
         ]
