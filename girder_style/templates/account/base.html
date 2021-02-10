@@ -1,21 +1,8 @@
+{% extends 'base.html' %}
+
 {% load account %}
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>{% block head_title %}{% endblock %}</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="stylesheet" href="{% static 'girder_style/styles.css' %}">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-
-  {% block extra_head %}{% endblock %}
-</head>
-
+{% block body %}
 <body class="bg-gray-100 flex flex-col h-full relative">
 
 <div class="absolute bg-black bottom-0 left-0 overflow-hidden right-0 top-0 z-0">
@@ -25,7 +12,6 @@
       alt="">
 </div>
 
-{% block body %}
 <div class="flex flex-initial h-24 items-center justify-between relative w-full z-20">
   <div class="bg-white flex h-full items-center max-w-max px-6 py-4 w-full lg:w-1/2 md:max-w-xl md:px-12 md:w-2/3">
     <div class="max-w-3xs">
@@ -78,8 +64,7 @@
     </div>
   </div>
 </div>
-{% endblock %}
 
 {% block extra_body %}{% endblock %}
 </body>
-</html>
+{% endblock %}
