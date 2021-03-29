@@ -1,36 +1,71 @@
 # django-girder-style
 [![PyPI](https://img.shields.io/pypi/v/django-girder-style)](https://pypi.org/project/django-girder-style/)
 
-Styled Django templates for data management applications.
+django-girder-style is a Django library providing
+styled Django templates for data management applications.
 
-## Develop with Docker
 
-### Initial Setup
-1. Run `docker-compose run --rm django ./manage.py migrate`
-2. Run `docker-compose run --rm django ./manage.py createsuperuser`
-   and follow the prompts to create your own user
+### Benefits
+django-girder-style provides an extensible block-oriented base HTML template.
+This base template includes
+a pre-built [Tailwind CSS](https://tailwindcss.com/) (with some minor customizations) stylesheet,
+[Remix Icon](https://remixicon.com/) support,
+and the [Nunito](https://fonts.google.com/specimen/Nunito) font.
 
-### Run Application
-1. Run `docker-compose up`
-2. Access the site, starting at http://localhost:8000/
-   * Outgoing emails are sent to the console 
-3. The Django admin interface is still available at http://localhost:8000/admin/
-3. When finished, use `Ctrl+C`
+Additionally, django-girder-style provides styled versions of all
+[django-allauth](https://django-allauth.readthedocs.io/) view templates.
+This styling allows some limited branding customization as well.
 
-### Testing
-1. Run `docker-compose run --rm django tox`
-1. Run `docker-compose run --rm tailwind yarn lint --fix`
+## Installation
+Install django-girder-style:
+```bash
+pip install django-girder-style
+```
 
-### Application Maintenance
-Occasionally, new package dependencies or schema changes will necessitate
-maintenance. To non-destructively update your development stack at any time:
-1. Run `docker-compose build --pull --no-cache`
-2. Run `docker-compose run --rm django ./manage.py migrate`
+Enable django-girder-style as an installed Django app:
+```python
+# settings.py
+INSTALLED_APPS = [
+    # Any project-local apps should come before "girder_style",
+    # so templates can be overridden as needed
+    'my_django_app.apps.MyDjangoAppConfig',
+    ...,
+    'girder_style',
+    ...,
+    # If "allauth" is installed, it must come after "girder_style"
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+]
+```
 
-#### Install Javascript packages
-In the event that Javascript packages need to be installed, this can be done via Docker Compose:
-1. Run: `docker-compose run --rm tailwind yarn add -D package-name`,
-   substituting `package-name` as appropriate.
+## Usage
+### Base Template
+All project templates
+[should extend](https://docs.djangoproject.com/en/3.1/ref/templates/language/#template-inheritance)
+`base.html`.
+This provides the following blocks to inject content:
+* `head_title`: The content of the `<title>` tag.
+* `extra_head`: Additional HTML placed within the `<head>` tag.
+* `body`: The entire HTML body content, including the `<body>` tag itself.
 
-This can also be done natively by running Yarn commands from the `tailwind/` directory, but be sure
-to re-build Docker afterwards (via Application Maintenance above).
+For example, a template `my_app/home.html` may contain:
+```html
+{% extends 'base.html' %}
+
+{% block head_title %}My App{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<body>
+  <div>Hello World.</div>
+</body>
+{% endblock %}
+```
+
+### django-allauth Templates
+When django-girder-style is properly installed with django-allauth, templates will automatically
+be overridden with styled alternatives.
