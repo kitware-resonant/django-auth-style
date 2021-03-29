@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 ### Base Template
 All project templates
 [should extend](https://docs.djangoproject.com/en/3.1/ref/templates/language/#template-inheritance)
-`base.html`.
+`girder_style/base.html`.
 This provides the following blocks to inject content:
 * `head_title`: The content of the `<title>` tag.
 * `extra_head`: Additional HTML placed within the `<head>` tag.
@@ -51,7 +51,7 @@ This provides the following blocks to inject content:
 
 For example, a template `my_app/home.html` may contain:
 ```django
-{% extends 'base.html' %}
+{% extends 'girder_style/base.html' %}
 
 {% block head_title %}My App{% endblock %}
 
