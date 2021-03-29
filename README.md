@@ -50,7 +50,7 @@ This provides the following blocks to inject content:
 * `body`: The entire HTML body content, including the `<body>` tag itself.
 
 For example, a template `my_app/home.html` may contain:
-```html
+```django
 {% extends 'base.html' %}
 
 {% block head_title %}My App{% endblock %}
