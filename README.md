@@ -2,7 +2,7 @@
 [![PyPI](https://img.shields.io/pypi/v/django-girder-style)](https://pypi.org/project/django-girder-style/)
 
 django-girder-style is a Django library providing
-styled Django templates for Girder-4 applications.
+Django template styling for Girder-4 applications.
 
 
 ### Benefits
@@ -61,10 +61,23 @@ For example, a template `my_app/home.html` may contain:
 
 {% block body %}
 <body>
-  <div>Hello World.</div>
+  <div style="font-bold">Hello World.</div>
+  <i class="ri-hearts-fill"></i>
 </body>
 {% endblock %}
 ```
+
+All basic [Tailwind CSS](https://tailwindcss.com/) classes are available for use in templates
+extending `girder_style/base.html`, as illustrated in the example above.
+No additional configuration of Tailwind CSS is required (or possible).
+For a full list of the additional Tailwind CSS customizations applied by django-girder-style,
+see [the Tailwind CSS confile file](tailwind/tailwind.config.js) and
+[the stylesheet](tailwind/src/styles.scss).
+
+The [Remix Icon](https://remixicon.com/) library is also available in the same way.
+Icons are typically used by adding an `<i class="ri-...` element, but see
+[the Remix Icon documentation](https://github.com/Remix-Design/remixicon#use) for full usage
+information.
 
 ### django-allauth Templates
 When django-girder-style is properly installed with django-allauth, templates will automatically
