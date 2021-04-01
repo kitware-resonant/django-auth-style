@@ -2,7 +2,7 @@
 [![PyPI](https://img.shields.io/pypi/v/django-girder-style)](https://pypi.org/project/django-girder-style/)
 
 django-girder-style is a Django library providing
-styled Django templates for Girder-4 applications.
+Django template styling for Girder-4 applications.
 
 
 ### Benefits
