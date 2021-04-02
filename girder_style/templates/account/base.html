@@ -2,9 +2,9 @@
 
 {% load account %}
 
-{% block body %}
-<body class="bg-gray-100 flex flex-col h-full relative">
+{% block body_attrs %}class="bg-gray-100 flex flex-col h-full relative"{% endblock %}
 
+{% block body_content %}
 <div class="absolute bg-black bottom-0 left-0 overflow-hidden right-0 top-0 z-0">
   <img
       src="https://images.pexels.com/photos/53176/architecture-iron-steel-building-53176.jpeg?cs=srgb&dl=pexels-pixabay-53176.jpg&fm=jpg"
@@ -64,7 +64,4 @@
     </div>
   </div>
 </div>
-
-{% block extra_body %}{% endblock %}
-</body>
 {% endblock %}

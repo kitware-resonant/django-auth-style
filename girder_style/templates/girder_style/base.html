@@ -17,7 +17,8 @@
 </head>
 {% endblock %}
 {% block body %}
-<body>
+<body {% block body_attrs %}{% endblock %}>
+{% block body_content %}{% endblock %}
 </body>
 {% endblock %}
 </html>

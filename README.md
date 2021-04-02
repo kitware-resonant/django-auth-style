@@ -47,7 +47,8 @@ All project templates
 This provides the following blocks to inject content:
 * `head_title`: The content of the `<title>` tag.
 * `head_extra`: Additional HTML placed within the `<head>` tag.
-* `body`: The entire HTML body content, including the `<body>` tag itself.
+* `body_attrs`: HTML attributes to be added to the `<body>` tag.
+* `body_content`: HTML content placed within the `<body>` tag.
 
 For example, a template `my_app/home.html` may contain:
 ```django
@@ -59,11 +60,11 @@ For example, a template `my_app/home.html` may contain:
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 {% endblock %}
 
-{% block body %}
-<body>
-  <div style="font-bold">Hello World.</div>
-  <i class="ri-hearts-fill"></i>
-</body>
+{% block body_attrs %}class="bg-gray-100"{% endblock %}
+
+{% block body_content %}
+<div style="font-bold">Hello World.</div>
+<i class="ri-hearts-fill"></i>
 {% endblock %}
 ```
 
