@@ -46,7 +46,7 @@ All project templates
 `girder_style/base.html`.
 This provides the following blocks to inject content:
 * `head_title`: The content of the `<title>` tag.
-* `extra_head`: Additional HTML placed within the `<head>` tag.
+* `head_extra`: Additional HTML placed within the `<head>` tag.
 * `body`: The entire HTML body content, including the `<body>` tag itself.
 
 For example, a template `my_app/home.html` may contain:
@@ -55,7 +55,7 @@ For example, a template `my_app/home.html` may contain:
 
 {% block head_title %}My App{% endblock %}
 
-{% block extra_head %}
+{% block head_extra %}
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 {% endblock %}
 
