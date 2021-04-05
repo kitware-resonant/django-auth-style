@@ -13,6 +13,7 @@ from composed_configuration import (
     LoggingMixin,
     StaticFileMixin,
 )
+from composed_configuration._docker import _AlwaysContains, _is_docker
 from configurations import values
 
 
@@ -28,7 +29,7 @@ class MinimalDevelopmentBaseConfiguration(
     DEBUG = True
     SECRET_KEY = 'insecuresecret'
     ALLOWED_HOSTS = values.ListValue(['localhost', '127.0.0.1'])
-    INTERNAL_IPS = ['127.0.0.1']
+    INTERNAL_IPS = _AlwaysContains() if _is_docker() else ['127.0.0.1']
 
     OAUTH2_PROVIDER = {
         'PKCE_REQUIRED': True,
