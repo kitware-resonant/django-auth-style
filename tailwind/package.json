@@ -20,7 +20,7 @@
     "rimraf": "^3.0.2",
     "sass": "^1.32.6",
     "stylelint": "^13.9.0",
-    "stylelint-config-sass-guidelines": "^7.1.0",
+    "stylelint-config-sass-guidelines": "^8.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "stylelint": {
