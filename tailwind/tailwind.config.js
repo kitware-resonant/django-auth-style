@@ -1,11 +1,7 @@
-// This is a minimal config.
-// If you need the full config, get it from here:
-// https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
-const colors = require('tailwindcss/colors')
-
 module.exports = {
-  purge: false,
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    '../girder_style/templates/**/*.html'
+  ],
   theme: {
     fontFamily: {
       'sans': 'Nunito, sans-serif'
@@ -63,13 +59,11 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      borderWidth: ['last'],
-      display: ['hover', 'focus', 'group-hover', 'group-focus'],
-    },
-  },
   plugins: [
     require('@tailwindcss/forms'),
+    require('daisyui'),
   ],
+  daisyui: {
+    logs: false
+  }
 }

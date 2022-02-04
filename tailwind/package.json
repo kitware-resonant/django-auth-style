@@ -1,28 +1,39 @@
 {
   "name": "girder-style",
-  "version": "0.0.0",
   "private": true,
   "license": "Apache-2.0",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.2.1",
+    "@tailwindcss/forms": "^0.4.0",
+    "autoprefixer": "^10.4.2",
+    "daisyui": "^1.25.4",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.2.1",
+    "postcss": "^8.4.6",
+    "remixicon": "^2.5.0",
+    "rimraf": "^3.0.2",
+    "sass": "^1.49.7",
+    "stylelint": "^14.3.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "tailwindcss": "^3.0.18"
+  },
   "scripts": {
     "lint": "stylelint **/*.scss",
-    "watch": "parcel watch ./src/styles.scss  --out-dir ../girder_style/static/girder_style/",
-    "build:clean": "rimraf ../girder_style/static/girder_style/styles.*",
-    "build:compile": "parcel build ./src/styles.scss --out-dir ../girder_style/static/girder_style/",
+    "watch": "parcel watch --no-cache",
+    "build:clean": "rimraf ../girder_style/static/girder_style/dist",
+    "build:compile": "parcel build --no-cache",
     "build": "npm-run-all build:clean build:compile"
   },
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.3.2",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9",
-    "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.4",
-    "postcss": "^7",
-    "rimraf": "^3.0.2",
-    "sass": "^1.32.6",
-    "stylelint": "^13.9.0",
-    "stylelint-config-sass-guidelines": "^8.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  "targets": {
+    "styles": {
+      "source": [
+        "./src/styles.scss",
+        "./src/icons.css"
+      ],
+      "distDir": "../girder_style/static/girder_style/dist"
+    }
   },
+  "browserslist": "> 0.5%",
   "stylelint": {
     "extends": "stylelint-config-sass-guidelines",
     "rules": {
@@ -48,5 +59,15 @@
       "tailwindcss": {},
       "autoprefixer": {}
     }
+  },
+  "cssnano": {
+    "preset": [
+      "default",
+      {
+        "discardComments": {
+          "removeAll": true
+        }
+      }
+    ]
   }
 }

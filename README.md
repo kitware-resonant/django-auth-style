@@ -6,12 +6,6 @@ Django template styling for Girder-4 applications.
 
 
 ### Benefits
-django-girder-style provides an extensible block-oriented base HTML template.
-This base template includes
-a pre-built [Tailwind CSS](https://tailwindcss.com/) (with some minor customizations) stylesheet,
-[Remix Icon](https://remixicon.com/) support,
-and the [Nunito](https://fonts.google.com/specimen/Nunito) font.
-
 Additionally, django-girder-style provides styled versions of all
 [django-allauth](https://django-allauth.readthedocs.io/) view templates.
 This styling allows some limited branding customization as well.
@@ -66,13 +60,6 @@ For example, a template `my_app/home.html` may contain:
 </body>
 {% endblock %}
 ```
-
-All basic [Tailwind CSS](https://tailwindcss.com/) classes are available for use in templates
-extending `girder_style/base.html`, as illustrated in the example above.
-No additional configuration of Tailwind CSS is required (or possible).
-For a full list of the additional Tailwind CSS customizations applied by django-girder-style,
-see [the Tailwind CSS confile file](tailwind/tailwind.config.js) and
-[the stylesheet](tailwind/src/styles.scss).
 
 The [Remix Icon](https://remixicon.com/) library is also available in the same way.
 Icons are typically used by adding an `<i class="ri-...` element, but see
