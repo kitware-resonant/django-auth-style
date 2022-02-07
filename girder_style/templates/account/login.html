@@ -16,26 +16,23 @@
   Or, sign in using your email address below. If you don't have an account, please <a href="{{ signup_url }}" class="link-accent">sign up</a> for one.
   {% endblocktrans %}
 </p>
-<div class="socialaccount_ballot bg-gray-100 my-4 p-4 rounded">
-  <ul class="socialaccount_providers space-y-2">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-  {% include "socialaccount/snippets/login_extra.html" %}
+<div class="socialaccount_ballot border border-gray-200 card bg-gray-100 my-3">
+  <div class="card-body p-6">
+    <ul class="socialaccount_providers grid grid-cols-2 gap-2">
+      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    </ul>
+    {% include "socialaccount/snippets/login_extra.html" %}
+  </div>
 </div>
 
-<div class="login-or font-bold h-8 relative text-center">
-  <span class="absolute left-0 right-0 text-center z-20">
-    <span class="bg-white inline-block mx-auto py-1 px-3">
-      {% trans 'or' %}
-    </span>
-  </span>
-  <hr class="absolute top-1/2 w-full z-10">
+<div class="divider">
+  {% trans 'OR' %}
 </div>
 
 {% else %}
 <p class="border-b border-gray-300 mb-3 pb-5">
   {% blocktrans trimmed %}
-  If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.
+  If you have not created an account yet, then please <a href="{{ signup_url }}" class="link-accent">sign up</a> first.
   {% endblocktrans %}
 </p>
 {% endif %}
@@ -47,10 +44,10 @@
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
   <p class="flex items-center justify-between pb-0 pt-5">
-    <a class="secondaryAction" href="{% url 'account_reset_password' %}">
+    <a class="secondaryAction link-accent" href="{% url 'account_reset_password' %}">
       {% trans 'Forgot Password?' %}
     </a>
-    <button class="inline-flex items-center is-primary primaryAction">
+    <button class="inline-flex items-center btn btn-primary primaryAction">
       {% trans 'Sign In' %}
       <i class="ri-arrow-right-circle-line ml-3 text-xl"></i>
     </button>
