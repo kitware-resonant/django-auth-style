@@ -5,15 +5,12 @@
 {% block head_title %}{% trans 'Account Inactive' %}{% endblock %}
 
 {% block content %}
-<div class="flex bg-red-100 items-center p-5 rounded-md text-red-700">
-  <i class="ri-error-warning-line mr-4 text-4xl"></i>
-  <div>
-    <h5 class="text-red-700">{% trans 'Error: Account Inactive' %}</h5>
-    <p>
-      {% blocktrans trimmed %}
-      Your account is currently inactive.
-      {% endblocktrans %}
-    </p>
+<div class="alert alert-error">
+  <div class="flex-1 items-center">
+    <i class="ri-error-warning-line mr-4 text-4xl"></i>
+    <label>
+      {% trans 'Error: Account Inactive' %}
+    </label>
   </div>
 </div>
 
@@ -25,7 +22,7 @@
     {% endblocktrans %}
   </p>
   <p class="text-right">
-    <a href="{% url 'account_email' %}" class="button inline-flex items-center is-primary">
+    <a href="{% url 'account_email' %}" class="btn btn-primary inline-flex items-center is-primary">
       {% trans 'Log In' %}
       <i class="ri-arrow-right-circle-line ml-3 text-xl"></i>
     </a>
