@@ -30,7 +30,7 @@
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       {% if site %}
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <h2 class="text-center">
           {{ site.name }}
         </h2>
       {% endif %}
@@ -54,8 +54,8 @@
 
     {% endif %}
 
-    <div class="my-8 sm:mx-auto sm:w-full sm:max-w-md bg-white px-6 pb-4 shadow sm:rounded-lg">
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:w-full sm:max-w-lg bg-white card">
+      <div class="card-body">
         {% block content %}{% endblock %}
       </div>
     </div>
