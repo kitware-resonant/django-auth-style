@@ -42,18 +42,20 @@
   }
 
   .card-body {
-    & p {
+    & > p {
       @apply pb-4;
     }
   }
 
   // Form styles
   form {
-    & p {
+    & > p {
       @apply form-control py-1;
+
       label {
         @apply label py-1;
       }
+
       input {
         &[type='text'],
         &[type='email'],
@@ -61,10 +63,13 @@
         &[type='date'],
         &[type='datetime-local'],
         &[type='month'],
-        &[type='number'],
-        textarea {
+        &[type='number'] {
           @apply input input-bordered;
         }
+      }
+
+      textarea {
+        @apply textarea textarea-bordered;
       }
     }
   }
