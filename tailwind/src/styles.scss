@@ -41,33 +41,34 @@
     @apply font-semibold text-base text-gray-400 uppercase;
   }
 
-  // Form styles
-  form {
-    p {
-      @apply flex-grow py-3;
     }
 
-    .errorlist {
-      li {
-        @apply flex bg-red-100 border border-red-300 my-4 px-4 py-3 rounded-md text-red-900 text-sm;
+  // Form styles
+  form {
+    & p {
+      @apply form-control py-1;
+      label {
+        @apply label py-1;
+      }
+      input {
+        &[type='text'],
+        &[type='email'],
+        &[type='password'],
+        &[type='date'],
+        &[type='datetime-local'],
+        &[type='month'],
+        &[type='number'],
+        textarea {
+          @apply input input-bordered;
+        }
       }
     }
   }
+}
 
-  input {
-    &[type='text'],
-    &[type='email'],
-    &[type='password'],
-    &[type='date'],
-    &[type='datetime-local'],
-    &[type='month'],
-    &[type='number'],
-    textarea {
-      @apply px-3 py-2 placeholder-gray-400 text-gray-700 relative bg-white bg-white rounded text-sm border border-gray-400 outline-none w-full;
-
-      &:focus {
-        @apply ring-2 ring-primary;
-      }
-    }
+// Error list styles do not work when inside @layer base
+.errorlist {
+  li {
+    @apply alert alert-error py-2 px-4 rounded-md;
   }
 }
