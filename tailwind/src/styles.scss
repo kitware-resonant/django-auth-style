@@ -41,7 +41,11 @@
     @apply font-semibold text-base text-gray-400 uppercase;
   }
 
+  .card-body {
+    & p {
+      @apply pb-4;
     }
+  }
 
   // Form styles
   form {
