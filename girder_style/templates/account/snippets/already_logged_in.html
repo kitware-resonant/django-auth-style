@@ -2,12 +2,14 @@
 {% load account %}
 
 {% user_display user as user_display %}
-<div class="flex bg-yellow-100 items-center mb-4 p-5 rounded-md text-yellow-700">
-  <i class="ri-information-line mr-4 text-4xl"></i>
-  <p>
-    <strong>{% trans 'Note' %}:</strong>
-    {% blocktrans trimmed %}
-    you are already logged in as {{ user_display }}.
-    {% endblocktrans %}
-  </p>
+<div class="alert alert-warning mb-4">
+  <div class="flex-1">
+    <i class="ri-information-line mr-4 text-4xl"></i>
+    <p>
+      <strong class="mr-1">{% trans 'Note' %}:</strong>
+      {% blocktrans trimmed %}
+      you are already logged in as {{ user_display }}.
+      {% endblocktrans %}
+    </p>
+  </div>
 </div>
