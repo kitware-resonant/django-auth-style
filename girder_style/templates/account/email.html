@@ -23,7 +23,7 @@
         <label for="email_radio_{{forloop.counter}}" class="flex items-center min-w-0">
           <input id="email_radio_{{forloop.counter}}" class="mr-2" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {%endif %} value="{{emailaddress.email}}"/>
           {% if emailaddress.primary %}
-          <i class="ri-star-s-fill mr-1 text-primary-500 whitespace-nowrap"></i>
+          <i class="ri-star-s-fill mr-1 text-primary whitespace-nowrap"></i>
           {% endif %}
           <span class="overflow-ellipsis overflow-hidden whitespace-nowrap">
             {{ emailaddress.email }}
