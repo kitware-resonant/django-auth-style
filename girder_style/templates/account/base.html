@@ -27,39 +27,40 @@
         </ul>
       {% endif %}
     </div>
+    <div class="container mx-auto pb-12">
+      <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        {% if site %}
+          <h2 class="text-center">
+            {{ site.name }}
+          </h2>
+        {% endif %}
+        <div id="messages" class="py-4">
+          <ul class="space-y-2">
+            {% for message in messages %}
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                {% include 'account/snippets/message_item.html' with type='alert-success' icon_class='ri-checkbox-circle-line' message=message only %}
+              {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                {% include 'account/snippets/message_item.html' with type='alert-warning' icon_class='ri-alert-line' message=message only %}
+              {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                {% include 'account/snippets/message_item.html' with type='alert-error' icon_class='ri-spam-3-line' message=message only %}
+              {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
+                {% include 'account/snippets/message_item.html' with type='alert-info' icon_class='ri-information-line' message=message only %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% if messages %}
 
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      {% if site %}
-        <h2 class="text-center">
-          {{ site.name }}
-        </h2>
       {% endif %}
-      <div id="messages" class="py-4">
-        <ul class="space-y-2">
-          {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-              {% include 'account/snippets/message_item.html' with type='alert-success' icon_class='ri-checkbox-circle-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-              {% include 'account/snippets/message_item.html' with type='alert-warning' icon_class='ri-alert-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-              {% include 'account/snippets/message_item.html' with type='alert-error' icon_class='ri-spam-3-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
-              {% include 'account/snippets/message_item.html' with type='alert-info' icon_class='ri-information-line' message=message only %}
-            {% endif %}
-          {% endfor %}
-        </ul>
+
+      <div class="sm:mx-auto sm:w-full sm:max-w-lg bg-white card">
+        <div class="card-body">
+          {% block content %}{% endblock %}
+        </div>
       </div>
+
+      {% block extra_body %}{% endblock %}
     </div>
-    {% if messages %}
-
-    {% endif %}
-
-    <div class="sm:mx-auto sm:w-full sm:max-w-lg bg-white card">
-      <div class="card-body">
-        {% block content %}{% endblock %}
-      </div>
-    </div>
-
-    {% block extra_body %}{% endblock %}
   </body>
 {% endblock %}
