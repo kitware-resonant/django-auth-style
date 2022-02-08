@@ -20,7 +20,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
   {% csrf_token %}
-  <button class="is-primary">
+  <button class="btn btn-primary">
     {% trans 'Confirm' %}
   </button>
 </form>
@@ -45,7 +45,7 @@ Please issue a new e-mail confirmation request.
 {% endblocktrans %}
 
 <div class="flex justify-end mt-4">
-  <a href="{{ email_url }}" class="button is-primary">
+  <a href="{{ email_url }}" class="btn btn-primary">
     {% trans 'New Request' %}
   </a>
 </div>
