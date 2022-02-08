@@ -43,7 +43,7 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
-  <p class="flex items-center justify-between pb-0 pt-5">
+  <div class="flex items-center justify-between pb-0 pt-5">
     <a class="secondaryAction link-accent" href="{% url 'account_reset_password' %}">
       {% trans 'Forgot Password?' %}
     </a>
@@ -51,6 +51,6 @@
       {% trans 'Sign In' %}
       <i class="ri-arrow-right-circle-line ml-3 text-xl"></i>
     </button>
-  </p>
+  </div>
 </form>
 {% endblock %}
