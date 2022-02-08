@@ -13,7 +13,7 @@
 {% user_display confirmation.email_address.user as user_display %}
 <p>
   {% blocktrans trimmed with email=confirmation.email_address.email %}
-  Please confirm that <a href="mailto:{{ email }}">{{ email }}</a>
+  Please confirm that <a href="mailto:{{ email }}" class="link-accent">{{ email }}</a>
   is an e-mail address for user {{ user_display }}.
   {% endblocktrans %}
 </p>
