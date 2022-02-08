@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    @apply font-sans h-full text-neutral;
+  :root {
+    @apply bg-gray-100 font-sans text-neutral;
   }
 
   // Heading Styles
