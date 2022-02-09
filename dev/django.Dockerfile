@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 # and all package modules are importable.
 COPY ./setup.py /opt/django-project/setup.py
 COPY ./README.md /opt/django-project/README.md
-RUN pip install --editable /opt/django-project
+RUN pip install --editable /opt/django-project[allauth,oauth-toolkit]
 
 # Also install the requirements for the dev project
 COPY ./dev/requirements.txt /opt/django-project/dev/requirements.txt

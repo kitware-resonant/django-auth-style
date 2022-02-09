@@ -38,7 +38,9 @@ setup(
     include_package_data=True,
     install_requires=[
         'django',
-        'django-allauth',
-        'django-oauth-toolkit',
     ],
+    extras_require={
+        'allauth': ['django-allauth'],
+        'oauth-toolkit': ['django-oauth-toolkit'],
+    },
 )
