@@ -42,14 +42,14 @@
   }
 
   .card-body {
-    & > p {
+    > p {
       @apply pb-4;
     }
   }
 
   // Form styles
   form {
-    & > p {
+    > p {
       @apply form-control py-1;
 
       label {
