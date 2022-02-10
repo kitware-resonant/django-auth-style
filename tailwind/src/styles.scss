@@ -48,10 +48,12 @@
   form {
     .errorlist {
       @apply space-y-1;
+
       li {
         @apply alert alert-error py-2 px-4 rounded-md;
       }
     }
+
     p {
       @apply form-control flex-grow py-1;
 
