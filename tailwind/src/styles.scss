@@ -49,8 +49,8 @@
 
   // Form styles
   form {
-    > p {
-      @apply form-control py-1;
+    p {
+      @apply form-control flex-grow py-1;
 
       label {
         @apply label py-1;

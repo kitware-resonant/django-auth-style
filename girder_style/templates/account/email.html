@@ -75,14 +75,14 @@
 
 <div class="bg-gray-100 border border-gray-300 mt-3 -mx-3 p-5 rounded-lg">
   <h5>{% trans 'Add E-mail Address' %}</h5>
-  <form method="post" action="{% url 'account_email' %}" class="add_email">
-    <div class="block md:flex md:items-end">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="btn btn-primary w-full mb-3 md:ml-2 md:w-auto" name="action_add">
+  <form method="post" action="{% url 'account_email' %}" class="add_email flex !items-end">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p class="ml-2 max-w-fit">
+      <button class="btn btn-primary" name="action_add">
         {% trans 'Add E-mail' %}
       </button>
-    </div>
+    </p>
   </form>
 </div>
 {% endblock %}
