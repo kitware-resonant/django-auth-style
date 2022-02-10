@@ -17,10 +17,10 @@
         <div class="flex items-stretch">
           {% if request.user.is_authenticated %}
             <div class="dropdown dropdown-hover">
-              <div tabindex="0" class="m-1 btn">
-                <i class="ri-account-circle-fill opacity-75 mr-2 text-primary text-xl transition-all group-hover:opacity-100"></i>
+              <div tabindex="0" class="m-1 btn btn-ghost group font-normal normal-case">
+                <i class="ri-account-circle-fill mr-2 text-primary text-xl transition-all group-hover:text-primary-focus"></i>
                 {{ request.user.email }}
-                <i class="ri-arrow-down-s-line opacity-50 ml-2 text-gray-300 text-xl transition-all"></i>
+                <i class="ri-arrow-down-s-line opacity-50 ml-2 text-gray-500 text-xl transition-all"></i>
               </div>
               <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white rounded-box w-full">
                 {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change Email' icon_class='ri-mail-settings-line' only %}
@@ -29,7 +29,7 @@
               </ul>
             </div>
           {% else %}
-            <div class="space-x-2">
+            <div class="space-x-1">
               {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
               {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
             </div>
