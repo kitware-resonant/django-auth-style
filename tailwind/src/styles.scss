@@ -49,6 +49,13 @@
 
   // Form styles
   form {
+    // Error list styles do not work when inside @layer base
+    .errorlist {
+      @apply space-y-1;
+      li {
+        @apply alert alert-error py-2 px-4 rounded-md;
+      }
+    }
     p {
       @apply form-control flex-grow py-1;
 
@@ -72,12 +79,5 @@
         @apply textarea textarea-bordered;
       }
     }
-  }
-}
-
-// Error list styles do not work when inside @layer base
-.errorlist {
-  li {
-    @apply alert alert-error py-2 px-4 rounded-md;
   }
 }
