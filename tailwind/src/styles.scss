@@ -49,7 +49,6 @@
 
   // Form styles
   form {
-    // Error list styles do not work when inside @layer base
     .errorlist {
       @apply space-y-1;
       li {
