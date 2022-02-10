@@ -2,6 +2,10 @@ module.exports = {
   content: [
     '../girder_style/templates/**/*.html'
   ],
+  safelist: [
+    // Injected by Django
+    'errorlist',
+  ],
   theme: {
     fontFamily: {
       'sans': 'Nunito, sans-serif'
