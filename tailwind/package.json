@@ -1,5 +1,5 @@
 {
-  "name": "girder-style",
+  "name": "django-auth-style",
   "private": true,
   "license": "Apache-2.0",
   "devDependencies": {
@@ -20,7 +20,7 @@
   "scripts": {
     "lint": "stylelint **/*.scss",
     "watch": "parcel watch --no-cache",
-    "build:clean": "rimraf ../girder_style/static/girder_style/dist",
+    "build:clean": "rimraf ../auth_style/static/auth_style/dist",
     "build:compile": "parcel build --no-cache",
     "build": "npm-run-all build:clean build:compile"
   },
@@ -30,7 +30,7 @@
         "./src/styles.scss",
         "./src/icons.css"
       ],
-      "distDir": "../girder_style/static/girder_style/dist"
+      "distDir": "../auth_style/static/auth_style/dist"
     }
   },
   "browserslist": "> 0.5%",
