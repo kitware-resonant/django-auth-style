@@ -1,7 +1,7 @@
+from auth_style_design.views import auth_template_file, auth_template_listing
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-from girder_style_design.views import auth_template_file, auth_template_listing
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,5 +1,5 @@
 .parcel-cache/
-girder_style/static/girder_style/dist/
+auth_style/static/auth_style/dist/
 node_modules/
 staticfiles/
 

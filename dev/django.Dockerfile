@@ -15,5 +15,5 @@ RUN pip install --editable /opt/django-project[allauth,oauth-toolkit]
 COPY ./dev/requirements.txt /opt/django-project/dev/requirements.txt
 RUN pip install --requirement /opt/django-project/dev/requirements.txt
 
-# Allow ./manage.py to auto-discover the girder_style_design app from the CWD
+# Allow ./manage.py to auto-discover the auth_style_design app from the CWD
 WORKDIR /opt/django-project/dev

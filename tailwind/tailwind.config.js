@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    '../girder_style/templates/**/*.html'
+    '../auth_style/templates/**/*.html'
   ],
   safelist: [
     // Injected by Django

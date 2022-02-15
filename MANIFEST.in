@@ -6,8 +6,8 @@ prune *
 include MANIFEST.in pyproject.toml README.md setup.py
 graft *.egg-info
 
-# Include everything from girder_style, even gitignored files
-graft girder_style
+# Include everything from auth_style, even gitignored files
+graft auth_style
 
 # Exclude .gitignore itself
 global-exclude .gitignore

@@ -7,9 +7,9 @@ with readme_file.open() as f:
     long_description = f.read()
 
 setup(
-    name='django-girder-style',
+    name='django-auth-style',
     version='0.0.0',
-    description='Django template styling for Girder-4 applications.',
+    description='Django template styling for django-allauth and django-oauth-toolkit.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',
@@ -34,7 +34,7 @@ setup(
         'Programming Language :: Python',
     ],
     python_requires='>=3.8',
-    packages=find_packages(include=['girder_style']),
+    packages=find_packages(include=['auth_style']),
     include_package_data=True,
     install_requires=[
         'django',

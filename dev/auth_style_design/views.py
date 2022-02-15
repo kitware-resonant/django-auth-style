@@ -40,7 +40,7 @@ template_files = {
 def auth_template_listing(request):
     return render(
         request,
-        'girder_style_design/auth_template_listing.html',
+        'auth_style_design/auth_template_listing.html',
         {
             'template_files': template_files,
         },

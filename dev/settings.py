@@ -44,7 +44,7 @@ class MinimalDevelopmentBaseConfiguration(
         ]
 
 
-class GirderStyleMixin(ConfigMixin):
+class AuthStyleMixin(ConfigMixin):
     WSGI_APPLICATION = 'wsgi.application'
     ROOT_URLCONF = 'urls'
 
@@ -58,7 +58,7 @@ class GirderStyleMixin(ConfigMixin):
 
     @staticmethod
     def before_binding(configuration: ComposedConfiguration) -> None:
-        configuration.INSTALLED_APPS.insert(0, 'girder_style_design')
+        configuration.INSTALLED_APPS.insert(0, 'auth_style_design')
 
         configuration.INSTALLED_APPS += [
             'allauth.socialaccount.providers.github',
@@ -82,5 +82,5 @@ class GirderStyleMixin(ConfigMixin):
     }
 
 
-class DevelopmentConfiguration(GirderStyleMixin, MinimalDevelopmentBaseConfiguration):
+class DevelopmentConfiguration(AuthStyleMixin, MinimalDevelopmentBaseConfiguration):
     pass
