@@ -1,3 +1,6 @@
+.parcel-cache/
+girder_style/static/girder_style/dist/
+node_modules/
 staticfiles/
 
 # Created by https://www.gitignore.io/api/django

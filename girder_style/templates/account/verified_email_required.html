@@ -24,13 +24,15 @@
   {% endblocktrans %}
 </p>
 
-<div class="flex bg-yellow-100 items-center mt-4 p-5 rounded-md text-yellow-700">
-  <i class="ri-information-line mr-4 text-4xl"></i>
-  <p>
-    <strong>{% trans 'Note' %}:</strong>
-    {% blocktrans trimmed %}
-    you can still <a href="{{ email_url }}">change your e-mail address</a>.
-    {% endblocktrans %}
-  </p>
+<div class="alert alert-warning mt-4">
+  <div class="flex-1 items-center">
+    <i class="ri-information-line mr-4 text-4xl"></i>
+    <label>
+      <strong>{% trans 'Note' %}:</strong>
+      {% blocktrans trimmed %}
+      you can still <a href="{{ email_url }}" class="link">change your e-mail address</a>.
+      {% endblocktrans %}
+    </label>
+  </div>
 </div>
 {% endblock %}

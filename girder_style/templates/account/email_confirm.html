@@ -6,21 +6,21 @@
 {% block head_title %}{% trans 'Confirm E-mail Address' %}{% endblock %}
 
 {% block content %}
-<h3 class="mb-2">{% trans 'Confirm E-mail Address' %}</h3>
+<h3 class="card-title mb-2">{% trans 'Confirm E-mail Address' %}</h3>
 
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
 <p>
   {% blocktrans trimmed with email=confirmation.email_address.email %}
-  Please confirm that <a href="mailto:{{ email }}">{{ email }}</a>
+  Please confirm that <a href="mailto:{{ email }}" class="link-accent">{{ email }}</a>
   is an e-mail address for user {{ user_display }}.
   {% endblocktrans %}
 </p>
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
   {% csrf_token %}
-  <button class="is-primary">
+  <button class="btn btn-primary">
     {% trans 'Confirm' %}
   </button>
 </form>
@@ -28,13 +28,15 @@
 {% else %}
 
 {% url 'account_email' as email_url %}
-<div class="flex bg-red-100 items-center mb-4 px-5 py-2 rounded-md text-red-700">
-  <i class="ri-error-warning-line mr-4 text-4xl"></i>
-  <p>
-    {% blocktrans trimmed %}
-    Link expired or invalid.
-    {% endblocktrans %}
-  </p>
+<div class="alert alert-error mb-4">
+  <div class="flex-1 items-center">
+    <i class="ri-error-warning-line mr-4 text-4xl"></i>
+    <label>
+      {% blocktrans trimmed %}
+      Link expired or invalid.
+      {% endblocktrans %}
+    </label>
+  </div>
 </div>
 
 {% blocktrans trimmed %}
@@ -43,7 +45,7 @@ Please issue a new e-mail confirmation request.
 {% endblocktrans %}
 
 <div class="flex justify-end mt-4">
-  <a href="{{ email_url }}" class="button is-primary">
+  <a href="{{ email_url }}" class="btn btn-primary">
     {% trans 'New Request' %}
   </a>
 </div>

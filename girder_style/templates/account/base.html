@@ -3,63 +3,72 @@
 {% load account %}
 
 {% block body %}
-  <body class="bg-gray-100 flex flex-col relative">
-    <div class="flex flex-initial h-24 items-center justify-end relative w-full z-20">
-      {% if request.user.is_authenticated %}
-        <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
-          <li class="flex flex-grow group relative">
-            <span class="cursor-pointer flex flex-row group items-center justify-between p-6 text-center text-primary-400 text-xs transition-all w-full hover:text-primary-300 med:justify-center">
-              <i class="ri-account-circle-fill opacity-75 mr-2 text-black text-xl transition-all group-hover:opacity-100"></i>
-              {{ request.user.email }}
-              <i class="ri-arrow-down-s-line opacity-50 ml-2 text-black text-xl transition-all"></i>
-            </span>
-            <ul class="absolute bg-white hidden left-2 overflow-hidden right-2 rounded shadow-md top-3/4 group-hover:block">
-              {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change Email' icon_class='ri-mail-settings-line' only %}
-              {% include 'account/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
-              {% include 'account/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
+  <body class="bg-gray-100 min-h-screen font-sans text-neutral">
+
+    <div class="navbar mb-2">
+      <div class="flex-1 px-2 mx-2">
+        {% if site %}
+          <span class="text-lg font-bold">
+            {{ site.name }}
+          </span>
+        {% endif %}
+      </div>
+      <div class="flex px-2 mx-2">
+        <div class="flex items-stretch">
+          {% if request.user.is_authenticated %}
+            <div class="dropdown dropdown-hover">
+              <div tabindex="0" class="m-1 btn btn-ghost group font-normal normal-case">
+                <i class="ri-account-circle-fill mr-2 text-primary text-xl transition-all group-hover:text-primary-focus"></i>
+                {{ request.user.email }}
+                <i class="ri-arrow-down-s-line opacity-50 ml-2 text-gray-500 text-xl transition-all"></i>
+              </div>
+              <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white rounded-box w-full">
+                {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change Email' icon_class='ri-mail-settings-line' only %}
+                {% include 'account/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
+                {% include 'account/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
+              </ul>
+            </div>
+          {% else %}
+            <div class="space-x-1">
+              {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
+              {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col relative">
+      <div class="container mx-auto pb-12">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+          <div id="messages" class="py-4">
+            <ul class="space-y-2">
+              {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                  {% include 'account/snippets/message_item.html' with type='alert-success' icon_class='ri-checkbox-circle-line' message=message only %}
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                  {% include 'account/snippets/message_item.html' with type='alert-warning' icon_class='ri-alert-line' message=message only %}
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                  {% include 'account/snippets/message_item.html' with type='alert-error' icon_class='ri-spam-3-line' message=message only %}
+                {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
+                  {% include 'account/snippets/message_item.html' with type='alert-info' icon_class='ri-information-line' message=message only %}
+                {% endif %}
+              {% endfor %}
             </ul>
-          </li>
-        </ul>
-      {% else %}
-        <ul class="flex flex-grow h-full md:max-w-max lg:px-12">
-          {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
-          {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
-        </ul>
-      {% endif %}
-    </div>
+          </div>
+        </div>
+        {% if messages %}
 
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      {% if site %}
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {{ site.name }}
-        </h2>
-      {% endif %}
-      <div id="messages" class="pt-4">
-        <ul>
-          {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-              {% include 'account/snippets/message_item.html' with color='green' icon_class='ri-checkbox-circle-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-              {% include 'account/snippets/message_item.html' with color='yellow' icon_class='ri-alert-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-              {% include 'account/snippets/message_item.html' with color='red' icon_class='ri-spam-3-line' message=message only %}
-            {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
-              {% include 'account/snippets/message_item.html' with color='secondary' icon_class='ri-information-line' message=message only %}
-            {% endif %}
-          {% endfor %}
-        </ul>
+        {% endif %}
+
+        <div class="sm:mx-auto sm:w-full sm:max-w-lg bg-white card">
+          <div class="card-body">
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+
+        {% block extra_body %}{% endblock %}
       </div>
     </div>
-    {% if messages %}
-
-    {% endif %}
-
-    <div class="my-8 sm:mx-auto sm:w-full sm:max-w-md bg-white px-6 pb-4 shadow sm:rounded-lg">
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        {% block content %}{% endblock %}
-      </div>
-    </div>
-
-    {% block extra_body %}{% endblock %}
   </body>
 {% endblock %}
