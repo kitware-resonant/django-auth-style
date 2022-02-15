@@ -4,9 +4,6 @@
 django-girder-style is a Django library providing
 Django template styling for Girder-4 applications.
 
-_Note: The `django-girder-style` package is deprecated;
-it has been superseded by `django-auth-style`._
-
 ### Benefits
 django-girder-style provides an extensible block-oriented base HTML template.
 This base template includes
