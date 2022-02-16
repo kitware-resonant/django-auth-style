@@ -32,7 +32,7 @@ class MinimalDevelopmentBaseConfiguration(
     INTERNAL_IPS = _AlwaysContains() if _is_docker() else ['127.0.0.1']
 
     OAUTH2_PROVIDER = {
-        'PKCE_REQUIRED': True,
+        'PKCE_REQUIRED': False,
         'ALLOWED_REDIRECT_URI_SCHEMES': ['http', 'https'],
         'REQUEST_APPROVAL_PROMPT': 'force',
     }
