@@ -3,8 +3,7 @@
 
 django-auth-style provides Django template styling for
 [django-allauth](https://django-allauth.readthedocs.io/)
-and [django-oauth-toolkit](https://django-oauth-toolkit.readthedocs.io/)
-.
+and [django-oauth-toolkit](https://django-oauth-toolkit.readthedocs.io/).
 
 ## Installation
 ### django-allauth Support
