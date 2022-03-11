@@ -8,14 +8,18 @@ with readme_file.open() as f:
 
 setup(
     name='django-auth-style',
-    version='0.0.0',
     description='Django template styling for django-allauth and django-oauth-toolkit.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='Apache 2.0',
+    url='https://github.com/girder/django-auth-style',
+    project_urls={
+        'Bug Reports': 'https://github.com/girder/django-auth-style/issues',
+        'Source': 'https://github.com/girder/django-auth-style',
+    },
     author='Kitware, Inc.',
     author_email='kitware@kitware.com',
-    keywords='',
+    keywords='django style styling allauth django-allauth django-oauth-toolkit',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
@@ -33,9 +37,9 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python',
     ],
-    python_requires='>=3.8',
     packages=find_packages(include=['auth_style']),
     include_package_data=True,
+    python_requires='>=3.8',
     install_requires=[
         'django',
     ],
