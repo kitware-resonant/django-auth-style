@@ -28,7 +28,7 @@ class MinimalDevelopmentBaseConfiguration(
 ):
     DEBUG = True
     SECRET_KEY = 'insecuresecret'
-    ALLOWED_HOSTS = values.ListValue(['localhost', '127.0.0.1'])
+    ALLOWED_HOSTS = values.ListValue(['localhost', '127.0.0.1', '0.0.0.0'])
     INTERNAL_IPS = _AlwaysContains() if _is_docker() else ['127.0.0.1']
 
     OAUTH2_PROVIDER = {
