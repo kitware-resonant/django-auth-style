@@ -3,19 +3,17 @@
   "private": true,
   "license": "Apache-2.0",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.2.1",
-    "@tailwindcss/forms": "^0.4.0",
-    "autoprefixer": "^10.4.2",
-    "daisyui": "^1.25.4",
+    "@parcel/transformer-sass": "2.7.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "daisyui": "^2.31.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.2.1",
-    "postcss": "^8.4.6",
+    "parcel": "^2.7.0",
+    "postcss": "^8.4.16",
     "remixicon": "^2.5.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.49.7",
-    "stylelint": "^14.3.0",
+    "stylelint": "^14.13.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "tailwindcss": "^3.0.18"
+    "tailwindcss": "^3.1.8"
   },
   "scripts": {
     "lint": "stylelint **/*.scss",
@@ -56,18 +54,7 @@
   },
   "postcss": {
     "plugins": {
-      "tailwindcss": {},
-      "autoprefixer": {}
+      "tailwindcss": {}
     }
-  },
-  "cssnano": {
-    "preset": [
-      "default",
-      {
-        "discardComments": {
-          "removeAll": true
-        }
-      }
-    ]
   }
 }

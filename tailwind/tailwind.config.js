@@ -1,16 +1,16 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    '../auth_style/templates/**/*.html'
+    '../auth_style/templates/**/*.html',
   ],
   safelist: [
-    // Injected by Django
+    // Injected by Django, and may be referenced by CSS rules
     'errorlist',
   ],
   theme: {
     fontFamily: {
-      'sans': 'Nunito, sans-serif'
+      'sans': 'Nunito, sans-serif',
     },
-    extend: {},
   },
   plugins: [
     require('@tailwindcss/forms'),
@@ -44,5 +44,5 @@ module.exports = {
         },
       },
     ],
-  }
+  },
 }
