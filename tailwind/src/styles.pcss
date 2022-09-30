@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-
-  // Heading Styles
+  /* Heading Styles */
   h1,
   h2,
   h3,
@@ -37,14 +36,10 @@
   h6 {
     @apply font-semibold text-base text-gray-400 uppercase;
   }
+}
 
-  .card-body {
-    > p {
-      @apply pb-4;
-    }
-  }
-
-  // Form styles
+@layer components {
+  /* Form styles */
   form {
     .errorlist {
       @apply space-y-1;
@@ -62,13 +57,13 @@
       }
 
       input {
-        &[type='text'],
-        &[type='email'],
-        &[type='password'],
-        &[type='date'],
-        &[type='datetime-local'],
-        &[type='month'],
-        &[type='number'] {
+        &[type="text"],
+        &[type="email"],
+        &[type="password"],
+        &[type="date"],
+        &[type="datetime-local"],
+        &[type="month"],
+        &[type="number"] {
           @apply input input-bordered;
         }
       }
@@ -76,6 +71,12 @@
       textarea {
         @apply textarea textarea-bordered;
       }
+    }
+  }
+
+  .card-body {
+    > p {
+      @apply pb-4;
     }
   }
 }
