@@ -3,20 +3,20 @@
   "private": true,
   "license": "Apache-2.0",
   "devDependencies": {
-    "@parcel/transformer-sass": "2.7.0",
     "@tailwindcss/forms": "^0.5.3",
     "daisyui": "^2.31.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.7.0",
     "postcss": "^8.4.16",
+    "postcss-nested": "^5.0.6",
     "remixicon": "^2.5.0",
     "rimraf": "^3.0.2",
     "stylelint": "^14.13.0",
-    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^28.0.0",
     "tailwindcss": "^3.1.8"
   },
   "scripts": {
-    "lint": "stylelint **/*.scss",
+    "lint": "stylelint src/*",
     "watch": "parcel watch --no-cache",
     "build:clean": "rimraf ../auth_style/static/auth_style/dist",
     "build:compile": "parcel build --no-cache",
@@ -25,7 +25,7 @@
   "targets": {
     "styles": {
       "source": [
-        "./src/styles.scss",
+        "./src/styles.pcss",
         "./src/icons.css"
       ],
       "distDir": "../auth_style/static/auth_style/dist"
@@ -33,20 +33,14 @@
   },
   "browserslist": "> 0.5%",
   "stylelint": {
-    "extends": "stylelint-config-sass-guidelines",
+    "extends": "stylelint-config-standard",
     "rules": {
-      "max-nesting-depth": null,
-      "selector-no-qualifying-type": null,
-      "scss/at-rule-no-unknown": [
+      "at-rule-no-unknown": [
         true,
         {
           "ignoreAtRules": [
             "apply",
-            "layer",
-            "responsive",
-            "screen",
-            "tailwind",
-            "variants"
+            "tailwind"
           ]
         }
       ]
@@ -54,6 +48,7 @@
   },
   "postcss": {
     "plugins": {
+      "postcss-nested": {},
       "tailwindcss": {}
     }
   }
