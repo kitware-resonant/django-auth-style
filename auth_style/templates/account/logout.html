@@ -1,16 +1,12 @@
 {% extends 'account/base.html' %}
 
-{% load i18n %}
-
-{% block head_title %}{% trans 'Sign Out' %}{% endblock %}
+{% block head_title %}Sign Out{% endblock %}
 
 {% block content %}
-<h3 class="mb-2">{% trans 'Sign Out' %}</h3>
+<h3 class="mb-2">Sign Out</h3>
 
 <p>
-  {% blocktrans trimmed %}
   Are you sure you want to sign out?
-  {% endblocktrans %}
 </p>
 
 <form method="post" action="{% url 'account_logout' %}">
@@ -20,7 +16,7 @@
   {% endif %}
   <div class="flex justify-end">
     <button class="btn btn-primary">
-      {% trans 'Sign Out' %}
+      Sign Out
     </button>
   </div>
 </form>

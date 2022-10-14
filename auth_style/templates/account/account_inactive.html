@@ -1,29 +1,25 @@
 {% extends 'account/base.html' %}
 
-{% load i18n %}
-
-{% block head_title %}{% trans 'Account Inactive' %}{% endblock %}
+{% block head_title %}Account Inactive{% endblock %}
 
 {% block content %}
 <div class="alert alert-error">
   <div class="flex-1 items-center">
     <i class="ri-error-warning-line mr-4 text-4xl"></i>
     <label>
-      {% trans 'Error: Account Inactive' %}
+      Error: Account Inactive
     </label>
   </div>
 </div>
 
 <div class="pb-2 pt-5">
   <p class="mb-5">
-    {% blocktrans trimmed %}
     For more information, you may contact an admin.
     If you think you've received this message in error, try to log in again.
-    {% endblocktrans %}
   </p>
   <p class="text-right">
     <a href="{% url 'account_email' %}" class="btn btn-primary inline-flex items-center is-primary">
-      {% trans 'Log In' %}
+      Log In
       <i class="ri-arrow-right-circle-line ml-3 text-xl"></i>
     </a>
   </p>

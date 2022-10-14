@@ -1,52 +1,43 @@
 {% extends 'account/base.html' %}
 
-{% load i18n %}
 {% load account %}
 
-{% block head_title %}{% trans 'Confirm E-mail Address' %}{% endblock %}
+{% block head_title %}Confirm E-mail Address{% endblock %}
 
 {% block content %}
-<h3 class="card-title mb-2">{% trans 'Confirm E-mail Address' %}</h3>
+<h3 class="card-title mb-2">Confirm E-mail Address</h3>
 
 {% if confirmation %}
 
-{% user_display confirmation.email_address.user as user_display %}
 <p>
-  {% blocktrans trimmed with email=confirmation.email_address.email %}
-  Please confirm that <a href="mailto:{{ email }}" class="link-accent">{{ email }}</a>
-  is an e-mail address for user {{ user_display }}.
-  {% endblocktrans %}
+  Please confirm that <a href="mailto:{{ confirmation.email_address.email }}" class="link-accent">{{ confirmation.email_address.email }}</a>
+  is an e-mail address for user {% user_display confirmation.email_address.user %}.
 </p>
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
   {% csrf_token %}
   <button class="btn btn-primary">
-    {% trans 'Confirm' %}
+    Confirm
   </button>
 </form>
 
 {% else %}
 
-{% url 'account_email' as email_url %}
 <div class="alert alert-error mb-4">
   <div class="flex-1 items-center">
     <i class="ri-error-warning-line mr-4 text-4xl"></i>
     <label>
-      {% blocktrans trimmed %}
       Link expired or invalid.
-      {% endblocktrans %}
     </label>
   </div>
 </div>
 
-{% blocktrans trimmed %}
 This confirmation link is expired or invalid.
 Please issue a new e-mail confirmation request.
-{% endblocktrans %}
 
 <div class="flex justify-end mt-4">
-  <a href="{{ email_url }}" class="btn btn-primary">
-    {% trans 'New Request' %}
+  <a href="{% url 'account_email' %}" class="btn btn-primary">
+    New Request
   </a>
 </div>
 {% endif %}
