@@ -1,17 +1,13 @@
 {% extends 'account/base.html' %}
 
-{% load i18n %}
-
-{% block head_title %}{% trans 'E-mail Addresses' %}{% endblock %}
+{% block head_title %}E-mail Addresses{% endblock %}
 
 {% block content %}
-<h3 class="mb-2">{% trans 'E-mail Addresses' %}</h3>
+<h3 class="mb-2">E-mail Addresses</h3>
 
 {% if user.emailaddress_set.all %}
 <p>
-  {% blocktrans trimmed %}
   The following e-mail addresses are associated with your account:
-  {% endblocktrans %}
 </p>
 
 <form action="{% url 'account_email' %}" class="email_list" method="post">
@@ -33,12 +29,12 @@
         <div>
           {% if emailaddress.verified %}
           <span class="verified border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-3xs">
-            {% trans 'verified' %}
+            verified
           </span>
           {% else %}
           <span class="unverified border bg-gray-100 flex items-center mx-1 pl-1 pr-2 rounded-full text-gray-500 text-3xs">
             <i class="ri-error-warning-line mr-1 text-sm text-red-600"></i>
-            {% trans 'unverified' %}
+            unverified
           </span>
           {% endif %}
         </div>
@@ -48,14 +44,14 @@
 
     <div class="buttonHolder flex items-center py-5">
       <button class="primaryAction btn btn-error text-white btn-xs rounded-md" name="action_remove">
-        {% trans 'Remove' %}
+        Remove
       </button>
       <div class="spacer flex-grow"></div>
       <button class="secondaryAction btn btn-outline mr-1 btn-xs rounded-md" name="action_send">
-        {% trans 'Re-send Verification' %}
+        Re-send Verification
       </button>
       <button class="secondaryAction btn btn-primary btn-xs rounded-md" name="action_primary">
-        {% trans 'Make Primary' %}
+        Make Primary
       </button>
     </div>
   </fieldset>
@@ -64,23 +60,21 @@
 <div class="bg-red-500 flex items-center justify-between m-4 px-5 py-4 rounded-lg text-white">
   <i class="ri-error-warning-line mr-4 text-4xl"></i>
   <div>
-    <strong>{% trans 'Warning'%}:</strong>
-    {% blocktrans trimmed %}
+    <strong>Warning:</strong>
     You currently do not have any e-mail address set up.
     You should really add an e-mail address so you can receive notifications, reset your password, etc.
-    {% endblocktrans %}
   </div>
 </div>
 {% endif %}
 
 <div class="bg-gray-100 border border-gray-300 mt-3 -mx-3 p-5 rounded-lg">
-  <h5>{% trans 'Add E-mail Address' %}</h5>
+  <h5>Add E-mail Address</h5>
   <form method="post" action="{% url 'account_email' %}" class="add_email flex !items-end">
     {% csrf_token %}
     {{ form.as_p }}
     <p class="ml-2 max-w-fit">
       <button class="btn btn-primary" name="action_add">
-        {% trans 'Add E-mail' %}
+        Add E-mail
       </button>
     </p>
   </form>
@@ -90,7 +84,7 @@
 {% block extra_body %}
 <script type="text/javascript">
   (function () {
-    const message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+    const message = "Do you really want to remove the selected e-mail address?";
     const actions = document.getElementsByName('action_remove');
     if (actions.length) {
       actions[0].addEventListener('click', function (e) {
