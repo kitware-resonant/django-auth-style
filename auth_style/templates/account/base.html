@@ -23,15 +23,15 @@
                 <i class="ri-arrow-down-s-line opacity-50 ml-2 text-gray-500 text-xl transition-all"></i>
               </div>
               <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white rounded-box w-full">
-                {% include 'account/snippets/sub_menu_item.html' with url_name='account_email' text='Change Email' icon_class='ri-mail-settings-line' only %}
-                {% include 'account/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
-                {% include 'account/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
+                {% include 'auth_style/snippets/sub_menu_item.html' with url_name='account_email' text='Change Email' icon_class='ri-mail-settings-line' only %}
+                {% include 'auth_style/snippets/sub_menu_item.html' with url_name='account_change_password' text='Change Password' icon_class='ri-key-2-line' only %}
+                {% include 'auth_style/snippets/sub_menu_item.html' with url_name='account_logout' text='Sign Out' icon_class='ri-logout-circle-line' only %}
               </ul>
             </div>
           {% else %}
             <div class="space-x-1">
-              {% include 'account/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
-              {% include 'account/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
+              {% include 'auth_style/snippets/menu_item.html' with url_name='account_login' text='Sign In' icon_class='ri-user-shared-line' only %}
+              {% include 'auth_style/snippets/menu_item.html' with url_name='account_signup' text='Sign Up' icon_class='ri-user-add-line' only %}
             </div>
           {% endif %}
         </div>
@@ -45,13 +45,13 @@
             <ul class="space-y-2">
               {% for message in messages %}
                 {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                  {% include 'account/snippets/message_item.html' with type='alert-success' icon_class='ri-checkbox-circle-line' message=message only %}
+                  {% include 'auth_style/snippets/message_item.html' with type='alert-success' icon_class='ri-checkbox-circle-line' message=message only %}
                 {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-                  {% include 'account/snippets/message_item.html' with type='alert-warning' icon_class='ri-alert-line' message=message only %}
+                  {% include 'auth_style/snippets/message_item.html' with type='alert-warning' icon_class='ri-alert-line' message=message only %}
                 {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                  {% include 'account/snippets/message_item.html' with type='alert-error' icon_class='ri-spam-3-line' message=message only %}
+                  {% include 'auth_style/snippets/message_item.html' with type='alert-error' icon_class='ri-spam-3-line' message=message only %}
                 {% elif message.level == DEFAULT_MESSAGE_LEVELS.info %}
-                  {% include 'account/snippets/message_item.html' with type='alert-info' icon_class='ri-information-line' message=message only %}
+                  {% include 'auth_style/snippets/message_item.html' with type='alert-info' icon_class='ri-information-line' message=message only %}
                 {% endif %}
               {% endfor %}
             </ul>
