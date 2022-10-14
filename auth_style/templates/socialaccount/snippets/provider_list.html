@@ -9,7 +9,7 @@
 {% for brand in provider.get_brands %}
 <li>
   <a title="{{brand.name}}"
-     class="socialaccount_provider {{provider.id}} {{brand.id}} block btn flex btn-sm text-[11px] items-center"
+     class="block btn flex btn-sm text-[11px] items-center"
      href="{% provider_login_url provider.id openid=brand.openid_url process=process %}">
     {{brand.name}}
   </a>
@@ -19,7 +19,7 @@
 
 <li>
   <a title="{{provider.name}}"
-     class="socialaccount_provider {{provider.id}} block btn flex btn-sm text-[11px] items-center"
+     class="block btn flex btn-sm text-[11px] items-center"
      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
     <i class="ri-{{ provider.id }}-fill mr-3 text-[18px]"></i>
     Sign in with {{provider.name}}
