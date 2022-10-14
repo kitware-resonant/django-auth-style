@@ -24,8 +24,6 @@ setup(
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
         'Framework :: Django :: 3',
-        'Framework :: Django :: 3.0',
-        'Framework :: Django :: 3.1',
         'Framework :: Django :: 3.2',
         'Framework :: Django :: 4',
         'Framework :: Django :: 4.0',
@@ -44,7 +42,7 @@ setup(
     include_package_data=True,
     python_requires='>=3.8',
     install_requires=[
-        'django',
+        'django>=3.2',
     ],
     extras_require={
         'allauth': ['django-allauth'],
