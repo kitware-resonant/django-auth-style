@@ -20,4 +20,4 @@ services:
     volumes:
       - .:/opt/django-project
       # Exclude internally-installed node_modules from being overwritten by the host mounting
-      - /opt/django-project/tailwind/node_modules
+      - /opt/django-project/node_modules

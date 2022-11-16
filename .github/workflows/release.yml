@@ -19,7 +19,6 @@ jobs:
         with:
           node-version: current
       - name: Build CSS
-        working-directory: ./tailwind
         run: |
           yarn install --frozen-lockfile
           yarn run build

@@ -4,31 +4,31 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "daisyui": "^2.31.0",
+    "daisyui": "^2.41.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.7.0",
-    "postcss": "^8.4.16",
-    "postcss-nested": "^5.0.6",
+    "parcel": "^2.8.0",
+    "postcss": "^8.4.19",
+    "postcss-nested": "^6.0.0",
     "remixicon": "^2.5.0",
     "rimraf": "^3.0.2",
-    "stylelint": "^14.13.0",
-    "stylelint-config-standard": "^28.0.0",
-    "tailwindcss": "^0.0.0-insiders.727de66"
+    "stylelint": "^14.15.0",
+    "stylelint-config-standard": "^29.0.0",
+    "tailwindcss": "^3.2.4"
   },
   "scripts": {
-    "lint": "stylelint src/*",
-    "watch": "parcel watch --no-cache",
-    "build:clean": "rimraf ../auth_style/static/auth_style/dist",
-    "build:compile": "parcel build --no-cache",
+    "lint": "stylelint ./npm-src/*",
+    "watch": "parcel watch",
+    "build:clean": "rimraf ./auth_style/static/auth_style/dist",
+    "build:compile": "parcel build",
     "build": "npm-run-all build:clean build:compile"
   },
   "targets": {
     "styles": {
       "source": [
-        "./src/styles.pcss",
-        "./src/icons.css"
+        "./npm-src/styles.pcss",
+        "./npm-src/icons.css"
       ],
-      "distDir": "../auth_style/static/auth_style/dist"
+      "distDir": "./auth_style/static/auth_style/dist"
     }
   },
   "browserslist": "> 0.5%",
