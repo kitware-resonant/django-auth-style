@@ -1,7 +1,7 @@
 FROM node:slim
 
-COPY ./tailwind/package.json /opt/django-project/tailwind/package.json
-COPY ./tailwind/yarn.lock /opt/django-project/tailwind/yarn.lock
+COPY ./package.json /opt/django-project/package.json
+COPY ./yarn.lock /opt/django-project/yarn.lock
 
-WORKDIR /opt/django-project/tailwind
+WORKDIR /opt/django-project
 RUN yarn install --frozen-lockfile

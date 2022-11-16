@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    '../auth_style/templates/**/*.html',
+    './auth_style/templates/**/*.html',
   ],
   safelist: [
     // Injected by Django, and may be referenced by CSS rules

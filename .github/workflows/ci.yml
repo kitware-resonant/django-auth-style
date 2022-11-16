@@ -32,7 +32,6 @@ jobs:
         with:
           node-version: current
       - name: Build and test
-        working-directory: ./tailwind
         run: |
           yarn install --frozen-lockfile
           yarn run build

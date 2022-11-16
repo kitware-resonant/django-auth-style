@@ -16,19 +16,19 @@
     "tailwindcss": "^3.2.4"
   },
   "scripts": {
-    "lint": "stylelint src/*",
-    "watch": "parcel watch --no-cache",
-    "build:clean": "rimraf ../auth_style/static/auth_style/dist",
-    "build:compile": "parcel build --no-cache",
+    "lint": "stylelint ./npm-src/*",
+    "watch": "parcel watch",
+    "build:clean": "rimraf ./auth_style/static/auth_style/dist",
+    "build:compile": "parcel build",
     "build": "npm-run-all build:clean build:compile"
   },
   "targets": {
     "styles": {
       "source": [
-        "./src/styles.pcss",
-        "./src/icons.css"
+        "./npm-src/styles.pcss",
+        "./npm-src/icons.css"
       ],
-      "distDir": "../auth_style/static/auth_style/dist"
+      "distDir": "./auth_style/static/auth_style/dist"
     }
   },
   "browserslist": "> 0.5%",
