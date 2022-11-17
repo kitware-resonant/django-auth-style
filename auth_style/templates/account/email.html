@@ -10,12 +10,12 @@
   The following e-mail addresses are associated with your account:
 </p>
 
-<form action="{% url 'account_email' %}" class="email_list" method="post">
+<form action="{% url 'account_email' %}" method="post">
   {% csrf_token %}
-  <fieldset class="blockLabels min-w-0">
+  <fieldset class="min-w-0">
     <ul class="border-t border-gray-300 mt-6">
       {% for emailaddress in user.emailaddress_set.all %}
-      <li class="border-b border-gray-300 ctrlHolder flex items-center justify-between py-3 min-w-0">
+      <li class="border-b border-gray-300 flex items-center justify-between py-3 min-w-0">
         <label for="email_radio_{{forloop.counter}}" class="flex items-center min-w-0">
           <input id="email_radio_{{forloop.counter}}" class="mr-2" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {%endif %} value="{{emailaddress.email}}"/>
           {% if emailaddress.primary %}
@@ -28,11 +28,11 @@
 
         <div>
           {% if emailaddress.verified %}
-          <span class="verified border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-3xs">
+          <span class="border bg-gray-100 mx-1 px-2 py-1 rounded-full text-gray-500 text-3xs">
             verified
           </span>
           {% else %}
-          <span class="unverified border bg-gray-100 flex items-center mx-1 pl-1 pr-2 rounded-full text-gray-500 text-3xs">
+          <span class="border bg-gray-100 flex items-center mx-1 pl-1 pr-2 rounded-full text-gray-500 text-3xs">
             <i class="ri-error-warning-line mr-1 text-sm text-red-600"></i>
             unverified
           </span>
@@ -42,15 +42,15 @@
       {% endfor %}
     </ul>
 
-    <div class="buttonHolder flex items-center py-5">
-      <button class="primaryAction btn btn-error text-white btn-xs rounded-md" name="action_remove">
+    <div class="flex items-center py-5">
+      <button class="btn btn-error text-white btn-xs rounded-md" name="action_remove">
         Remove
       </button>
       <div class="spacer flex-grow"></div>
-      <button class="secondaryAction btn btn-outline mr-1 btn-xs rounded-md" name="action_send">
+      <button class="btn btn-outline mr-1 btn-xs rounded-md" name="action_send">
         Re-send Verification
       </button>
-      <button class="secondaryAction btn btn-primary btn-xs rounded-md" name="action_primary">
+      <button class="btn btn-primary btn-xs rounded-md" name="action_primary">
         Make Primary
       </button>
     </div>
@@ -69,7 +69,7 @@
 
 <div class="bg-gray-100 border border-gray-300 mt-3 -mx-3 p-5 rounded-lg">
   <h5>Add E-mail Address</h5>
-  <form method="post" action="{% url 'account_email' %}" class="add_email flex !items-end">
+  <form method="post" action="{% url 'account_email' %}" class="flex !items-end">
     {% csrf_token %}
     {{ form.as_p }}
     <p class="ml-2 max-w-fit">
