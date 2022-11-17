@@ -8,7 +8,7 @@
 ### Run Application
 1. Run `docker-compose up`
 2. Access the site, starting at http://localhost:8000/
-   * Outgoing emails are sent to the console 
+   * Outgoing emails are sent to the console
 3. The Django admin interface is still available at http://localhost:8000/admin/
 3. When finished, use `Ctrl+C`
 
@@ -27,5 +27,5 @@ In the event that Javascript packages need to be installed, this can be done via
 1. Run: `docker-compose run --rm tailwind yarn add -D package-name`,
    substituting `package-name` as appropriate.
 
-This can also be done natively by running Yarn commands from the `tailwind/` directory, but be sure
+This can also be done natively by running Yarn commands in the repository root, but be sure
 to re-build Docker afterwards (via Application Maintenance above).
