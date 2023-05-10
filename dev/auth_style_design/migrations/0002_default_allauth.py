@@ -4,15 +4,15 @@ from django.db.migrations.state import StateApps
 
 
 def create_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    User = apps.get_model('auth', 'User')  # noqa: N806
-    EmailAddress = apps.get_model('account', 'EmailAddress')  # noqa: N806
+    User = apps.get_model("auth", "User")  # noqa: N806
+    EmailAddress = apps.get_model("account", "EmailAddress")  # noqa: N806
 
     user = User.objects.create_user(
-        username='user@auth-style-design.test',
-        email='user@auth-style-design.test',
-        password='password',
-        first_name='John',
-        last_name='Doe',
+        username="user@auth-style-design.test",
+        email="user@auth-style-design.test",
+        password="password",
+        first_name="John",
+        last_name="Doe",
     )
     EmailAddress.objects.create(
         user=user,
@@ -23,20 +23,19 @@ def create_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEdi
 
 
 def delete_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    User = apps.get_model('auth', 'User')  # noqa: N806
+    User = apps.get_model("auth", "User")  # noqa: N806
 
-    User.objects.filter(email='user@auth-style-design.test').delete()
+    User.objects.filter(email="user@auth-style-design.test").delete()
     # EmailAddress will cascade delete
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('auth_style_design', '0001_default_site'),
+        ("auth_style_design", "0001_default_site"),
         # This is the final auth app migration
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
         # This is the final account (Allauth) app migration
-        ('account', '0002_email_max_length'),
+        ("account", "0002_email_max_length"),
     ]
 
     operations = [
