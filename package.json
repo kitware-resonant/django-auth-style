@@ -7,7 +7,7 @@
     "daisyui": "^2.41.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.8.0",
-    "postcss": "^8.4.19",
+    "postcss": "^8.4.31",
     "postcss-nested": "^6.0.0",
     "remixicon": "^2.5.0",
     "rimraf": "^3.0.2",
