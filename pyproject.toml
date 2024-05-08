@@ -1,14 +1,86 @@
 [build-system]
-requires = ["setuptools >= 42", "wheel", "setuptools-scm[toml]>=3.4"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
-[tool.setuptools_scm]
+[project]
+name = "django-auth-style"
+description = "Django template styling for django-allauth and django-oauth-toolkit."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache 2.0"}
+maintainers = [{name = "Kitware, Inc.", email = "kitware@kitware.com"}]
+keywords=[
+  "django",
+  "resonant",
+  "kitware-resonant",
+  "style",
+  "styling",
+  "allauth",
+  "django-allauth",
+  "django-oauth-toolkit"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Web Environment",
+  "Framework :: Django :: 3",
+  "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4",
+  "Framework :: Django :: 4.0",
+  "Framework :: Django :: 4.1",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python",
+]
+dependencies = [
+  "django>=3.2",
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/kitware-resonant/django-auth-style"
+"Bug Reports" = "https://github.com/kitware-resonant/django-auth-style/issues"
+
+[project.optional-dependencies]
+allauth = [
+  "django-allauth",
+]
+oauth-toolkit = [
+  "django-oauth-toolkit",
+]
+
+[tool.hatch.build]
+only-include = [
+  "auth_style",
+]
+artifacts = [
+  "auth_style/static/auth_style/dist",
+]
+
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = [
+  "auth_style/static/auth_style/dist/styles.css",
+  "auth_style/static/auth_style/dist/icons.css",
+]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build"
+source_dir = "npm-src"
+build_dir = "auth_style/static/auth_style/dist"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.black]
 line-length = 100
-skip-string-normalization = true
-target-version = ["py38"]
-exclude='\.eggs|\.git|\.mypy_cache|\.tox|\.venv|_build|buck-out|build|dist|node_modules'
+target-version = ["py310"]
 
 [tool.isort]
 profile = "black"
