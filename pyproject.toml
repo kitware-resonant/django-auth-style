@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "django-auth-style"
 description = "Django template styling for django-allauth and django-oauth-toolkit."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = {text = "Apache 2.0"}
 maintainers = [{name = "Kitware, Inc.", email = "kitware@kitware.com"}]
 keywords=[
@@ -32,10 +32,9 @@ classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python",
 ]
 dependencies = [
@@ -69,7 +68,7 @@ source = "vcs"
 
 [tool.black]
 line-length = 100
-target-version = ["py38"]
+target-version = ["py310"]
 
 [tool.isort]
 profile = "black"

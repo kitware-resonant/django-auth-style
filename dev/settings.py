@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Type
 
 from composed_configuration import (
     AllauthMixin,
@@ -38,7 +37,7 @@ class MinimalDevelopmentBaseConfiguration(
     }
 
     @staticmethod
-    def before_binding(configuration: Type[ComposedConfiguration]) -> None:
+    def before_binding(configuration: type[ComposedConfiguration]) -> None:
         configuration.INSTALLED_APPS += [
             "oauth2_provider",
         ]
