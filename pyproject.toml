@@ -62,6 +62,18 @@ artifacts = [
   "auth_style/static/auth_style/dist",
 ]
 
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = [
+  "auth_style/static/auth_style/dist/styles.css",
+  "auth_style/static/auth_style/dist/icons.css",
+]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build"
+source_dir = "npm-src"
+build_dir = "auth_style/static/auth_style/dist"
 
 [tool.hatch.version]
 source = "vcs"
