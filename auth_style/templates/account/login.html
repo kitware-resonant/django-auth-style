@@ -38,10 +38,7 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
-  <div class="flex items-center justify-between pb-0 pt-5">
-    <a class="link-accent" href="{% url 'account_reset_password' %}">
-      Forgot Password?
-    </a>
+  <div class="flex justify-end pb-0 pt-5">
     <button class="inline-flex items-center btn btn-primary">
       Sign In
       <i class="ri-arrow-right-circle-line ml-3 text-xl"></i>
