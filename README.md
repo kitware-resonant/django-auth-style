@@ -9,7 +9,7 @@ and [django-oauth-toolkit](https://django-oauth-toolkit.readthedocs.io/).
 ### django-allauth Support
 To enable support for django-allauth, install with:
 ```bash
-pip install django-allauth django-auth-style[allauth]
+pip install django-auth-style[allauth]
 ```
 
 Then enable the Django app:
@@ -27,12 +27,18 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 ]
+MIDDLEWARE = [
+    ...,
+    # CurrentSiteMiddleware is optional, but recommended to show site branding
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
+    ...
+]
 ```
 
 ### django-oauth-toolkit Support
 To enable support for django-oauth-toolkit, install with:
 ```bash
-pip install django-oauth-toolkit django-auth-style[oauth-toolkit]
+pip install django-auth-style[oauth-toolkit]
 ```
 
 Then enable the Django app:

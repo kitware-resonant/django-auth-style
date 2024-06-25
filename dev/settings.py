@@ -2,84 +2,96 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from composed_configuration import (
-    AllauthMixin,
-    ComposedConfiguration,
-    ConfigMixin,
-    ConsoleEmailMixin,
-    DebugMixin,
-    DjangoMixin,
-    LoggingMixin,
-    StaticFileMixin,
-)
-from composed_configuration._docker import _AlwaysContains, _is_docker
-from configurations import values
+BASE_DIR = Path(__file__).resolve(strict=True).parent
 
+ROOT_URLCONF = "urls"
+SECRET_KEY = "insecure-secret"
+SITE_ID = 1
 
-class MinimalDevelopmentBaseConfiguration(
-    DebugMixin,
-    ConsoleEmailMixin,
-    LoggingMixin,
-    AllauthMixin,
-    StaticFileMixin,
-    DjangoMixin,
-    ComposedConfiguration,
-):
-    DEBUG = True
-    SECRET_KEY = "insecuresecret"
-    ALLOWED_HOSTS = values.ListValue(["localhost", "127.0.0.1"])
-    INTERNAL_IPS = _AlwaysContains() if _is_docker() else ["127.0.0.1"]
+DEBUG = True
+INTERNAL_IPS = ["127.0.0.1"]
 
-    OAUTH2_PROVIDER = {
-        "PKCE_REQUIRED": False,
-        "ALLOWED_REDIRECT_URI_SCHEMES": ["http", "https"],
-        "REQUEST_APPROVAL_PROMPT": "force",
-    }
+INSTALLED_APPS = [
+    "auth_style_design",
+    "auth_style",
+    "debug_toolbar",
+    "django_browser_reload",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.humanize",
+    "django.contrib.messages",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.staticfiles",
+    "allauth",
+    "allauth.account",
+    "allauth.mfa",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.dummy",
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.google",
+    "allauth.usersessions",
+    "oauth2_provider",
+]
 
-    @staticmethod
-    def before_binding(configuration: type[ComposedConfiguration]) -> None:
-        configuration.INSTALLED_APPS += [
-            "oauth2_provider",
-        ]
+MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+]
 
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}}
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+TIME_ZONE = "UTC"
 
-class AuthStyleMixin(ConfigMixin):
-    WSGI_APPLICATION = "wsgi.application"
-    ROOT_URLCONF = "urls"
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+# Django staticfiles auto-creates any intermediate directories, but do so here to prevent warnings.
+STATIC_ROOT.mkdir(exist_ok=True)
 
-    BASE_DIR = Path(__file__).resolve(strict=True).parent
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                # "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
 
-    DATABASES = {
-        "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3"}
-    }
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-    SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
 
-    @staticmethod
-    def before_binding(configuration: ComposedConfiguration) -> None:
-        configuration.INSTALLED_APPS.insert(0, "auth_style_design")
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_LOGIN_BY_CODE_ENABLED = True
+MFA_SUPPORTED_TYPES = ["totp", "webauthn", "recovery_codes"]
+MFA_PASSKEY_LOGIN_ENABLED = True
+MFA_WEBAUTHN_ALLOW_INSECURE_ORIGIN = True
+SOCIALACCOUNT_PROVIDERS = {
+    "github": {"APP": {}},
+    "google": {"APP": {}},
+}
 
-        configuration.INSTALLED_APPS += [
-            "allauth.socialaccount.providers.github",
-            "allauth.socialaccount.providers.google",
-            "allauth.socialaccount.providers.openid",
-        ]
-
-    # Force the logout confirm page to be rendered
-    ACCOUNT_LOGOUT_ON_GET = False
-
-    SOCIALACCOUNT_PROVIDERS = {
-        "openid": {
-            "SERVERS": [
-                dict(id="yahoo", name="Yahoo", openid_url="http://me.yahoo.com"),
-                dict(id="hyves", name="Hyves", openid_url="http://hyves.nl"),
-                dict(
-                    id="google", name="Google", openid_url="https://www.google.com/accounts/o8/id"
-                ),
-            ]
-        }
-    }
-
-
-class DevelopmentConfiguration(AuthStyleMixin, MinimalDevelopmentBaseConfiguration):
-    pass
+OAUTH2_PROVIDER = {
+    "PKCE_REQUIRED": False,
+    "ALLOWED_REDIRECT_URI_SCHEMES": ["http", "https"],
+    "REQUEST_APPROVAL_PROMPT": "force",
+}

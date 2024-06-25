@@ -1,82 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  /* Heading Styles */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-thin text-neutral;
-  }
-
-  h1 {
-    @apply text-4xl;
-  }
-
-  h2 {
-    @apply text-3xl;
-  }
-
-  h3 {
-    @apply text-2xl;
-  }
-
-  h4 {
-    @apply text-xl;
-  }
-
-  h5 {
-    @apply font-semibold text-lg;
-  }
-
-  h6 {
-    @apply font-semibold text-base text-gray-400 uppercase;
-  }
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: winter --default, business --prefersdark;
+}
+@theme {
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-@layer components {
-  /* Form styles */
-  form {
-    .errorlist {
-      @apply space-y-1;
-
-      li {
-        @apply alert alert-error py-2 px-4 rounded-md;
-      }
-    }
-
-    p {
-      @apply form-control flex-grow py-1;
-
-      label {
-        @apply label py-1;
-      }
-
-      input {
-        &[type="text"],
-        &[type="email"],
-        &[type="password"],
-        &[type="date"],
-        &[type="datetime-local"],
-        &[type="month"],
-        &[type="number"] {
-          @apply input input-bordered;
-        }
-      }
-
-      textarea {
-        @apply textarea textarea-bordered;
-      }
-    }
-  }
-
-  .card-body {
-    > p {
-      @apply pb-4;
+@layer base {
+  /* Plain links that aren't buttons */
+  a:not(.btn) {
+    /* That also aren't directly within a button;
+       see https://stackoverflow.com/q/7084112 for why the descendant combinator can't be used
+    */
+    :not(.btn) > & {
+      @apply link link-accent;
     }
   }
 }

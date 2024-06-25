@@ -1,9 +1,9 @@
 {% load allauth %}
 <details {% if attrs.open %}open{% endif %}>
-    <summary>
-        {% slot summary %}
-        {% endslot %}
-    </summary>
-    {% slot body %}
+  <summary>
+    {% slot summary %}
     {% endslot %}
+  </summary>
+  {% slot body %}
+  {% endslot %}
 </details>
