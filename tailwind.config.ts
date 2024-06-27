@@ -1,5 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+import daisyui from 'daisyui';
+
+export default {
   content: [
     './auth_style/templates/**/*.html',
   ],
@@ -13,8 +15,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('daisyui'),
+    daisyui,
   ],
   daisyui: {
     logs: false,
@@ -45,4 +46,4 @@ module.exports = {
       },
     ],
   },
-}
+} satisfies Config;
