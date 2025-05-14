@@ -1,0 +1,27 @@
+{% load allauth %}
+{% setvar variant %}
+  {% if attrs.level == "error" %}
+    alert-error
+  {% elif attrs.level == "warning" %}
+    alert-warning
+  {% elif attrs.level == "success" %}
+    alert-success
+  {% elif attrs.level == "info" %}
+    alert-info
+  {% endif %}
+{% endsetvar %}
+{% setvar icon %}
+  {% if attrs.level == "error" %}
+    ri-error-warning-line
+  {% elif attrs.level == "warning" %}
+    ri-alert-line
+  {% elif attrs.level == "success" %}
+    ri-checkbox-circle-line
+  {% elif attrs.level == "info" %}
+    ri-information-line
+  {% endif %}
+{% endsetvar %}
+<p class="alert {{ variant }}">
+  <i class="{{ icon }} ri-lg"></i>
+  {% slot message %}{% endslot %}
+</p>

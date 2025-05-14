@@ -1,0 +1,15 @@
+{% load allauth %}
+<form method="{{ attrs.method }}"
+    {% if attrs.action %}action="{{ attrs.action }}"{% endif %}
+    class="flex flex-col gap-2"
+>
+  {% slot body %}{% endslot %}
+  {% for error in attrs.form.non_field_errors %}
+    {% element alert level="error" %}
+      {% slot message %}{{ error }}{% endslot %}
+    {% endelement %}
+  {% endfor %}
+  <span class="flex-col items-stretch text-center card-actions">
+    {% slot actions %}{% endslot %}
+  </span>
+</form>

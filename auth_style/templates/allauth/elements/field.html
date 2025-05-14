@@ -1,0 +1,115 @@
+{% load allauth %}
+{% if attrs.type == "hidden" %}
+  <input
+    {% if attrs.required %}required{% endif %}
+    {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+    {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+    {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
+    type="hidden"
+  >
+{% else %}
+  {% setvar input_classes %}
+    {% if attrs.type == "textarea" %}
+      textarea {% if attrs.errors %}textarea-error{% endif %} {% if attrs.readonly %}resize-none{% endif %} w-full
+    {% elif attrs.type == "select" %}
+      select {% if attrs.errors %}select-error{% endif %} w-full
+    {% elif attrs.type == "checkbox" %}
+      checkbox {% if attrs.errors %}checkbox-error{% endif %}
+    {% elif attrs.type == "radio" %}
+      radio {% if attrs.errors %}radio-error{% endif %}
+    {% else %}
+      input {% if attrs.errors %}input-error{% endif %} w-full
+    {% endif %}
+  {% endsetvar %}
+  {% setvar input %}
+    {% if attrs.type == "textarea" %}
+      <textarea
+        {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.readonly %}readonly{% endif %}
+        {% if attrs.tabindex %}tabindex="{{ attrs.tabindex }}"{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        {% if attrs.cols %}cols="{{ attrs.cols }}"{% endif %}
+        {% if attrs.rows %}rows="{{ attrs.rows }}"{% endif %}
+        class="{% if not attrs.unlabeled %}{{ input_classes }}{% endif %}"
+      >{% slot value %}{% endslot %}</textarea>
+    {% elif attrs.type == "select" %}
+      <select
+        {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.tabindex %}tabindex="{{ attrs.tabindex }}"{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        class="{{ input_classes }}"
+      >
+        {% for option_value, option_label in attrs.choices %}
+          <option
+            value="{{ option_value }}"
+            {% if option_value == attrs.value %}selected{% endif %}
+          >
+            {{ option_label }}
+          </option>
+        {% endfor %}
+      </select>
+    {% else %}
+      <input
+        {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.readonly %}readonly{% endif %}
+        {% if attrs.checked %}checked{% endif %}
+        {% if attrs.tabindex %}tabindex="{{ attrs.tabindex }}"{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
+        type="{{ attrs.type }}"
+        class="{% if not attrs.unlabeled or attrs.type == "checkbox" or attrs.type == "radio" %}{{ input_classes }}{% endif %}"
+      />
+    {% endif %}
+  {% endsetvar %}
+  <fieldset class="fieldset">
+    {% if attrs.type == "checkbox" or attrs.type == "radio" %}
+      <label {% if attrs.id %}for="{{ attrs.id }}"{% endif %} class="fieldset-label">
+        {{ input }}
+        <span>
+          {% slot label %}{% endslot %}
+        </span>
+      </label>
+    {% elif attrs.unlabeled %}
+      <label class="{{ input_classes }}">
+        <span class="font-bold label">{% slot label %}{% endslot %}</span>
+        {{ input }}
+      </label>
+    {% else %}
+      <label {% if attrs.id %}for="{{ attrs.id }}"{% endif %} class="font-bold fieldset-label">
+        {% slot label %}{% endslot %}
+      </label>
+      {{ input }}
+    {% endif %}
+
+    {# If empty, "slots.help_text" is still a list of whitespace-containing strings #}
+    {% with help_text_is_set=slots.help_text|join:''|slugify %}
+      {% if attrs.errors or help_text_is_set %}
+        <label {% if attrs.id %}for="{{ attrs.id }}"{% endif %} class="fieldset-label">
+          {% if attrs.errors %}
+            <ul class="errorlist text-error">
+              {% for error in attrs.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if help_text_is_set %}
+            <span>
+              {% slot help_text %}{% endslot %}
+            </span>
+          {% endif %}
+        </label>
+      {% endif %}
+    {% endwith %}
+  </fieldset>
+{% endif %}

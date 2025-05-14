@@ -1,0 +1,17 @@
+{% load allauth %}
+{% setvar variant %}
+  {% if "warning" in attrs.tags %}
+    badge-warning
+  {% elif "danger" in attrs.tags %}
+    badge-danger
+  {% elif "success" in attrs.tags %}
+    badge-success
+  {% elif "primary" in attrs.tags %}
+    badge-primary
+  {% else %}
+    badge-ghost
+  {% endif %}
+{% endsetvar %}
+<span {% if attrs.title %}title="{{ attrs.title }}"{% endif %} class="badge {{ variant }}">
+  {% slot %}{% endslot %}
+</span>

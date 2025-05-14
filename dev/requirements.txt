@@ -1,7 +1,0 @@
-django
-django-allauth
-django-composed-configuration
-django-configurations
-django-debug-toolbar
-django-oauth-toolkit
-rich

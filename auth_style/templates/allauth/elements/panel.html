@@ -1,0 +1,19 @@
+{% load allauth %}
+<div class="card card-compact glass bg-base-300">
+  <div class="card-body">
+    <h2 class="card-title">
+      {% slot title %}{% endslot %}
+    </h2>
+    <div>
+      {% slot body %}{% endslot %}
+    </div>
+    {# TODO: slots.actions is always truthy #}
+    {% if slots.actions %}
+      <div class="justify-end items-center card-actions">
+        {% for action in slots.actions %}
+          {{ action }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
