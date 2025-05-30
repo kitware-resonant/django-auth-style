@@ -23,7 +23,7 @@
 
 ## Testing
 1. Run `uv run tox`
-2. Run `npm run lint`
+2. Run `npm run test`
 
 ### Updating Test Baselines
 After any changes to the rendered appearance of templates, the test baselines must be updated:

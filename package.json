@@ -15,7 +15,7 @@
     "rustywind": "^0.24.0"
   },
   "scripts": {
-    "lint": "rustywind --check-formatted ./auth_style/templates",
+    "test": "rustywind --check-formatted ./auth_style/templates",
     "format": "rustywind --write ./auth_style/templates",
     "watch": "parcel watch",
     "build:clean": "rimraf ./auth_style/static/auth_style/dist",
