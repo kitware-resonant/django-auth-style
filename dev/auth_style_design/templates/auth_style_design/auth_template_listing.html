@@ -12,18 +12,22 @@
 <div>Logged out</div>
 {% endif %}
 
-<h3>Auth templates</h3>
+<h3>Quick Links</h3>
 <ul>
-  {% for template_file, view_url in template_files.items %}
-  <li>
-    {% if view_url %}
-    <a href="{{ view_url }}">
-      {{ template_file }}
-    </a>
-    {% else %}
-    {{ template_file }}
-    {% endif %}
-  </li>
+
+  {% for group_name, template_files in template_file_groups.items %}
+    <h4>{{ group_name }}</h4>
+    {% for template_file, view_url in template_files.items %}
+      <li>
+        {% if view_url %}
+        <a href="{{ view_url }}">
+          {{ template_file }}
+        </a>
+        {% else %}
+        {{ template_file }}
+        {% endif %}
+      </li>
+    {% endfor %}
   {% endfor %}
 </ul>
 </body>
