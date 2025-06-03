@@ -1,9 +1,101 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: winter --default, business --prefersdark;
+  themes: das-light --default, das-dark --prefersdark;
 }
+
+@plugin "daisyui/theme" {
+  name: "das-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-base-100: oklch(98% 0.004 260);
+  --color-base-200: oklch(93% 0.004 260);
+  --color-base-300: oklch(85% 0.003 260);
+  --color-base-content: oklch(26% 0.015 270);
+
+  --color-primary: oklch(60% 0.13 248);
+  --color-primary-content: oklch(98% 0.005 260);
+
+  --color-secondary: oklch(70% 0.10 170);
+  --color-secondary-content: oklch(100% 0.015 170);
+
+  --color-accent: oklch(64% 0.19 328);
+  --color-accent-content: oklch(98% 0.01 328);
+
+  --color-neutral: oklch(62% 0.03 250);
+  --color-neutral-content: oklch(94% 0.01 250);
+
+  --color-info: oklch(68% 0.12 240);
+  --color-info-content: oklch(26% 0.11 250);
+
+  --color-success: oklch(54% 0.14 140);
+  --color-success-content: oklch(96% 0.005 140);
+
+  --color-warning: oklch(76% 0.13 85);
+  --color-warning-content: oklch(28% 0.12 85);
+
+  --color-error: oklch(44% 0.12 30);
+  --color-error-content: oklch(98% 0.005 0);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "das-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  --color-base-100: oklch(22% 0.005 260);
+  --color-base-200: oklch(18% 0.004 260);
+  --color-base-300: oklch(13% 0.003 260);
+  --color-base-content: oklch(94% 0.01 260);
+
+  --color-primary: oklch(66% 0.14 248);
+  --color-primary-content: oklch(16% 0.01 260);
+
+  --color-secondary: oklch(60% 0.10 170);
+  --color-secondary-content: oklch(14% 0.01 170);
+
+  --color-accent: oklch(70% 0.19 328);
+  --color-accent-content: oklch(14% 0.01 328);
+
+  --color-neutral: oklch(35% 0.02 250);
+  --color-neutral-content: oklch(94% 0.01 250);
+
+  --color-info: oklch(68% 0.12 240);
+  --color-info-content: oklch(14% 0.015 250);
+
+  --color-success: oklch(54% 0.14 140);
+  --color-success-content: oklch(14% 0.01 140);
+
+  --color-warning: oklch(76% 0.13 85);
+  --color-warning-content: oklch(14% 0.015 85);
+
+  --color-error: oklch(44% 0.12 30);
+  --color-error-content: oklch(96% 0.005 0);
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0.02;
+}
+
+
 @theme {
-  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @layer base {
