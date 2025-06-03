@@ -4,9 +4,9 @@
     btn-link
   {% else %}
     {% if "prominent" in attrs.tags %}
-      btn-lg
+
     {% elif "minor" in attrs.tags %}
-      btn-sm
+      btn-xs
     {% endif %}
     {% if "danger" in attrs.tags %}
       btn-error
@@ -25,7 +25,7 @@
   {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
   {% if attrs.value %}value="{{ attrs.value }}"{% endif %}
   {% if attrs.type %}type="{{ attrs.type }}"{% endif %}
-  class="btn {{ variants }}"
+  class="btn {{ variants }} tracking-wider"
 >
   {% if "delete" in attrs.tags %}
     <i class="ri-delete-bin-line ri-lg"></i>
