@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.8",
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "^8.0.0",
     "parcel": "^2.15.2",
     "rimraf": "^6.0.1",
     "rustywind": "^0.24.0"
