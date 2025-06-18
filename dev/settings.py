@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     "auth_style",
     "debug_toolbar",
     "django_browser_reload",
+    "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

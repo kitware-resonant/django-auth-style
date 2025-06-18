@@ -14,7 +14,7 @@
 
 ## Run Application
 1. In separate terminals, run both:
-   1. `uv run dev/manage.py runserver`
+   1. `uv run dev/manage.py runserver_plus`
    2. `npm run watch`
 2. Access the site, starting at http://localhost:8000/
    * Outgoing emails are sent to the console
