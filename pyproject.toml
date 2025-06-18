@@ -62,10 +62,13 @@ dev = [
   "django-allauth[mfa,socialaccount]",
   "django-browser-reload",
   "django-debug-toolbar",
+  "django-extensions",
   "django-oauth-toolkit",
-  "pywatchman",
+  "ipython",
   "tox",
   "tox-uv",
+  "watchdog",
+  "werkzeug",
 ]
 lint = [
   "flake8",
