@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: das-light --default, das-dark --prefersdark;
+  themes: das-light, das-dark;
 }
 
 @plugin "daisyui/theme" {
@@ -9,34 +9,34 @@
   prefersdark: false;
   color-scheme: "light";
 
-  --color-base-100: oklch(98% 0.004 260);
-  --color-base-200: oklch(93% 0.004 260);
-  --color-base-300: oklch(85% 0.003 260);
-  --color-base-content: oklch(26% 0.015 270);
+  --color-base-100: #fafafa;
+  --color-base-200: #f0f0f0;
+  --color-base-300: #dcdcdc;
+  --color-base-content: #2d2d2d;
 
-  --color-primary: oklch(60% 0.13 248);
-  --color-primary-content: oklch(98% 0.005 260);
+  --color-primary: #28536b;
+  --color-primary-content: #ffffff;
 
-  --color-secondary: oklch(70% 0.10 170);
-  --color-secondary-content: oklch(100% 0.015 170);
+  --color-secondary: #54A79C;
+  --color-secondary-content: #ffffff;
 
-  --color-accent: oklch(64% 0.19 328);
-  --color-accent-content: oklch(98% 0.01 328);
+  --color-accent: #DDB771;
+  --color-accent-content: #2d2d2d;
 
-  --color-neutral: oklch(62% 0.03 250);
-  --color-neutral-content: oklch(94% 0.01 250);
+  --color-neutral: #7a7a7a;
+  --color-neutral-content: #f5f5f5;
 
-  --color-info: oklch(68% 0.12 240);
-  --color-info-content: oklch(26% 0.11 250);
+  --color-info: #5876CE;
+  --color-info-content: #E1E8EB;
 
-  --color-success: oklch(54% 0.14 140);
-  --color-success-content: oklch(96% 0.005 140);
+  --color-success: #78bb5e;
+  --color-success-content: #ffffff;
 
-  --color-warning: oklch(76% 0.13 85);
-  --color-warning-content: oklch(28% 0.12 85);
+  --color-warning: #e5d878;
+  --color-warning-content:rgb(103, 91, 6);
 
-  --color-error: oklch(44% 0.12 30);
-  --color-error-content: oklch(98% 0.005 0);
+  --color-error: #cb6b6f;
+  --color-error-content: #ffffff;
 
   --radius-selector: 0.5rem;
   --radius-field: 0.25rem;
@@ -54,34 +54,34 @@
   prefersdark: true;
   color-scheme: "dark";
 
-  --color-base-100: oklch(22% 0.005 260);
-  --color-base-200: oklch(18% 0.004 260);
-  --color-base-300: oklch(13% 0.003 260);
-  --color-base-content: oklch(94% 0.01 260);
+  --color-base-100: #1B2733;
+  --color-base-200: #15202B;
+  --color-base-300: #0F1A23;
+  --color-base-content: #E1E8EB;
 
-  --color-primary: oklch(66% 0.14 248);
-  --color-primary-content: oklch(16% 0.01 260);
+  --color-primary: #3784a8;
+  --color-primary-content: #FFFFFF;
 
-  --color-secondary: oklch(60% 0.10 170);
-  --color-secondary-content: oklch(14% 0.01 170);
+  --color-secondary: #76dccf;
+  --color-secondary-content: #114f47;
 
-  --color-accent: oklch(70% 0.19 328);
-  --color-accent-content: oklch(14% 0.01 328);
+  --color-accent: #C9A95F;
+  --color-accent-content: #0F1A23;
 
-  --color-neutral: oklch(35% 0.02 250);
-  --color-neutral-content: oklch(94% 0.01 250);
+  --color-neutral: #8A8A8A;
+  --color-neutral-content: #1B2733;
 
-  --color-info: oklch(68% 0.12 240);
-  --color-info-content: oklch(14% 0.015 250);
+  --color-info: #5876CE;
+  --color-info-content: #E1E8EB;
 
-  --color-success: oklch(54% 0.14 140);
-  --color-success-content: oklch(14% 0.01 140);
+  --color-success: #78bb5e;
+  --color-success-content: #15202B;
 
-  --color-warning: oklch(76% 0.13 85);
-  --color-warning-content: oklch(14% 0.015 85);
+  --color-warning: #C6B63F;
+  --color-warning-content: #15202B;
 
-  --color-error: oklch(44% 0.12 30);
-  --color-error-content: oklch(96% 0.005 0);
+  --color-error: #cb6b6f;
+  --color-error-content: #E1E8EB;
 
   --radius-selector: 0.5rem;
   --radius-field: 0.25rem;
@@ -92,7 +92,6 @@
   --depth: 1;
   --noise: 0.02;
 }
-
 
 @theme {
   --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
