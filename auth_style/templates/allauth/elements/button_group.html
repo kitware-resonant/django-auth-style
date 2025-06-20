@@ -1,4 +1,4 @@
 {% load allauth %}
-<div>
+<div class="flex gap-2 {% if attrs.vertical %}flex-col{% endif %}">
     {% slot %}{% endslot %}
 </div>
