@@ -17,6 +17,9 @@
     {% else %}
       btn-primary
     {% endif %}
+    {% if "outline" in attrs.tags %}
+      btn-outline
+    {% endif %}
   {% endif %}
 {% endsetvar %}
 <{% if attrs.href %}a href="{{ attrs.href }}"{% else %}button{% endif %}
