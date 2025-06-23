@@ -94,7 +94,10 @@
 }
 
 @theme {
-  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Define a new font */
+  --font-noto-sans: "Noto Sans";
+  /* "--default-font-family" is the value actually used for rendering */
+  --default-font-family: var(--font-noto-sans), var(--font-sans);
 }
 
 @layer base {
