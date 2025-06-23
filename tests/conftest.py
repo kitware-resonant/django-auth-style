@@ -143,7 +143,6 @@ def assert_page_snapshot(assert_snapshot) -> Callable[[Page, str], None]:
                 animations="disabled",
             ),
             threshold=0.3,
-            name=f"{view_name}.png",
         )
 
     return _assert_page_snapshot
