@@ -7,24 +7,28 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[*.toml]
+[*.{css,pcss}]
+indent_size = 2
+
+[*.html]
 indent_size = 2
 
 [*.ini]
 indent_size = 4
 
-[*.yml]
+[*.{js,ts}]
+indent_size = 2
+max_line_length = 100
+
+[*.{json,jsonc,json5}]
 indent_size = 2
 
 [*.py]
 indent_size = 4
 max_line_length = 100
 
-[*.json]
+[*.toml]
 indent_size = 2
 
-[*.html]
-indent_size = 2
-
-[{*.css,*.pcss}]
+[*.{yml,yaml}]
 indent_size = 2

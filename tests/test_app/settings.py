@@ -32,6 +32,7 @@ MIDDLEWARE = [
 ]
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATIC_URL = "static/"
 
@@ -62,7 +63,7 @@ LOGIN_REDIRECT_URL = "usersessions_list"
 # Increase coverage by enabling functionality
 ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDERS: dict[str, dict] = {
     "github": {"APP": {}},
     "google": {"APP": {}},
 }
