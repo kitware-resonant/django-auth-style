@@ -25,6 +25,11 @@
 1. Run `uv run tox`
 2. Run `npm run test`
 
+### Formatting Code
+To ensure code complies with style guidelines:
+1. Run `uv run tox -e format`
+2. Run `npm run format`
+
 ### Updating Test Baselines
 After any changes to the rendered appearance of templates, the test baselines must be updated:
 1. Run `uv run tox -e test -- --update-snapshots`
