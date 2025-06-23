@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Generator
-from typing import TYPE_CHECKING, Callable
+from typing import TYPE_CHECKING, Callable, Literal
 
 from django.conf import settings
 from django.test import Client
@@ -94,6 +93,11 @@ def client() -> Client:
     return Client()
 
 
+@pytest.fixture(params=["light", "dark"])
+def color_scheme(request: pytest.FixtureRequest) -> Literal["light", "dark"]:
+    return request.param
+
+
 # This intentionally overrides the built-in fixture from pytest_playwright.
 # This will also cause other built-in fixtures like "page" to have a base URL set.
 @pytest.fixture
@@ -122,12 +126,23 @@ def authenticated_context(context: BrowserContext, user: User) -> BrowserContext
 
 
 @pytest.fixture
+def page(
+    context: BrowserContext,
+    color_scheme: Literal["light", "dark"],
+) -> Page:
+    page = context.new_page()
+    page.emulate_media(color_scheme=color_scheme)
+    return page
+
+
+@pytest.fixture
 def authenticated_page(
     authenticated_context: BrowserContext,
-) -> Generator[Page]:
+    color_scheme: Literal["light", "dark"],
+) -> Page:
     page = authenticated_context.new_page()
-    yield page
-    page.close()
+    page.emulate_media(color_scheme=color_scheme)
+    return page
 
 
 @pytest.fixture
