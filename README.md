@@ -60,23 +60,12 @@ INSTALLED_APPS = [
 When django-auth-style is properly installed alongside django-allauth or django-oauth-toolkit,
 rendered templates will automatically be overridden with styled alternatives.
 
-
 ### Template Override
 
-Create your custom component template, for example `my_django_app/templates/auth_style/site_name.html`:
+To customize the styling, create your own template files in a directory named `auth_style` within your project's templates directory. For example:
 
 ```html
-{% load allauth %}
-{% setvar site_name %}
-  {% if request.site %}
-    {{ request.site.name }}
-  {% elif site %}
-    {{ site.name }}
-  {% endif %}
-{% endsetvar %}
-{% if site_name %}
-  <span class="text-2xl font-bold text-blue-600">
-    🚀 {{ site_name }}
-  </span>
-{% endif %}
+<span style="font-size: 1.5rem; font-weight: bold; color: #2563eb;">
+  🚀 My Custom App
+</span>
 ```
