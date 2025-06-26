@@ -1,9 +1,103 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: winter --default, business --prefersdark;
+  themes: das-light, das-dark;
 }
+
+@plugin "daisyui/theme" {
+  name: "das-light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-base-100: #fafafa;
+  --color-base-200: #f0f0f0;
+  --color-base-300: #dcdcdc;
+  --color-base-content: #2d2d2d;
+
+  --color-primary: #28536b;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #54A79C;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #DDB771;
+  --color-accent-content: #2d2d2d;
+
+  --color-neutral: #7a7a7a;
+  --color-neutral-content: #f5f5f5;
+
+  --color-info: #5876CE;
+  --color-info-content: #E1E8EB;
+
+  --color-success: #78bb5e;
+  --color-success-content: #ffffff;
+
+  --color-warning: #e5d878;
+  --color-warning-content:rgb(103, 91, 6);
+
+  --color-error: #cb6b6f;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "das-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+
+  --color-base-100: #1B2733;
+  --color-base-200: #15202B;
+  --color-base-300: #0F1A23;
+  --color-base-content: #E1E8EB;
+
+  --color-primary: #3784a8;
+  --color-primary-content: #FFFFFF;
+
+  --color-secondary: #76dccf;
+  --color-secondary-content: #114f47;
+
+  --color-accent: #C9A95F;
+  --color-accent-content: #0F1A23;
+
+  --color-neutral: #8A8A8A;
+  --color-neutral-content: #1B2733;
+
+  --color-info: #5876CE;
+  --color-info-content: #E1E8EB;
+
+  --color-success: #78bb5e;
+  --color-success-content: #15202B;
+
+  --color-warning: #C6B63F;
+  --color-warning-content: #15202B;
+
+  --color-error: #cb6b6f;
+  --color-error-content: #E1E8EB;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0.02;
+}
+
 @theme {
-  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Define a new font */
+  --font-noto-sans: "Noto Sans";
+  /* "--default-font-family" is the value actually used for rendering */
+  --default-font-family: var(--font-noto-sans), var(--font-sans);
 }
 
 @layer base {
