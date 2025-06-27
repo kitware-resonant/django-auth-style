@@ -1,0 +1,13 @@
+{% load allauth %}
+{% setvar site_name %}
+  {% if request.site %}
+    {{ request.site.name }}
+  {% elif site %}
+    {{ site.name }}
+  {% endif %}
+{% endsetvar %}
+{% if site_name %}
+  <span class="text-2xl font-bold">
+    {{ site_name }}
+  </span>
+{% endif %}

@@ -59,3 +59,14 @@ INSTALLED_APPS = [
 ## Usage
 When django-auth-style is properly installed alongside django-allauth or django-oauth-toolkit,
 rendered templates will automatically be overridden with styled alternatives.
+
+### Template Override
+To customize the site name (in the upper-left corner), create `auth_style/site_name.html` within your project's templates directory. You will be responsible for applying appropriate styling to any text.
+
+For example:
+
+```html
+<span style="font-size: 1.5rem; font-weight: bold; color: #2563eb;">
+  🚀 My Custom App
+</span>
+```

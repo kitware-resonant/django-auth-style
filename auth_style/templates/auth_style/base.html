@@ -21,18 +21,7 @@
     {% block body %}
       <div class="flex flex-col sm:flex-row sm:navbar">
         <span class="text-center sm:text-left sm:grow">
-          {% setvar site_name %}
-            {% if request.site %}
-              {{ request.site.name }}
-            {% elif site %}
-              {{ site.name }}
-            {% endif %}
-          {% endsetvar %}
-          {% if site_name %}
-            <span class="text-2xl font-bold">
-              {{ site_name }}
-            </span>
-          {% endif %}
+          {% include "auth_style/site_name.html" %}
         </span>
         {# TODO: display username and user info #}
         {% if user.is_authenticated %}
