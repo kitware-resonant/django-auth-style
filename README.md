@@ -70,3 +70,29 @@ For example:
   🚀 My Custom App
 </span>
 ```
+
+### Theme Override
+To override the theme, create a `auth_style/extra_head.html` within your project's templates directory. You will then be able to define your own CSS variables to override defaults.
+
+For example:
+
+```html
+<style>
+  /* mytheme is the name of the custom theme */
+  :root {
+    color-scheme: light;
+    --color-base-100: #ffffff;
+    /* ...rest of CSS variables */
+  }
+  /* If you would like to support dark mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: "dark";
+      --color-base-100: #000000;
+      /* ...rest of CSS variables */
+    }
+  }
+</style>
+```
+
+For more information on some of the core variables you may want to override, see the [DaisyUI documentation](https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme) on adding a custom theme.
