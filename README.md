@@ -95,4 +95,4 @@ For example:
 </style>
 ```
 
-For more information on some of the core variables you may want to override, see the [DaisyUI documentation](https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme) on adding a custom theme.
+The supported method for theme customization is to define new DaisyUI theme variables. See the [DaisyUI documentation](https://daisyui.com/docs/themes/#how-to-add-a-new-custom-theme) for a list of core variables that can be overridden.
