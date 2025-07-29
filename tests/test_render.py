@@ -1,7 +1,9 @@
 from allauth.mfa.recovery_codes.internal import auth as recovery_codes_auth
 from allauth.mfa.totp.internal import auth as totp_auth
 from allauth.socialaccount.models import SocialAccount
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.test import override_settings
 from django.urls import reverse
 from playwright.sync_api import Page
 import pytest
@@ -73,7 +75,32 @@ def test_render_with_field_textarea(
 def test_render_with_field_radio(
     social_account: SocialAccount, authenticated_page: Page, assert_page_snapshot
 ) -> None:
-    view_name = "socialaccount_connections"
-    authenticated_page.goto(reverse(view_name))
+    authenticated_page.goto(reverse("socialaccount_connections"))
 
-    assert_page_snapshot(authenticated_page, f"{view_name}_set")
+    assert_page_snapshot(authenticated_page, "field_radio")
+
+
+@override_settings(
+    INSTALLED_APPS=[
+        "test_override_app.auth_style_design",
+        "auth_style",
+        *[
+            app
+            for app in settings.INSTALLED_APPS
+            if app not in {"test_override_app.auth_style_design", "auth_style"}
+        ],
+    ]
+)
+@pytest.mark.parametrize(
+    "view_name",
+    [
+        # Initial views
+        "account_login",
+        "account_signup",
+    ],
+)
+def test_render_logged_out_override(view_name: str, page: Page, assert_page_snapshot) -> None:
+    """Test that template overrides are applied and render correctly with custom styling."""
+    page.goto(reverse(view_name))
+
+    assert_page_snapshot(page, view_name)
