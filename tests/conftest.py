@@ -123,6 +123,7 @@ def authenticated_context(context: BrowserContext, user: User) -> BrowserContext
     # the appropriate signals, so sessions aren't updated. Instead, login naively via
     # the browser.
     page = context.new_page()
+    page.set_default_timeout(3_000)
     page.goto(reverse("account_login"))
     page.get_by_label("Username").fill(user.username)
     # The "user" object doesn't have the plain text password
@@ -142,6 +143,7 @@ def page(
 ) -> Page:
     page = context.new_page()
     page.emulate_media(color_scheme=color_scheme)
+    page.set_default_timeout(3_000)
     return page
 
 
