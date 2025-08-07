@@ -102,7 +102,17 @@ def color_scheme(request: pytest.FixtureRequest) -> Literal["light", "dark"]:
 # This will also cause other built-in fixtures like "page" to have a base URL set.
 @pytest.fixture
 def context(live_server: LiveServer, new_context: CreateContextCallback) -> BrowserContext:
-    context = new_context(base_url=live_server.url, device_scale_factor=1.0)
+    context = new_context(
+        base_url=live_server.url,
+        device_scale_factor=1.0,
+        # Lock the reported user agent, as the usersessions_list renders it
+        user_agent=(
+            "Mozilla/5.0 (X11; Linux x86_64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "HeadlessChrome/136.0.7103.25 "
+            "Safari/537.36"
+        ),
+    )
     context.set_default_timeout(3_000)
     return context
 
