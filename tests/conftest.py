@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Literal
 
+from allauth.account.models import EmailAddress
 from allauth.socialaccount.models import SocialAccount
 from allauth.usersessions.models import UserSession
 from django.conf import settings
@@ -62,13 +63,21 @@ def mock_recently_authenticated(mocker: MockerFixture, settings: SettingsWrapper
 
 @pytest.fixture
 def user(transactional_db: None) -> User:
-    return User.objects.create_user(
+    user = User.objects.create_user(
         username="test_user",
         first_name="Test",
         last_name="User",
         email="user@example.com",
         password="T3st_passw0rd!",
     )
+    # Having a confirmed user helps to increase test coverage by showing additional badges
+    EmailAddress.objects.create(
+        user=user,
+        email=user.email,
+        verified=True,
+        primary=True,
+    )
+    return user
 
 
 @pytest.fixture
