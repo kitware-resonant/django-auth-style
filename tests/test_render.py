@@ -75,9 +75,10 @@ def test_render_with_field_textarea(
 def test_render_with_field_radio(
     social_account: SocialAccount, authenticated_page: Page, assert_page_snapshot
 ) -> None:
-    authenticated_page.goto(reverse("socialaccount_connections"))
+    view_name = "socialaccount_connections"
+    authenticated_page.goto(reverse(view_name))
 
-    assert_page_snapshot(authenticated_page, "field_radio")
+    assert_page_snapshot(authenticated_page, f"{view_name}_set")
 
 
 @override_settings(
