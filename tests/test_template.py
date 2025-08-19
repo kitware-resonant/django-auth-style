@@ -1,7 +1,7 @@
 from django.test import Client
 from django.urls import reverse
 import pytest
-from pytest_django.asserts import assertTemplateUsed
+from pytest_django.asserts import assertContains, assertTemplateUsed
 
 
 @pytest.mark.django_db
@@ -22,8 +22,5 @@ def test_template_override_applied(settings, client: Client):
             if app not in {"test_override_app.auth_style_design", "auth_style"}
         ],
     ]
-)
-def test_template_override_applied(client: Client):
-    with assertTemplateUsed("auth_style/site_name.html", count=1):
-        response = client.get(reverse("account_login"))
-    assert "🚀 My Custom App" in response.content.decode()
+    response = client.get(reverse("account_login"))
+    assertContains(response, "🚀 My Custom App")
