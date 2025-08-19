@@ -80,7 +80,6 @@ For example:
 
 ```html
 <style>
-  /* mytheme is the name of the custom theme */
   :root {
     color-scheme: light;  /* Optional. Hints to browser which color scheme to use based on user's system settings */
     --color-base-100: #ffffff;
