@@ -1,5 +1,4 @@
-from django.conf import settings
-from django.test import Client, override_settings
+from django.test import Client
 from django.urls import reverse
 import pytest
 from pytest_django.asserts import assertTemplateUsed
@@ -12,8 +11,9 @@ def test_template_base_used(client: Client):
 
 
 @pytest.mark.django_db
-@override_settings(
-    INSTALLED_APPS=[
+def test_template_override_applied(settings, client: Client):
+    # Configure settings directly in the test
+    settings.INSTALLED_APPS = [
         "test_override_app.auth_style_design",
         "auth_style",
         *[
