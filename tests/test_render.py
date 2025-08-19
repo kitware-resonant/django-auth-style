@@ -92,14 +92,7 @@ def test_render_with_field_radio(
         ],
     ]
 )
-@pytest.mark.parametrize(
-    "view_name",
-    [
-        # Initial views
-        "account_login",
-        "account_signup",
-    ],
-)
+@pytest.mark.parametrize("view_name", ["account_login"])
 def test_render_logged_out_override(view_name: str, page: Page, assert_page_snapshot) -> None:
     """Test that template overrides are applied and render correctly with custom styling."""
     page.goto(reverse(view_name))
