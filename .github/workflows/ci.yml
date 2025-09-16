@@ -18,8 +18,17 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v6
       - name: Run tests
+        id: test-tox
         run: |
           uv run tox
+      - name: Persist test failure snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot_tests_failures
+          # Using a wildcard causes path prefixes before the wildcard to be stripped
+          path: tests/snapshot_tests_failures/*
+        if: ${{ failure() && steps.test-tox.conclusion == 'failure' && hashFiles('tests/snapshot_tests_failures/**/*') != '' }}
+
   test-css:
     runs-on: ubuntu-latest
     steps:
