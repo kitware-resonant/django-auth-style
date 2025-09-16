@@ -80,18 +80,9 @@ def test_render_with_field_radio(
 
 
 @pytest.mark.parametrize("view_name", ["account_login"])
-def test_render_override_style(settings, view_name: str, page: Page, assert_page_snapshot) -> None:
+def test_render_override_style(
+    override_app_style, view_name: str, page: Page, assert_page_snapshot
+) -> None:
     """Test that template overrides are applied and render correctly with custom styling."""
-    settings.INSTALLED_APPS = [
-        "test_override_app.auth_style_design",
-        "auth_style",
-        *[
-            app
-            for app in settings.INSTALLED_APPS
-            if app not in {"test_override_app.auth_style_design", "auth_style"}
-        ],
-    ]
-
     page.goto(reverse(view_name))
-
     assert_page_snapshot(page, view_name)

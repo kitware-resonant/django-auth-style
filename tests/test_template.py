@@ -11,16 +11,6 @@ def test_template_base_used(client: Client):
 
 
 @pytest.mark.django_db
-def test_template_override_applied(settings, client: Client):
-    # Configure settings directly in the test
-    settings.INSTALLED_APPS = [
-        "test_override_app.auth_style_design",
-        "auth_style",
-        *[
-            app
-            for app in settings.INSTALLED_APPS
-            if app not in {"test_override_app.auth_style_design", "auth_style"}
-        ],
-    ]
+def test_template_override_applied(override_app_style, client: Client):
     response = client.get(reverse("account_login"))
     assertContains(response, "🚀 My Custom App")
