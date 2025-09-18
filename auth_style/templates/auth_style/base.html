@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static 'auth_style/dist/styles.css' %}">
     <link rel="stylesheet" href="{% static 'auth_style/dist/icons.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    {% block extra_head %}{% endblock extra_head %}
+    {% include "auth_style/extra_head.html" %}
   </head>
   <body>
     {% block body %}
