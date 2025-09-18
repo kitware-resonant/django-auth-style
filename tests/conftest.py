@@ -177,5 +177,4 @@ def assert_page_snapshot(assert_snapshot) -> Callable[[Page, str], None]:
 
 @pytest.fixture
 def override_app_style(settings):
-    overrides = ["test_override_app.auth_style_design"]
-    settings.INSTALLED_APPS = overrides + settings.INSTALLED_APPS
+    settings.INSTALLED_APPS = ["test_override_app.auth_style_design"] + settings.INSTALLED_APPS
