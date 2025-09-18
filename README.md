@@ -60,8 +60,10 @@ INSTALLED_APPS = [
 When django-auth-style is properly installed alongside django-allauth or django-oauth-toolkit,
 rendered templates will automatically be overridden with styled alternatives.
 
-### Template Override
-To customize the site name (in the upper-left corner), create `auth_style/site_name.html` within your project's templates directory. You will be responsible for applying appropriate styling to any text.
+### Customize the Site Name Branding
+To customize the site name (in the upper-left corner),
+create `auth_style/site_name.html` within your project's templates directory,
+then insert any desired HTML. You will be responsible for applying appropriate styling.
 
 For example:
 
@@ -71,10 +73,12 @@ For example:
 </span>
 ```
 
-### Theme Override
-To override the theme, create a `auth_style/extra_head.html` within your project's templates directory. You will then be able to define your own CSS variables to override defaults.
-
-The supported method for theme customization is to define new DaisyUI theme variables. See the [DaisyUI documentation](https://daisyui.com/docs/utilities/#theme-css-variables) for a list of core variables that can be overridden.
+### Customize the Theme
+To override the overall style theme of all pages,
+create `auth_style/extra_head.html` within your project's templates directory.
+Then, within a `<style>` tag,
+define new [DaisyUI theme CSS variables](https://daisyui.com/docs/utilities/#theme-css-variables),
+which will override the defaults. You may override some or all theme variables.
 
 For example:
 
