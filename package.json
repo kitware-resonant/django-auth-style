@@ -2,6 +2,11 @@
   "name": "django-auth-style",
   "private": true,
   "license": "Apache-2.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "npm"
+    }
+  },
   "dependencies": {
     "daisyui": "^5.0.42",
     "remixicon": "^4.6.0",
