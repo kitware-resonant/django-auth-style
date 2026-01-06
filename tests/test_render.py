@@ -11,7 +11,7 @@ def test_render_base_messages(authenticated_page: Page, assert_page_snapshot) ->
     authenticated_page.goto(reverse("test_add_messages"))
     authenticated_page.goto(reverse("account_logout"))
 
-    assert_page_snapshot(authenticated_page, "messages")
+    assert_page_snapshot(authenticated_page)
 
 
 @pytest.mark.parametrize(
@@ -25,7 +25,7 @@ def test_render_base_messages(authenticated_page: Page, assert_page_snapshot) ->
 def test_render_logged_out(view_name: str, page: Page, assert_page_snapshot) -> None:
     page.goto(reverse(view_name))
 
-    assert_page_snapshot(page, view_name)
+    assert_page_snapshot(page)
 
 
 def test_render_non_form_errors(user: User, page: Page, assert_page_snapshot) -> None:
@@ -34,7 +34,7 @@ def test_render_non_form_errors(user: User, page: Page, assert_page_snapshot) ->
     page.get_by_label("Password").fill("wrong_password")
     page.get_by_role("button", name="Sign In").click()
 
-    assert_page_snapshot(page, "non_form_errors")
+    assert_page_snapshot(page)
 
 
 @pytest.mark.parametrize(
@@ -54,7 +54,7 @@ def test_render_non_form_errors(user: User, page: Page, assert_page_snapshot) ->
 def test_render_logged_in(view_name: str, authenticated_page: Page, assert_page_snapshot) -> None:
     authenticated_page.goto(reverse(view_name))
 
-    assert_page_snapshot(authenticated_page, view_name)
+    assert_page_snapshot(authenticated_page)
 
 
 def test_render_with_field_textarea(
@@ -64,22 +64,20 @@ def test_render_with_field_textarea(
     totp_auth.TOTP.activate(user, totp_auth.generate_totp_secret())
     recovery_codes_auth.RecoveryCodes.activate(user)
 
-    view_name = "mfa_view_recovery_codes"
-    authenticated_page.goto(reverse(view_name))
+    authenticated_page.goto(reverse("mfa_view_recovery_codes"))
 
-    assert_page_snapshot(authenticated_page, view_name)
+    assert_page_snapshot(authenticated_page)
 
 
 def test_render_with_field_radio(
     social_account: SocialAccount, authenticated_page: Page, assert_page_snapshot
 ) -> None:
-    view_name = "socialaccount_connections"
-    authenticated_page.goto(reverse(view_name))
+    authenticated_page.goto(reverse("socialaccount_connections"))
 
-    assert_page_snapshot(authenticated_page, f"{view_name}_set")
+    assert_page_snapshot(authenticated_page)
 
 
 def test_render_override_style(override_app_style, page: Page, assert_page_snapshot) -> None:
     """Test that template overrides are applied and render correctly with custom styling."""
     page.goto(reverse("account_login"))
-    assert_page_snapshot(page, "account_login")
+    assert_page_snapshot(page)
