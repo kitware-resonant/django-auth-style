@@ -22,7 +22,7 @@ jobs:
         run: |
           uv run tox
       - name: Persist test failure snapshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: snapshot_tests_failures
           # Using a wildcard causes path prefixes before the wildcard to be stripped
