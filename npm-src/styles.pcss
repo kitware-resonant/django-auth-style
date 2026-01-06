@@ -100,8 +100,10 @@
   --default-font-family: var(--font-noto-sans), var(--font-sans);
 }
 
-@layer base {
-  /* Plain links that aren't buttons */
+@layer components {
+  /* Plain links that aren't buttons;
+     put this in "components", to ensure it overrides the "base" layer
+  */
   a:not(.btn) {
     /* That also aren't directly within a button;
        see https://stackoverflow.com/q/7084112 for why the descendant combinator can't be used
