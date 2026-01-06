@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Callable, Literal
+from collections.abc import Callable
+from typing import TYPE_CHECKING, Literal
 
 from django.conf import settings
 from django.test import Client
