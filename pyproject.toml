@@ -204,5 +204,7 @@ filterwarnings = [
   "error",
   # pytest often causes unclosed socket warnings
   'ignore:unclosed <socket\.socket:ResourceWarning',
+  # https://github.com/whtsky/pixelmatch-py/issues/170
+  "ignore:Image.Image.getdata is deprecated:DeprecationWarning:pixelmatch.contrib.PIL",
 ]
 DJANGO_SETTINGS_MODULE = "test_app.settings"
