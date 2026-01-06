@@ -90,6 +90,7 @@ type = [
 test = [
   "django-allauth[mfa,socialaccount]",
   "django-coverage-plugin",
+  "freezegun",
   "pytest",
   "pytest-cov",
   "pytest-django",

@@ -1,8 +1,10 @@
 from allauth.mfa.recovery_codes.internal import auth as recovery_codes_auth
 from allauth.mfa.totp.internal import auth as totp_auth
+from allauth.mfa.webauthn.internal.auth import WebAuthn
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
 from django.urls import reverse
+from freezegun import freeze_time
 from playwright.sync_api import Page
 import pytest
 
@@ -73,6 +75,22 @@ def test_render_with_field_radio(
     social_account: SocialAccount, authenticated_page: Page, assert_page_snapshot
 ) -> None:
     authenticated_page.goto(reverse("socialaccount_connections"))
+
+    assert_page_snapshot(authenticated_page)
+
+
+def test_render_with_button_edit(
+    user: User, authenticated_page: Page, assert_page_snapshot
+) -> None:
+    # Create WebAuthn Authenticator here, so it's not prompted during the login flow
+    with freeze_time("2026-01-01"):
+        WebAuthn.add(
+            user=user,
+            name="WebAuthn key",
+            credential={},
+        )
+
+    authenticated_page.goto(reverse("mfa_list_webauthn"))
 
     assert_page_snapshot(authenticated_page)
 

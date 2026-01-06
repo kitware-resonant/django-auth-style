@@ -72,6 +72,9 @@ LOGIN_REDIRECT_URL = "usersessions_list"
 # Increase coverage by enabling functionality
 ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
+# Enable "mfa_list_webauthn" view
+MFA_SUPPORTED_TYPES = ["totp", "webauthn", "recovery_codes"]
+
 SOCIALACCOUNT_PROVIDERS: dict[str, dict] = {
     "apple": {"APP": {}},
     "atlassian": {"APP": {}},
