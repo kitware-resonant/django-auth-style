@@ -1,13 +1,22 @@
 # django-auth-style
 [![PyPI](https://img.shields.io/pypi/v/django-auth-style)](https://pypi.org/project/django-auth-style/)
 
-django-auth-style provides Django template styling for
+`django-auth-style` provides Django template styling for
 [django-allauth](https://django-allauth.readthedocs.io/)
 and [django-oauth-toolkit](https://django-oauth-toolkit.readthedocs.io/).
 
+## Features
+* All `django-allauth` and `django-oauth-toolkit` views are automatically augmented with styling
+* Built-in support for dark [color schemes](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme) ("dark mode")
+* Django [site name](https://docs.djangoproject.com/en/6.0/ref/contrib/sites/#django.contrib.sites.models.Site.name) branding on all pages
+  * Branding can be further customized with a single template override
+* Theme colors can be further customized via CSS variables
+
+<img width="600" alt="Sign In page screenshot" src="https://raw.githubusercontent.com/kitware-resonant/django-auth-style/master/docs/sign-in-screenshot.png">
+
 ## Installation
 ### django-allauth Support
-To enable support for django-allauth, install with:
+To enable support for `django-allauth`, install with:
 ```bash
 pip install django-auth-style[allauth]
 ```
@@ -36,7 +45,7 @@ MIDDLEWARE = [
 ```
 
 ### django-oauth-toolkit Support
-To enable support for django-oauth-toolkit, install with:
+To enable support for `django-oauth-toolkit`, install with:
 ```bash
 pip install django-auth-style[oauth-toolkit]
 ```
@@ -56,10 +65,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Usage
-When django-auth-style is properly installed alongside django-allauth or django-oauth-toolkit,
-rendered templates will automatically be overridden with styled alternatives.
-
+## Customization
 ### Customize the Site Name Branding
 To customize the site name (in the upper-left corner),
 create `auth_style/site_name.html` within your project's templates directory,
