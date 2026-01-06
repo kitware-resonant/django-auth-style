@@ -16,8 +16,17 @@ INSTALLED_APPS = [
     "allauth.mfa",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.dummy",
+    "allauth.socialaccount.providers.apple",
+    "allauth.socialaccount.providers.atlassian",
+    "allauth.socialaccount.providers.auth0",
+    "allauth.socialaccount.providers.box",
+    "allauth.socialaccount.providers.dropbox",
+    "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.gitlab",
     "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.okta",
+    "allauth.socialaccount.providers.orcid",
     "allauth.usersessions",
 ]
 
@@ -63,7 +72,19 @@ LOGIN_REDIRECT_URL = "usersessions_list"
 # Increase coverage by enabling functionality
 ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
+# Enable "mfa_list_webauthn" view
+MFA_SUPPORTED_TYPES = ["totp", "webauthn", "recovery_codes"]
+
 SOCIALACCOUNT_PROVIDERS: dict[str, dict] = {
+    "apple": {"APP": {}},
+    "atlassian": {"APP": {}},
+    "auth0": {"APP": {}},
+    "box": {"APP": {}},
+    "dropbox": {"APP": {}},
+    "facebook": {"APP": {}},
     "github": {"APP": {}},
+    "gitlab": {"APP": {}},
     "google": {"APP": {}},
+    "okta": {"APP": {}},
+    "orcid": {"APP": {}},
 }

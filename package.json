@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "daisyui": "^5.0.42",
-    "remixicon": "^4.6.0",
     "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
@@ -30,7 +29,6 @@
   "targets": {
     "styles": {
       "source": [
-        "./npm-src/icons.css",
         "./npm-src/styles.pcss"
       ],
       "distDir": "./auth_style/static/auth_style/dist"

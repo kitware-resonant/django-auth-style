@@ -158,8 +158,8 @@ def authenticated_page(
 
 
 @pytest.fixture
-def assert_page_snapshot(assert_snapshot) -> Callable[[Page, str], None]:
-    def _assert_page_snapshot(page: Page, view_name: str) -> None:
+def assert_page_snapshot(assert_snapshot) -> Callable[[Page], None]:
+    def _assert_page_snapshot(page: Page) -> None:
         assert_snapshot(
             page.screenshot(
                 # full_page doesn't work: https://github.com/microsoft/playwright-python/issues/726

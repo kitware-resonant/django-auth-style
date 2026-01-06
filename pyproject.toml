@@ -90,6 +90,7 @@ type = [
 test = [
   "django-allauth[mfa,socialaccount]",
   "django-coverage-plugin",
+  "freezegun",
   "pytest",
   "pytest-cov",
   "pytest-django",
@@ -111,7 +112,6 @@ dependencies = ["hatch-jupyter-builder"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
   "auth_style/static/auth_style/dist/styles.css",
-  "auth_style/static/auth_style/dist/icons.css",
 ]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
