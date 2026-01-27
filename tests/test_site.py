@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.test import Client
 from django.urls import reverse
@@ -14,14 +15,16 @@ def site_middleware_disabled(mocker: MockerFixture) -> MockType:
     )
 
 
-def test_site_present(default_site: Site, client: Client):
+def test_site_present(default_site: Site, client: Client) -> None:
     resp = client.get(reverse("account_login"))
 
     assert hasattr(resp.wsgi_request, "site")
     assertContains(resp, default_site.name, count=1, status_code=200)
 
 
-def test_site_present_fallback(default_site: Site, client: Client, site_middleware_disabled):
+def test_site_present_fallback(
+    default_site: Site, client: Client, site_middleware_disabled: MockType
+) -> None:
     resp = client.get(reverse("account_login"))
 
     assert not hasattr(resp.wsgi_request, "site")
@@ -29,7 +32,9 @@ def test_site_present_fallback(default_site: Site, client: Client, site_middlewa
     assertContains(resp, default_site.name, count=1, status_code=200)
 
 
-def test_site_absent(default_site: Site, user, client: Client, site_middleware_disabled):
+def test_site_absent(
+    default_site: Site, user: User, client: Client, site_middleware_disabled: MockType
+) -> None:
     client.force_login(user)
     # This view doesn't pass "site" as context
     resp = client.get(reverse("account_logout"))
