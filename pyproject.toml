@@ -110,13 +110,8 @@ build_dir = "auth_style/static/auth_style/dist"
 [tool.hatch.version]
 source = "vcs"
 
-[tool.black]
-line-length = 100
-target-version = ["py312"]
-
 [tool.ruff]
 line-length = 100
-target-version = "py313"
 
 [tool.ruff.lint]
 select = ["ALL"]
