@@ -1,10 +1,16 @@
-from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.test import Client
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.urls import reverse
 import pytest
 from pytest_django.asserts import assertContains, assertNotContains
-from pytest_mock import MockerFixture, MockType
+
+if TYPE_CHECKING:
+    from django.contrib.auth.models import User
+    from django.contrib.sites.models import Site
+    from django.test import Client
+    from pytest_mock import MockerFixture, MockType
 
 
 @pytest.fixture

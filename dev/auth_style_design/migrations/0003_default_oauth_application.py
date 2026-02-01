@@ -1,11 +1,17 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.db import migrations
-from django.db.backends.base.schema import BaseDatabaseSchemaEditor
-from django.db.migrations.state import StateApps
+
+if TYPE_CHECKING:
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    from django.db.migrations.state import StateApps
 
 
 def create_default_oauth_application(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    User = apps.get_model("auth", "User")  # noqa: N806
-    Application = apps.get_model("oauth2_provider", "Application")  # noqa: N806
+    User = apps.get_model("auth", "User")
+    Application = apps.get_model("oauth2_provider", "Application")
 
     user = User.objects.get(email="user@auth-style-design.test")
     Application.objects.create(
@@ -19,7 +25,7 @@ def create_default_oauth_application(apps: StateApps, schema_editor: BaseDatabas
 
 
 def delete_default_oauth_application(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    Application = apps.get_model("oauth2_provider", "Application")  # noqa: N806
+    Application = apps.get_model("oauth2_provider", "Application")
 
     Application.objects.filter(name="auth-style-design").delete()
 

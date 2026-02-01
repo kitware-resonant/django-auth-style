@@ -1,14 +1,20 @@
-from typing import Callable
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from allauth.mfa.recovery_codes.internal import auth as recovery_codes_auth
 from allauth.mfa.totp.internal import auth as totp_auth
 from allauth.mfa.webauthn.internal.auth import WebAuthn
-from allauth.socialaccount.models import SocialAccount
-from django.contrib.auth.models import User
 from django.urls import reverse
 from freezegun import freeze_time
-from playwright.sync_api import Page
 import pytest
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+    from allauth.socialaccount.models import SocialAccount
+    from django.contrib.auth.models import User
+    from playwright.sync_api import Page
 
 
 def test_render_base_messages(

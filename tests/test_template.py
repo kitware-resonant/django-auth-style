@@ -1,7 +1,13 @@
-from django.test import Client
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.urls import reverse
 import pytest
 from pytest_django.asserts import assertContains, assertTemplateUsed
+
+if TYPE_CHECKING:
+    from django.test import Client
 
 
 @pytest.mark.django_db
