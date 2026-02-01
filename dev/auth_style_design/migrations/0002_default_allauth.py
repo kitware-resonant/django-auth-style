@@ -1,16 +1,22 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from django.db import migrations
-from django.db.backends.base.schema import BaseDatabaseSchemaEditor
-from django.db.migrations.state import StateApps
+
+if TYPE_CHECKING:
+    from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+    from django.db.migrations.state import StateApps
 
 
 def create_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    User = apps.get_model("auth", "User")  # noqa: N806
-    EmailAddress = apps.get_model("account", "EmailAddress")  # noqa: N806
+    User = apps.get_model("auth", "User")
+    EmailAddress = apps.get_model("account", "EmailAddress")
 
     user = User.objects.create_user(
         username="user@auth-style-design.test",
         email="user@auth-style-design.test",
-        password="password",
+        password="password",  # noqa: S106
         first_name="John",
         last_name="Doe",
     )
@@ -23,7 +29,7 @@ def create_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEdi
 
 
 def delete_default_allauth(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor):
-    User = apps.get_model("auth", "User")  # noqa: N806
+    User = apps.get_model("auth", "User")
 
     User.objects.filter(email="user@auth-style-design.test").delete()
     # EmailAddress will cascade delete

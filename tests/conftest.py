@@ -1,22 +1,24 @@
 from __future__ import annotations
 
-from collections.abc import Callable
 from typing import TYPE_CHECKING, Literal
 
+from allauth.socialaccount.models import SocialAccount
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.test import Client
 from django.urls import reverse
-from playwright.sync_api import BrowserContext, Page
 import pytest
-from pytest_django.live_server_helper import LiveServer
-from pytest_mock import MockerFixture, MockType
-from pytest_playwright.pytest_playwright import CreateContextCallback
 
 if TYPE_CHECKING:
     # Work around https://github.com/pytest-dev/pytest-django/issues/1152
-    from allauth.socialaccount.models import SocialAccount
-    from django.contrib.auth.models import User
-    from django.contrib.sites.models import Site
+    from collections.abc import Callable
+
+    from playwright.sync_api import BrowserContext, Page
+    from pytest_django.fixtures import SettingsWrapper
+    from pytest_django.live_server_helper import LiveServer
+    from pytest_mock import MockerFixture, MockType
+    from pytest_playwright.pytest_playwright import CreateContextCallback
 
 
 @pytest.fixture(autouse=True)
@@ -36,9 +38,7 @@ def mock_generate_seed(mocker: MockerFixture) -> MockType:
 
 
 @pytest.fixture(autouse=True)
-def default_site(transactional_db) -> Site:
-    from django.contrib.sites.models import Site
-
+def default_site(transactional_db: None) -> Site:
     # The default site is created via the "post_migrate" signal and TransactionTestCase
     # specifically re-sends the "post_migrate" signal after flushing the database between each test.
     # So, the default site is guaranteed to exist for each test, but with its original value.
@@ -50,7 +50,7 @@ def default_site(transactional_db) -> Site:
 
 
 @pytest.fixture
-def mock_recently_authenticated(mocker: MockerFixture, settings) -> MockType:
+def mock_recently_authenticated(mocker: MockerFixture, settings: SettingsWrapper) -> MockType:
     settings.ACCOUNT_REAUTHENTICATION_REQUIRED = True
 
     # Allauth MFA views do not respect the ACCOUNT_REAUTHENTICATION_REQUIRED setting
@@ -61,9 +61,7 @@ def mock_recently_authenticated(mocker: MockerFixture, settings) -> MockType:
 
 
 @pytest.fixture
-def user(transactional_db) -> User:
-    from django.contrib.auth.models import User
-
+def user(transactional_db: None) -> User:
     return User.objects.create_user(
         username="test_user",
         first_name="Test",
@@ -74,9 +72,7 @@ def user(transactional_db) -> User:
 
 
 @pytest.fixture
-def social_account(transactional_db, user) -> SocialAccount:
-    from allauth.socialaccount.models import SocialAccount
-
+def social_account(transactional_db: None, user: User) -> SocialAccount:
     return SocialAccount.objects.create(
         user=user,
         provider="dummy",
@@ -96,7 +92,7 @@ def client() -> Client:
 
 @pytest.fixture(params=["light", "dark"])
 def color_scheme(request: pytest.FixtureRequest) -> Literal["light", "dark"]:
-    return request.param
+    return request.param  # type: ignore[no-any-return]
 
 
 # This intentionally overrides the built-in fixture from pytest_playwright.
@@ -159,7 +155,7 @@ def authenticated_page(
 
 
 @pytest.fixture
-def assert_page_snapshot(assert_snapshot) -> Callable[[Page], None]:
+def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page], None]:
     def _assert_page_snapshot(page: Page) -> None:
         assert_snapshot(
             page.screenshot(
@@ -177,5 +173,5 @@ def assert_page_snapshot(assert_snapshot) -> Callable[[Page], None]:
 
 
 @pytest.fixture
-def override_app_style(settings):
-    settings.INSTALLED_APPS = ["test_override_app.auth_style_design"] + settings.INSTALLED_APPS
+def override_app_style(settings: SettingsWrapper) -> None:
+    settings.INSTALLED_APPS = ["test_override_app.auth_style_design", *settings.INSTALLED_APPS]

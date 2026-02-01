@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Any
+
 ROOT_URLCONF = "test_app.urls"
 SECRET_KEY = "insecure-secret"
 SITE_ID = 1
@@ -75,7 +79,7 @@ ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 # Enable "mfa_list_webauthn" view
 MFA_SUPPORTED_TYPES = ["totp", "webauthn", "recovery_codes"]
 
-SOCIALACCOUNT_PROVIDERS: dict[str, dict] = {
+SOCIALACCOUNT_PROVIDERS: dict[str, dict[str, Any]] = {
     "apple": {"APP": {}},
     "atlassian": {"APP": {}},
     "auth0": {"APP": {}},

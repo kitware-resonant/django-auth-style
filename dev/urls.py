@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from auth_style_design.views import auth_template_file, auth_template_listing
 import debug_toolbar.toolbar
 from django.contrib import admin
