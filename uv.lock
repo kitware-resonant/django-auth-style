@@ -405,39 +405,39 @@ type = [
 requires-dist = [
     { name = "django", specifier = ">=5.2" },
     { name = "django-allauth", marker = "extra == 'allauth'", specifier = ">=0.63" },
-    { name = "django-oauth-toolkit", marker = "extra == 'oauth-toolkit'" },
+    { name = "django-oauth-toolkit", marker = "extra == 'oauth-toolkit'", specifier = ">=0" },
 ]
 provides-extras = ["allauth", "oauth-toolkit"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "django" },
-    { name = "django-allauth", extras = ["mfa", "socialaccount"] },
-    { name = "django-browser-reload" },
-    { name = "django-debug-toolbar" },
-    { name = "django-extensions" },
-    { name = "django-oauth-toolkit" },
-    { name = "ipython" },
-    { name = "tox" },
-    { name = "tox-uv" },
-    { name = "watchdog" },
-    { name = "werkzeug" },
+    { name = "django", specifier = "==6.0.1" },
+    { name = "django-allauth", extras = ["mfa", "socialaccount"], specifier = "==65.14.0" },
+    { name = "django-browser-reload", specifier = "==1.21.0" },
+    { name = "django-debug-toolbar", specifier = "==6.2.0" },
+    { name = "django-extensions", specifier = "==4.1" },
+    { name = "django-oauth-toolkit", specifier = "==3.2.0" },
+    { name = "ipython", specifier = "==9.9.0" },
+    { name = "tox", specifier = "==4.34.1" },
+    { name = "tox-uv", specifier = "==1.29.0" },
+    { name = "watchdog", specifier = "==6.0.0" },
+    { name = "werkzeug", specifier = "==3.1.5" },
 ]
-lint = [{ name = "ruff" }]
+lint = [{ name = "ruff", specifier = "==0.14.14" }]
 test = [
-    { name = "django-allauth", extras = ["mfa", "socialaccount"] },
-    { name = "django-coverage-plugin" },
-    { name = "freezegun" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "pytest-django" },
-    { name = "pytest-mock" },
-    { name = "pytest-playwright" },
-    { name = "pytest-playwright-visual" },
+    { name = "django-allauth", extras = ["mfa", "socialaccount"], specifier = ">=65" },
+    { name = "django-coverage-plugin", specifier = "==3.2.0" },
+    { name = "freezegun", specifier = "==1.5.5" },
+    { name = "pytest", specifier = "==9.0.2" },
+    { name = "pytest-cov", specifier = "==7.0.0" },
+    { name = "pytest-django", specifier = "==4.11.1" },
+    { name = "pytest-mock", specifier = "==3.15.1" },
+    { name = "pytest-playwright", specifier = "==0.7.2" },
+    { name = "pytest-playwright-visual", specifier = "==2.1.2" },
 ]
 type = [
-    { name = "django-stubs", extras = ["compatible-mypy"] },
-    { name = "mypy" },
+    { name = "django-stubs", extras = ["compatible-mypy"], specifier = "==5.2.9" },
+    { name = "mypy", specifier = "==1.19.1" },
 ]
 
 [[package]]
