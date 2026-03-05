@@ -3,4 +3,13 @@
   extends: [
     'github>kitware-resonant/.github:renovate-library.json5',
   ],
+  packageRules: [
+    // Separate pytest-django from the grouped updates — the latest version is
+    // broken and would hold back all other dependency updates.
+    {
+      matchPackageNames: ['pytest-django'],
+      groupName: 'pytest-django',
+      groupSlug: 'pytest-django',
+    },
+  ],
 }
