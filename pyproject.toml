@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "hatch-vcs"]
+requires = ["hatchling>=1,<2", "hatch-vcs>=0"]
 build-backend = "hatchling.build"
 
 [project]
@@ -51,40 +51,40 @@ allauth = [
   "django-allauth>=0.63",
 ]
 oauth-toolkit = [
-  "django-oauth-toolkit",
+  "django-oauth-toolkit>=0",
 ]
 
 [dependency-groups]
 dev = [
-  "django",
-  "django-allauth[mfa,socialaccount]",
-  "django-browser-reload",
-  "django-debug-toolbar",
-  "django-extensions",
-  "django-oauth-toolkit",
-  "ipython",
-  "tox",
-  "tox-uv",
-  "watchdog",
-  "werkzeug",
+  "django==6.0.1",
+  "django-allauth[mfa,socialaccount]==65.14.0",
+  "django-browser-reload==1.21.0",
+  "django-debug-toolbar==6.2.0",
+  "django-extensions==4.1",
+  "django-oauth-toolkit==3.2.0",
+  "ipython==9.9.0",
+  "tox==4.34.1",
+  "tox-uv==1.29.0",
+  "watchdog==6.0.0",
+  "werkzeug==3.1.5",
 ]
 lint = [
-  "ruff",
+  "ruff==0.14.14",
 ]
 type = [
-  "mypy",
-  "django-stubs[compatible-mypy]",
+  "mypy==1.19.1",
+  "django-stubs[compatible-mypy]==5.2.9",
 ]
 test = [
-  "django-allauth[mfa,socialaccount]",
-  "django-coverage-plugin",
-  "freezegun",
-  "pytest",
-  "pytest-cov",
-  "pytest-django",
-  "pytest-mock",
-  "pytest-playwright",
-  "pytest-playwright-visual",
+  "django-allauth[mfa,socialaccount]>=65",
+  "django-coverage-plugin==3.2.0",
+  "freezegun==1.5.5",
+  "pytest==9.0.2",
+  "pytest-cov==7.0.0",
+  "pytest-django==4.11.1",
+  "pytest-mock==3.15.1",
+  "pytest-playwright==0.7.2",
+  "pytest-playwright-visual==2.1.2",
 ]
 
 [tool.hatch.build]
