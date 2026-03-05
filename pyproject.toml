@@ -56,20 +56,20 @@ oauth-toolkit = [
 
 [dependency-groups]
 dev = [
-  "django==6.0.1",
-  "django-allauth[mfa,socialaccount]==65.14.0",
+  "django==6.0.3",
+  "django-allauth[mfa,socialaccount]==65.14.3",
   "django-browser-reload==1.21.0",
   "django-debug-toolbar==6.2.0",
   "django-extensions==4.1",
   "django-oauth-toolkit==3.2.0",
-  "ipython==9.9.0",
-  "tox==4.34.1",
-  "tox-uv==1.29.0",
+  "ipython==9.10.0",
+  "tox==4.47.3",
+  "tox-uv==1.33.1",
   "watchdog==6.0.0",
-  "werkzeug==3.1.5",
+  "werkzeug==3.1.6",
 ]
 lint = [
-  "ruff==0.14.14",
+  "ruff==0.15.4",
 ]
 type = [
   "mypy==1.19.1",
