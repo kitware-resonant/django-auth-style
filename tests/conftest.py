@@ -2,18 +2,17 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
 
-from allauth.socialaccount.models import SocialAccount
 from django.conf import settings
-from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
 from django.test import Client
 from django.urls import reverse
 import pytest
 
 if TYPE_CHECKING:
-    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
     from collections.abc import Callable
 
+    from allauth.socialaccount.models import SocialAccount
+    from django.contrib.auth.models import User
+    from django.contrib.sites.models import Site
     from playwright.sync_api import BrowserContext, Page
     from pytest_django.fixtures import SettingsWrapper
     from pytest_django.live_server_helper import LiveServer
@@ -39,6 +38,9 @@ def mock_generate_seed(mocker: MockerFixture) -> MockType:
 
 @pytest.fixture(autouse=True)
 def default_site(transactional_db: None) -> Site:
+    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
+    from django.contrib.sites.models import Site  # noqa: PLC0415
+
     # The default site is created via the "post_migrate" signal and TransactionTestCase
     # specifically re-sends the "post_migrate" signal after flushing the database between each test.
     # So, the default site is guaranteed to exist for each test, but with its original value.
@@ -62,6 +64,9 @@ def mock_recently_authenticated(mocker: MockerFixture, settings: SettingsWrapper
 
 @pytest.fixture
 def user(transactional_db: None) -> User:
+    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
+    from django.contrib.auth.models import User  # noqa: PLC0415
+
     return User.objects.create_user(
         username="test_user",
         first_name="Test",
@@ -73,6 +78,9 @@ def user(transactional_db: None) -> User:
 
 @pytest.fixture
 def social_account(transactional_db: None, user: User) -> SocialAccount:
+    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
+    from allauth.socialaccount.models import SocialAccount  # noqa: PLC0415
+
     return SocialAccount.objects.create(
         user=user,
         provider="dummy",
