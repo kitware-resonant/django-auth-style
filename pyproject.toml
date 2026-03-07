@@ -84,7 +84,7 @@ test = [
   "pytest-django==4.11.1",
   "pytest-mock==3.15.1",
   "pytest-playwright==0.7.2",
-  "pytest-playwright-visual==2.1.2",
+  "pytest-playwright-visual-snapshot==0.5.1",
 ]
 
 [tool.hatch.build]
@@ -235,6 +235,9 @@ filterwarnings = [
   "ignore:Image.Image.getdata is deprecated:DeprecationWarning:pixelmatch.contrib.PIL",
 ]
 DJANGO_SETTINGS_MODULE = "test_app.settings"
+playwright_visual_snapshots_path = "tests/snapshots"
+playwright_visual_snapshot_failures_path = "tests/snapshot_failures"
+playwright_visual_snapshot_threshold = "0.4"
 
 [tool.coverage.run]
 source_pkgs = [
