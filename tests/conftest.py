@@ -179,7 +179,7 @@ def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page
                 # There shouldn't be any animations, but disable for safety
                 animations="disabled",
             ),
-            threshold=0.4,
+            threshold=0.3,
         )
 
     return _assert_page_snapshot
