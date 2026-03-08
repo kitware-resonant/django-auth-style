@@ -1,0 +1,24 @@
+name: generate-snapshots
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  generate-snapshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          # Tags are needed to compute the current version number
+          fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Update snapshots
+        run: |
+          uv run tox -e test -- --update-snapshots
+        continue-on-error: true
+      - name: Upload snapshots
+        uses: actions/upload-artifact@v7
+        with:
+          name: snapshots
+          path: tests/snapshots/*
