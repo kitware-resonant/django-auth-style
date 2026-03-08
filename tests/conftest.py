@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 from allauth.socialaccount.models import SocialAccount
 from django.conf import settings
@@ -96,6 +96,19 @@ def color_scheme(request: pytest.FixtureRequest) -> Literal["light", "dark"]:
 
 
 # This intentionally overrides the built-in fixture from pytest_playwright.
+# Normalize rendering to reduce differences between local and CI environments.
+@pytest.fixture(scope="session")
+def browser_type_launch_args(browser_type_launch_args: dict[str, Any]) -> dict[str, Any]:
+    return {
+        **browser_type_launch_args,
+        "args": [
+            "--font-render-hinting=none",
+            "--force-color-profile=srgb",
+        ],
+    }
+
+
+# This intentionally overrides the built-in fixture from pytest_playwright.
 # This will also cause other built-in fixtures like "page" to have a base URL set.
 @pytest.fixture
 def context(live_server: LiveServer, new_context: CreateContextCallback) -> BrowserContext:
@@ -133,11 +146,7 @@ def authenticated_context(context: BrowserContext, user: User) -> BrowserContext
     return context
 
 
-@pytest.fixture
-def page(
-    context: BrowserContext,
-    color_scheme: Literal["light", "dark"],
-) -> Page:
+def _new_page(context: BrowserContext, color_scheme: Literal["light", "dark"]) -> Page:
     page = context.new_page()
     page.emulate_media(color_scheme=color_scheme)
     page.set_default_timeout(3_000)
@@ -145,18 +154,22 @@ def page(
 
 
 @pytest.fixture
+def page(context: BrowserContext, color_scheme: Literal["light", "dark"]) -> Page:
+    return _new_page(context, color_scheme)
+
+
+@pytest.fixture
 def authenticated_page(
-    authenticated_context: BrowserContext,
-    color_scheme: Literal["light", "dark"],
+    authenticated_context: BrowserContext, color_scheme: Literal["light", "dark"]
 ) -> Page:
-    page = authenticated_context.new_page()
-    page.emulate_media(color_scheme=color_scheme)
-    return page
+    return _new_page(authenticated_context, color_scheme)
 
 
 @pytest.fixture
 def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page], None]:
     def _assert_page_snapshot(page: Page) -> None:
+        # The font needs to be downloaded from the web
+        page.evaluate("document.fonts.ready")
         assert_snapshot(
             page.screenshot(
                 # full_page doesn't work: https://github.com/microsoft/playwright-python/issues/726
