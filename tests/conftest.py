@@ -3,11 +3,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Literal
 
 from allauth.socialaccount.models import SocialAccount
+from allauth.usersessions.models import UserSession
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.test import Client
-from django.urls import reverse
 import pytest
 
 if TYPE_CHECKING:
@@ -95,6 +95,14 @@ def color_scheme(request: pytest.FixtureRequest) -> Literal["light", "dark"]:
     return request.param  # type: ignore[no-any-return]
 
 
+_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "HeadlessChrome/136.0.7103.25 "
+    "Safari/537.36"
+)
+
+
 # This intentionally overrides the built-in fixture from pytest_playwright.
 # Normalize rendering to reduce differences between local and CI environments.
 @pytest.fixture(scope="session")
@@ -116,33 +124,38 @@ def context(live_server: LiveServer, new_context: CreateContextCallback) -> Brow
         base_url=live_server.url,
         device_scale_factor=1.0,
         # Lock the reported user agent, as the usersessions_list renders it
-        user_agent=(
-            "Mozilla/5.0 (X11; Linux x86_64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "HeadlessChrome/136.0.7103.25 "
-            "Safari/537.36"
-        ),
+        user_agent=_USER_AGENT,
     )
     context.set_default_timeout(3_000)
     return context
 
 
 @pytest.fixture
-def authenticated_context(context: BrowserContext, user: User) -> BrowserContext:
-    # Using "Client.force_login" (then copying cookies to the browser) doesn't trigger all
-    # the appropriate signals, so sessions aren't updated. Instead, login naively via
-    # the browser.
-    page = context.new_page()
-    page.set_default_timeout(3_000)
-    page.goto(reverse("account_login"))
-    page.get_by_label("Username").fill(user.username)
-    # The "user" object doesn't have the plain text password
-    page.get_by_label("Password").fill("T3st_passw0rd!")
-    page.get_by_role("button", name="Sign In").click()
-    # Ensure that pending messages are always rendered and cleared, which is more deterministic.
-    page.wait_for_url(reverse(settings.LOGIN_REDIRECT_URL))
-    page.close()
-
+def authenticated_context(
+    context: BrowserContext,
+    client: Client,
+    user: User,
+    mock_recently_authenticated: MockType,
+) -> BrowserContext:
+    # Use force_login + cookie injection instead of filling the login form for speed.
+    client.force_login(user)
+    session_cookie = client.cookies[settings.SESSION_COOKIE_NAME]
+    UserSession.objects.create(
+        user=user,
+        session_key=client.session.session_key,
+        ip="127.0.0.1",
+        user_agent=_USER_AGENT,
+    )
+    context.add_cookies(
+        [
+            {
+                "name": session_cookie.key,
+                "value": session_cookie.value,
+                "domain": "localhost",
+                "path": "/",
+            }
+        ]
+    )
     return context
 
 
