@@ -67,7 +67,7 @@ def user(transactional_db: None) -> User:
         first_name="Test",
         last_name="User",
         email="user@example.com",
-        password="password",
+        password="T3st_passw0rd!",
     )
 
 
@@ -137,7 +137,7 @@ def authenticated_context(context: BrowserContext, user: User) -> BrowserContext
     page.goto(reverse("account_login"))
     page.get_by_label("Username").fill(user.username)
     # The "user" object doesn't have the plain text password
-    page.get_by_label("Password").fill("password")
+    page.get_by_label("Password").fill("T3st_passw0rd!")
     page.get_by_role("button", name="Sign In").click()
     # Ensure that pending messages are always rendered and cleared, which is more deterministic.
     page.wait_for_url(reverse(settings.LOGIN_REDIRECT_URL))

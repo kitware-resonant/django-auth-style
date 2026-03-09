@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from allauth.socialaccount.models import SocialAccount
     from django.contrib.auth.models import User
     from playwright.sync_api import Page
+    from pytest_django.fixtures import SettingsWrapper
 
 
 def test_render_base_messages(
@@ -111,6 +112,37 @@ def test_render_with_button_edit(
     authenticated_page.goto(reverse("mfa_list_webauthn"))
 
     assert_page_snapshot(authenticated_page)
+
+
+@pytest.mark.parametrize("details_open", [False, True], ids=["closed", "open"])
+def test_render_with_element_details(
+    settings: SettingsWrapper,
+    page: Page,
+    assert_page_snapshot: Callable[[Page], None],
+    *,
+    details_open: bool,
+) -> None:
+    # The following are all required to render a details element
+    settings.ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+    settings.ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True
+    settings.ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_CHANGE = True
+    # Make the email field required
+    settings.ACCOUNT_SIGNUP_FIELDS = ["username*", "email*", "password1*", "password2*"]
+
+    page.goto(reverse("account_signup"))
+    page.get_by_label("Username").fill("test_user")
+    page.get_by_label("Email").fill("user@example.com")
+    page.get_by_label("Password", exact=True).fill("T3st_passw0rd!")
+    page.get_by_label("Password (again)").fill("T3st_passw0rd!")
+    page.get_by_role("button", name="Sign Up").click()
+
+    if details_open:
+        page.get_by_text("different email address").click()
+        page.get_by_role("button", name="Change").wait_for()
+        # Opening the pane triggers an animation
+        page.evaluate("Promise.all(document.getAnimations().map(a => a.finished))")
+
+    assert_page_snapshot(page)
 
 
 def test_render_override_style(
