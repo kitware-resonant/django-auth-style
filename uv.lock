@@ -405,7 +405,7 @@ type = [
 [package.metadata]
 requires-dist = [
     { name = "django", specifier = ">=5.2" },
-    { name = "django-allauth", marker = "extra == 'allauth'", specifier = ">=0.63" },
+    { name = "django-allauth", marker = "extra == 'allauth'", specifier = ">=65.8.0" },
     { name = "django-oauth-toolkit", marker = "extra == 'oauth-toolkit'", specifier = ">=0" },
 ]
 provides-extras = ["allauth", "oauth-toolkit"]

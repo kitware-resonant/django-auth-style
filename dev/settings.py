@@ -87,6 +87,13 @@ SOCIALACCOUNT_PROVIDERS = {
     "google": {"APP": {}},
 }
 
+# The following are all required to render a details element
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True
+ACCOUNT_EMAIL_VERIFICATION_SUPPORTS_CHANGE = True
+# Make the email field required
+ACCOUNT_SIGNUP_FIELDS = ["username*", "email*", "password1*", "password2*"]
+
 OAUTH2_PROVIDER = {
     "PKCE_REQUIRED": False,
     "ALLOWED_REDIRECT_URI_SCHEMES": ["http", "https"],
