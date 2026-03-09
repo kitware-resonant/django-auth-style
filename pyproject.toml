@@ -62,14 +62,14 @@ dev = [
   "django-debug-toolbar==6.2.0",
   "django-extensions==4.1",
   "django-oauth-toolkit==3.2.0",
-  "ipython==9.10.0",
-  "tox==4.47.3",
+  "ipython==9.11.0",
+  "tox==4.49.0",
   "tox-uv==1.33.1",
   "watchdog==6.0.0",
   "werkzeug==3.1.6",
 ]
 lint = [
-  "ruff==0.15.4",
+  "ruff==0.15.5",
 ]
 type = [
   "mypy==1.19.1",
