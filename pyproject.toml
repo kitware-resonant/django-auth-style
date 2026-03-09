@@ -248,9 +248,8 @@ plugins = [
 ]
 
 [tool.coverage.report]
-omit = [
-  # Don't actually report coverage from "django.template" itself
-  "**/site-packages/django/template/**",
+include = [
+  "auth_style/templates/**",
 ]
 
 [tool.coverage.paths]
