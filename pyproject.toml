@@ -73,7 +73,7 @@ lint = [
 ]
 type = [
   "mypy==1.19.1",
-  "django-stubs[compatible-mypy]==5.2.9",
+  "django-stubs[compatible-mypy]==6.0.1",
 ]
 test = [
   "django-allauth[mfa,socialaccount]>=65",
