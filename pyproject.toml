@@ -47,8 +47,9 @@ Repository = "https://github.com/kitware-resonant/django-auth-style"
 
 [project.optional-dependencies]
 allauth = [
-  # Required for "elements/details.html" template
-  "django-allauth>=65.8.0",
+  # 65.8.0 added "elements/details.html" template
+  # 65.9.0 fixed WebAuthn/MFA support, used by tests
+  "django-allauth>=65.9.0",
 ]
 oauth-toolkit = [
   "django-oauth-toolkit>=0",

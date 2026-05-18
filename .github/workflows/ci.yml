@@ -9,6 +9,9 @@ permissions:
 jobs:
   test-python:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        uv-resolution: [highest, lowest-direct]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -21,6 +24,8 @@ jobs:
         id: test-tox
         run: |
           uv run tox
+        env:
+          UV_RESOLUTION: ${{ matrix.uv-resolution }}
       - name: Persist test failure snapshots
         uses: actions/upload-artifact@v7
         with:
