@@ -12,9 +12,6 @@ from django.test import Client
 import pytest
 
 if TYPE_CHECKING:
-    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
-    from collections.abc import Callable
-
     from playwright.sync_api import BrowserContext, Page
     from pytest_django.fixtures import SettingsWrapper
     from pytest_django.live_server_helper import LiveServer
@@ -185,26 +182,6 @@ def authenticated_page(
     authenticated_context: BrowserContext, color_scheme: Literal["light", "dark"]
 ) -> Page:
     return _new_page(authenticated_context, color_scheme)
-
-
-@pytest.fixture
-def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page], None]:
-    def _assert_page_snapshot(page: Page) -> None:
-        # The font needs to be downloaded from the web
-        page.evaluate("document.fonts.ready")
-        assert_snapshot(
-            page.screenshot(
-                # full_page doesn't work: https://github.com/microsoft/playwright-python/issues/726
-                full_page=True,
-                # To make this reproducible, don't use the device DPI for scale
-                scale="css",
-                # There shouldn't be any animations, but disable for safety
-                animations="disabled",
-            ),
-            threshold=0.3,
-        )
-
-    return _assert_page_snapshot
 
 
 @pytest.fixture

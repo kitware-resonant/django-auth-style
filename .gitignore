@@ -1,5 +1,5 @@
 auth_style/static/auth_style/dist/
-tests/snapshot_tests_failures/
+tests/snapshot_failures/
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,node
