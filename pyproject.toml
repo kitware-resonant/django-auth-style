@@ -57,7 +57,7 @@ oauth-toolkit = [
 [dependency-groups]
 dev = [
   "django==6.0.5",
-  "django-allauth[mfa,socialaccount]==65.16.1",
+  "django-allauth[mfa,socialaccount]==65.17.0",
   "django-browser-reload==1.21.0",
   "django-debug-toolbar==6.3.0",
   "django-extensions==4.1",
@@ -69,11 +69,11 @@ dev = [
   "werkzeug==3.1.8",
 ]
 lint = [
-  "ruff==0.15.13",
+  "ruff==0.15.14",
 ]
 type = [
-  "mypy==2.0.0",
-  "django-stubs[compatible-mypy]==6.0.4",
+  "mypy==2.1.0",
+  "django-stubs[compatible-mypy]==6.0.5",
 ]
 test = [
   # "django-allauth" 65.16.0 changed the appearance of some textarea
@@ -84,7 +84,7 @@ test = [
   "pytest-cov==7.1.0",
   "pytest-django==4.11.1",
   "pytest-mock==3.15.1",
-  "pytest-playwright==0.7.2",
+  "pytest-playwright==0.8.0",
   "pytest-playwright-visual==2.1.2",
 ]
 
