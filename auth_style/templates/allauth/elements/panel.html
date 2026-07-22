@@ -1,5 +1,5 @@
 {% load allauth %}
-<div class="border card card-compact bg-base-100 border-neutral-200 dark:border-white/10">
+<div class="card card-compact bg-base-100 border border-neutral-200 dark:border-white/10">
   <div class="card-body">
     <h2 class="card-title">
       {% slot title %}{% endslot %}
@@ -9,7 +9,7 @@
     </div>
     {# TODO: slots.actions is always truthy #}
     {% if slots.actions %}
-      <div class="justify-end items-center card-actions">
+      <div class="card-actions items-center justify-end">
         {% for action in slots.actions %}
           {{ action }}
         {% endfor %}

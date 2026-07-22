@@ -16,7 +16,7 @@
     "npm-run-all2": "^9.0.0",
     "parcel": "^2.15.2",
     "rimraf": "^6.0.1",
-    "rustywind": "^0.24.0"
+    "rustywind": "^0.25.0"
   },
   "scripts": {
     "test": "rustywind --check-formatted ./auth_style/templates",
