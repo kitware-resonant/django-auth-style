@@ -139,11 +139,15 @@ ignore = [
 
   # Overly burdensome
   "ANN", # flake8-annotations
+  "CPY001", # missing-copyright-notice
   "D1", # undocumented-*
   "EM", # flake8-errmsg
   "ERA001", # commented-out-code
   "FIX", # flake8-fixme
+  "RET505", # superfluous-else-return
   "RET506", # superfluous-else-raise
+  "RET507", # superfluous-else-continue
+  "RET508", # superfluous-else-break
   "TD002", # missing-todo-author
   "TD003", # missing-todo-link
   "TRY003", # raise-vanilla-args
@@ -172,8 +176,18 @@ ignore = [
   "SLF001", # private-member-access
 ]
 
+[tool.ruff.lint.flake8-boolean-trap]
+extend-allowed-calls = ["pydantic.Field", "django.db.models.Value"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["ninja.Query"]
+
 [tool.ruff.lint.flake8-self]
 extend-ignore-names = ["_base_manager", "_default_manager",  "_meta"]
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = ["pydantic.BaseModel"]
+runtime-evaluated-decorators = ["pydantic.validate_call"]
 
 [tool.ruff.lint.isort]
 # Sort by name, don't cluster "from" vs "import"
@@ -214,19 +228,21 @@ django_settings_module = "test_app.settings"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# Allow test_app to be imported without adding the root directory to the pythonpath,
+# Allow test utility modules to be imported without adding the root directory to the pythonpath,
 # which would cause the local "auth_style" module to shadow the install.
 pythonpath = ["tests"]
 # Configure pythonpath ourselves, not based on manage.py
 django_find_project = false
 addopts = [
-  # Use the Pytest-reccomended "importlib" mode
+  # Use the Pytest-recommended "importlib" mode
   "--import-mode=importlib",
   "--strict-config",
   "--strict-markers",
   "--showlocals",
   "--verbose",
   "--cov",
+  # Specifying as "--ds" will override any value in the environment
+  "--ds=test_app.settings",
 ]
 filterwarnings = [
   "error",
@@ -235,7 +251,6 @@ filterwarnings = [
   # https://github.com/whtsky/pixelmatch-py/issues/170
   "ignore:Image.Image.getdata is deprecated:DeprecationWarning:pixelmatch.contrib.PIL",
 ]
-DJANGO_SETTINGS_MODULE = "test_app.settings"
 
 [tool.coverage.run]
 source_pkgs = [
