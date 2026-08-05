@@ -27,20 +27,20 @@ Then enable the Django app:
 INSTALLED_APPS = [
     # Any project-local apps should come before "auth_style",
     # so templates can be overridden as needed
-    'my_django_app.apps.MyDjangoAppConfig',
+    "my_django_app.apps.MyDjangoAppConfig",
     ...,
-    'auth_style',
+    "auth_style",
     ...,
     # "allauth" must come after "auth_style"
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
 ]
 MIDDLEWARE = [
     ...,
     # CurrentSiteMiddleware is optional, but recommended to show site branding
-    'django.contrib.sites.middleware.CurrentSiteMiddleware',
-    ...
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
+    ...,
 ]
 ```
 
@@ -56,12 +56,12 @@ Then enable the Django app:
 INSTALLED_APPS = [
     # Any project-local apps should come before "auth_style",
     # so templates can be overridden as needed
-    'my_django_app.apps.MyDjangoAppConfig',
+    "my_django_app.apps.MyDjangoAppConfig",
     ...,
-    'auth_style',
+    "auth_style",
     ...,
     # "oauth2_provider" must come after "auth_style"
-    'oauth2_provider',
+    "oauth2_provider",
 ]
 ```
 
