@@ -56,7 +56,7 @@ oauth-toolkit = [
 
 [dependency-groups]
 dev = [
-  "django==6.0.7",
+  "django==6.1",
   "django-allauth[mfa,socialaccount]==65.18.0",
   "django-browser-reload==1.21.0",
   "django-debug-toolbar==7.0.0",
