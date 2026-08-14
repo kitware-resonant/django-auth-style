@@ -12,11 +12,10 @@ from django.test import Client
 import pytest
 
 if TYPE_CHECKING:
-    # Work around https://github.com/pytest-dev/pytest-django/issues/1152
     from collections.abc import Callable
 
     from playwright.sync_api import BrowserContext, Page
-    from pytest_django.fixtures import SettingsWrapper
+    from pytest_django import Settings
     from pytest_django.live_server_helper import LiveServer
     from pytest_mock import MockerFixture, MockType
     from pytest_playwright.pytest_playwright import CreateContextCallback
@@ -51,7 +50,7 @@ def default_site(transactional_db: None) -> Site:
 
 
 @pytest.fixture
-def mock_recently_authenticated(mocker: MockerFixture, settings: SettingsWrapper) -> MockType:
+def mock_recently_authenticated(mocker: MockerFixture, settings: Settings) -> MockType:
     settings.ACCOUNT_REAUTHENTICATION_REQUIRED = True
 
     # Allauth MFA views do not respect the ACCOUNT_REAUTHENTICATION_REQUIRED setting
@@ -208,5 +207,5 @@ def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page
 
 
 @pytest.fixture
-def override_app_style(settings: SettingsWrapper) -> None:
+def override_app_style(settings: Settings) -> None:
     settings.INSTALLED_APPS = ["test_override_app.auth_style_design", *settings.INSTALLED_APPS]
