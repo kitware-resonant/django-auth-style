@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from allauth.socialaccount.models import SocialAccount
     from django.contrib.auth.models import User
     from playwright.sync_api import Page
-    from pytest_django.fixtures import SettingsWrapper
+    from pytest_django import Settings
 
 
 def test_render_base_messages(
@@ -116,7 +116,7 @@ def test_render_with_button_edit(
 
 @pytest.mark.parametrize("details_open", [False, True], ids=["closed", "open"])
 def test_render_with_element_details(
-    settings: SettingsWrapper,
+    settings: Settings,
     page: Page,
     assert_page_snapshot: Callable[[Page], None],
     *,
