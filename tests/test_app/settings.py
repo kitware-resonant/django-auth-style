@@ -45,6 +45,14 @@ MIDDLEWARE = [
 ]
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3"}}
+
+# Sending email requires a declared "default" mailer,
+# though the test environment will substitute its backend with locmem regardless
+MAILERS = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.locmem.EmailBackend",
+    },
+}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATIC_URL = "static/"
