@@ -74,7 +74,7 @@ lint = [
 ]
 type = [
   "mypy==2.3.0",
-  "django-stubs[compatible-mypy]==6.0.9",
+  "django-stubs[compatible-mypy]==6.1.0",
 ]
 test = [
   # "django-allauth" 65.16.0 changed the appearance of some textarea
