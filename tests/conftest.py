@@ -189,6 +189,9 @@ def authenticated_page(
 @pytest.fixture
 def assert_page_snapshot(assert_snapshot: Callable[..., None]) -> Callable[[Page], None]:
     def _assert_page_snapshot(page: Page) -> None:
+        # Navigations triggered by a click (unlike "goto") don't wait for the "load" event,
+        # so the stylesheet may not be loaded yet, which would render an unstyled page
+        page.wait_for_load_state("load")
         # The font needs to be downloaded from the web
         page.evaluate("document.fonts.ready")
         assert_snapshot(
