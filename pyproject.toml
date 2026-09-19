@@ -114,6 +114,7 @@ source = "vcs"
 
 [tool.ruff]
 line-length = 100
+src = [".", "tests"]
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -204,12 +205,9 @@ files = [
   "auth_style",
   "tests",
 ]
-check_untyped_defs = true
-show_error_codes = true
 strict = true
-warn_redundant_casts = true
 warn_unused_configs = true
-warn_unused_ignores = true
+enable_error_code = ["exhaustive-match"]
 plugins = [
   "mypy_django_plugin.main",
 ]
@@ -234,13 +232,11 @@ testpaths = ["tests"]
 pythonpath = ["tests"]
 # Configure pythonpath ourselves, not based on manage.py
 django_find_project = false
+strict = true
 addopts = [
   # Use the Pytest-recommended "importlib" mode
   "--import-mode=importlib",
-  "--strict-config",
-  "--strict-markers",
   "--showlocals",
-  "--verbose",
   "--cov",
   # Specifying as "--ds" will override any value in the environment
   "--ds=test_app.settings",
