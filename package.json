@@ -5,6 +5,10 @@
   "devEngines": {
     "packageManager": {
       "name": "npm"
+    },
+    "runtime": {
+      "name": "node",
+      "version": ">=24"
     }
   },
   "dependencies": {
