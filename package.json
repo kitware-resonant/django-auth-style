@@ -16,32 +16,16 @@
     "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
-    "npm-run-all2": "^9.0.0",
-    "parcel": "^2.15.2",
-    "rimraf": "^6.0.1",
+    "@tailwindcss/cli": "^4.3.3",
     "rustywind": "^0.28.0"
   },
   "scripts": {
     "test": "rustywind --check-formatted ./auth_style/templates",
     "format": "rustywind --write ./auth_style/templates",
-    "watch": "parcel watch",
-    "build:clean": "rimraf ./auth_style/static/auth_style/dist",
-    "build:compile": "parcel build",
-    "build": "npm-run-all build:clean build:compile"
+    "watch": "tailwindcss -i ./npm-src/styles.css -o ./auth_style/static/auth_style/dist/styles.css --watch",
+    "build": "tailwindcss -i ./npm-src/styles.css -o ./auth_style/static/auth_style/dist/styles.css --minify"
   },
-  "targets": {
-    "styles": {
-      "source": [
-        "./npm-src/styles.pcss"
-      ],
-      "distDir": "./auth_style/static/auth_style/dist"
-    }
-  },
-  "browserslist": "> 0.5%",
-  "postcss": {
-    "plugins": {
-      "@tailwindcss/postcss": {}
-    }
+  "allowScripts": {
+    "rustywind": true
   }
 }
