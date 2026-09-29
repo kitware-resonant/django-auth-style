@@ -26,6 +26,7 @@
     "build": "tailwindcss -i ./npm-src/styles.css -o ./auth_style/static/auth_style/dist/styles.css --minify"
   },
   "allowScripts": {
-    "rustywind": true
+    "rustywind": true,
+    "@parcel/watcher": false
   }
 }
