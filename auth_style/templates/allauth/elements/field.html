@@ -55,6 +55,18 @@
           </option>
         {% endfor %}
       </select>
+    {% elif attrs.type == "checkbox" %}
+      <input
+        {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {# A bound BooleanField provides its state as a boolean "value"; it is not an HTML value attribute #}
+        {% if attrs.checked or attrs.value %}checked{% endif %}
+        {% if attrs.tabindex %}tabindex="{{ attrs.tabindex }}"{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        type="checkbox"
+        class="{{ input_classes }}"
+      />
     {% else %}
       <input
         {% if attrs.required %}required{% endif %}
@@ -68,7 +80,7 @@
         {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
         {% if attrs.value is not None %}value="{{ attrs.value }}"{% endif %}
         type="{{ attrs.type }}"
-        class="{% if not attrs.unlabeled or attrs.type == "checkbox" or attrs.type == "radio" %}{{ input_classes }}{% endif %}"
+        class="{% if not attrs.unlabeled or attrs.type == "radio" %}{{ input_classes }}{% endif %}"
       />
     {% endif %}
   {% endsetvar %}
