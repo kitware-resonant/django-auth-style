@@ -55,7 +55,7 @@ def mock_recently_authenticated(mocker: MockerFixture, settings: Settings) -> Mo
 
     # Allauth MFA views do not respect the ACCOUNT_REAUTHENTICATION_REQUIRED setting
     return mocker.patch(
-        "allauth.account.internal.flows.reauthentication.did_recently_authenticate",
+        "allauth.account.internal.flows.reauthentication.did_recently_reauthenticate",
         return_value=True,
     )
 

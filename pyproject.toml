@@ -78,8 +78,7 @@ type = [
   "django-stubs[compatible-mypy]==6.1.2",
 ]
 test = [
-  # "django-allauth" 65.16.0 changed the appearance of some textarea
-  "django-allauth[mfa,socialaccount]>=65.16.0",
+  "django-allauth[mfa,socialaccount]==65.20.1",
   "django-coverage-plugin==3.2.2",
   "freezegun==1.5.5",
   "pytest==9.1.1",

@@ -612,7 +612,7 @@ dev = [
 ]
 lint = [{ name = "ruff", specifier = "==0.17.2" }]
 test = [
-    { name = "django-allauth", extras = ["mfa", "socialaccount"], specifier = ">=65.16.0" },
+    { name = "django-allauth", extras = ["mfa", "socialaccount"], specifier = "==65.20.1" },
     { name = "django-coverage-plugin", specifier = "==3.2.2" },
     { name = "freezegun", specifier = "==1.5.5" },
     { name = "pytest", specifier = "==9.1.1" },
